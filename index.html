@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>毛孩小本本｜貓咪照護紀錄 App，看診前整理成一頁</title>
+<meta name="description" content="幾秒鐘記下貓咪吃了多少、清砂看到什麼，每天陪牠玩一下，看診前整理成一頁摘要。免註冊，資料只存在你的手機。目前 iOS 與 Android 測試中。">
+<meta name="theme-color" content="#FBF7EF">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="毛孩小本本 In Paw AI">
+<meta property="og:title" content="毛孩小本本｜貓咪照護紀錄 App，看診前整理成一頁">
+<meta property="og:description" content="幾秒鐘記下貓咪吃了多少、清砂看到什麼，每天陪牠玩一下，看診前整理成一頁摘要。免註冊，資料只存在你的手機。目前 iOS 與 Android 測試中。">
+<meta property="og:image" content="img/og.png">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" href="fonts/xbb-title.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css?v=87099411">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "毛孩小本本", "alternateName": "In Paw AI", "inLanguage": "zh-Hant-TW"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "要付費嗎？", "acceptedAnswer": {"@type": "Answer", "text": "價格與方案會在上架時公布。"}}, {"@type": "Question", "name": "什麼時候可以下載？", "acceptedAnswer": {"@type": "Answer", "text": "目前 iOS 與 Android 都在測試中，上架時會在這裡公布。"}}, {"@type": "Question", "name": "資料存在哪裡？", "acceptedAnswer": {"@type": "Answer", "text": "存在你使用的這台手機裡，不會自動上傳。換手機時可以用備份檔還原。"}}, {"@type": "Question", "name": "可以給獸醫看嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可以。看診摘要可以下載列印版、文字檔，或直接複製傳給獸醫。摘要是整理你的紀錄，不是診斷。"}}, {"@type": "Question", "name": "陪玩的聲音會不會嚇到貓？", "acceptedAnswer": {"@type": "Answer", "text": "聲音探索每天兩段，按下播放才開始，不會自動連播。播放前先把手機音量調低；牠走開或看起來不安，就停下來。小魚遊戲全程沒有聲音。"}}, {"@type": "Question", "name": "一定要用 AI 嗎？", "acceptedAnswer": {"@type": "Answer", "text": "不用。語音快記是選用功能，不下載模型也能用按鈕或打字記錄。"}}, {"@type": "Question", "name": "支援狗或其他寵物嗎？", "acceptedAnswer": {"@type": "Answer", "text": "目前只支援貓。"}}]}</script>
+
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="./" aria-label="毛孩小本本 首頁"><img src="img/logo.svg" alt="毛孩小本本 In Paw AI" width="137" height="60"></a>
+    <nav class="nav" aria-label="主選單">
+      <a href="./#how">怎麼用</a>
+      <a href="./#play">陪牠玩</a>
+      <a href="./#features">功能</a>
+      <a href="./#privacy">隱私</a>
+      <a href="./#faq">常見問題</a>
+    </nav>
+    <a class="btn btn-ghost" href="./#try" data-intent="try">先讓牠玩玩看</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="eyebrow">給養貓的人</p>
+      <h1>看診前，<br>把貓咪的日常<br>整理成一頁</h1>
+      <p class="lead">平常幾秒鐘記一筆，吃了多少、清砂看到什麼都留下來；每天陪牠玩一下，紀錄就自然累積起來。回診時，重點一頁帶著走。</p>
+      <ul class="chips">
+        <li>免註冊</li>
+        <li>資料只存在這台裝置</li>
+        <li>目前只支援貓</li>
+      </ul>
+      <div class="cta-row">
+        <span class="soon"><span class="btn btn-soon" aria-disabled="true">即將推出</span><span class="soon-note">iOS 與 Android 測試中</span></span>
+        <a class="btn btn-ghost" href="#play">先讓牠玩玩看</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <figure class="phone"><img src="img/02-today-640.webp" srcset="img/02-today-320.webp 320w, img/02-today-640.webp 640w" sizes="(max-width: 600px) 62vw, 300px" width="320" height="695" alt="今日首頁：照護花記到第 7 天，下面是看診摘要的入口" fetchpriority="high"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="pain" id="pain">
+  <div class="wrap">
+    <h2>獸醫問「最近吃得怎樣？」的那一刻</h2>
+    <p class="sub">你每天都在照顧牠，可是要一下子說清楚，真的很難。</p>
+    <div class="pain-grid">
+      <article class="quote">
+        <p class="q">「大概吃得差不多吧……」</p>
+        <p>吃了多少、剩了多少，過兩三天就記不清楚。</p>
+      </article>
+      <article class="quote">
+        <p class="q">「尿好像變少了？」</p>
+        <p>清砂時看到的變化，沒記下來就只剩印象。</p>
+      </article>
+      <article class="quote">
+        <p class="q">「是哪一天開始的？」</p>
+        <p>相簿、聊天紀錄、自己的記憶，全都散在不同地方。</p>
+      </article>
+    </div>
+    <p class="bridge">小本本幫你把日常記下來，看診時不用再靠回想。</p>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <h2>三個步驟，看診時把重點帶走</h2>
+    <ol class="steps">
+      <li class="step">
+        <div class="step-text">
+          <span class="num" aria-hidden="true">1</span>
+          <h3>記一筆</h3>
+          <p>首頁四顆按鈕：記一餐、清砂、記體重、語音文字。幾秒鐘就好。</p>
+        </div>
+        <figure class="phone"><img src="img/11-add-meal-640.webp" srcset="img/11-add-meal-320.webp 320w, img/11-add-meal-640.webp 640w" sizes="(max-width: 600px) 62vw, 300px" width="320" height="695" alt="新增紀錄：記一餐，選常吃的食品，分開填餵了多少和吃了多少" loading="lazy" decoding="async"></figure>
+      </li>
+      <li class="step">
+        <div class="step-text">
+          <span class="num" aria-hidden="true">2</span>
+          <h3>自動整理</h3>
+          <p>依日期排好，可以篩選餵食、排泄、體重，也能搜尋。</p>
+        </div>
+        <figure class="phone"><img src="img/04-records-640.webp" srcset="img/04-records-320.webp 320w, img/04-records-640.webp 640w" sizes="(max-width: 600px) 62vw, 300px" width="320" height="695" alt="紀錄列表：依日期列出餵食、清砂、喝水與體重" loading="lazy" decoding="async"></figure>
+      </li>
+      <li class="step">
+        <div class="step-text">
+          <span class="num" aria-hidden="true">3</span>
+          <h3>看診帶著走</h3>
+          <p>選 7 天或 14 天，整理成一頁：期間總覽、值得注意、記錄完整度。核對後可以列印，或直接傳給獸醫。</p>
+        </div>
+        <figure class="phone"><img src="img/09-summary-result-640.webp" srcset="img/09-summary-result-320.webp 320w, img/09-summary-result-640.webp 640w" sizes="(max-width: 600px) 62vw, 300px" width="320" height="695" alt="看診摘要：期間總覽與值得注意的項目" loading="lazy" decoding="async"></figure>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="play" id="play">
+  <div class="wrap">
+    <div class="play-head">
+      <div>
+        <p class="eyebrow">每天的陪伴</p>
+        <h2>每天陪牠玩一下</h2>
+        <p class="sub">照顧不只是記錄。小本本也準備了陪牠玩的方式：不用打卡、沒有分數，玩一下就好。每天陪牠玩一下，紀錄就自然累積起來。</p>
+      </div>
+      <img class="illus" src="img/play-illus.webp" width="840" height="477" alt="一隻橘色虎斑貓伏低身子，盯著地上的小魚玩具，旁邊有一盆植物" loading="lazy" decoding="async">
+    </div>
+
+    <div class="tryfish" id="try">
+      <div class="fishbox" id="fishbox">
+        <canvas id="fish" role="img" aria-label="小魚試玩：藍色水裡有一隻黃綠色小魚游來游去，碰到牠就會游開"></canvas>
+        <p class="fish-msg" id="fishMsg" hidden></p>
+      </div>
+      <div class="fish-side">
+        <h3>現在就讓牠玩玩看</h3>
+        <p>網站上的簡化版小魚。把手機平放在牠面前，按下開始，讓牠用爪子追。</p>
+        <div class="fish-btns">
+          <button class="btn" id="fishStart" type="button">開始</button>
+          <button class="btn btn-ghost" id="fishFull" type="button">全螢幕</button>
+          <button class="btn btn-ghost" id="fishStop" type="button" hidden>停下來</button>
+        </div>
+        <ul class="notes">
+          <li>全程沒有聲音，玩兩分鐘會自動休息。</li>
+          <li>藍色的水配黃綠色的小魚：貓看得最清楚的，就是藍色和黃綠色。</li>
+          <li>請在旁邊陪著，免得牠把手機撥下桌。</li>
+        </ul>
+        <p class="tiny">App 裡的小魚遊戲更完整。</p>
+      </div>
+    </div>
+
+    <div class="play-grid">
+      <article class="card">
+        <figure class="phone"><img src="img/05-play-640.webp" srcset="img/05-play-320.webp 320w, img/05-play-640.webp 640w" sizes="(max-width: 600px) 62vw, 300px" width="320" height="695" alt="陪玩首頁：自由玩小魚、聲音探索、幫牠設計玩法" loading="lazy" decoding="async"></figure>
+        <h3>自由玩小魚</h3>
+        <p>螢幕上的小魚游來游去，讓牠用爪子追，全程沒有聲音。陪玩頁還有「幫牠設計玩法」。</p>
+      </article>
+      <article class="card">
+        <figure class="phone"><img src="img/10-sound-640.webp" srcset="img/10-sound-320.webp 320w, img/10-sound-640.webp 640w" sizes="(max-width: 600px) 62vw, 300px" width="320" height="695" alt="聲音探索：今天開放的兩段聲音，按下播放才開始" loading="lazy" decoding="async"></figure>
+        <h3>聲音探索</h3>
+        <p>13 種聲音，每天兩段，看看牠對哪一種有興趣。按下播放才開始，不會自動連播；牠走開就停。</p>
+      </article>
+      <article class="card">
+        <figure class="phone"><img src="img/02-today-dark-640.webp" srcset="img/02-today-dark-320.webp 320w, img/02-today-dark-640.webp 640w" sizes="(max-width: 600px) 62vw, 300px" width="320" height="695" alt="深色模式的今日首頁：照護花的四片花瓣" loading="lazy" decoding="async"></figure>
+        <h3>照護花</h3>
+        <p>餵食、排泄、喝水、體重四片花瓣，記滿七天收成一朵，放進「我的花園」。不是健康評分，也不用填滿。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="wrap">
+    <h2>日常照顧需要的，都在這裡</h2>
+    <div class="feat-grid">
+      <article class="card">
+        <figure class="phone"><img src="img/03-feeding-640.webp" srcset="img/03-feeding-320.webp 320w, img/03-feeding-640.webp 640w" sizes="(max-width: 600px) 62vw, 300px" width="320" height="695" alt="餵食頁：今天的餐次與常吃的食品卡" loading="lazy" decoding="async"></figure>
+        <h3>餵食與食品卡</h3>
+        <p>記下品牌、口味、營養標示。一餐可以放好幾種食品，分開記「餵了多少」和「吃了多少」。不知道就留空，不會把未知當成 0。</p>
+      </article>
+      <article class="card">
+        <figure class="phone"><img src="img/08-summary-prepare-640.webp" srcset="img/08-summary-prepare-320.webp 320w, img/08-summary-prepare-640.webp 640w" sizes="(max-width: 600px) 62vw, 300px" width="320" height="695" alt="看診摘要：選擇 7 天或 14 天的期間" loading="lazy" decoding="async"></figure>
+        <h3>看診摘要</h3>
+        <p>選期間，整理成期間總覽、值得注意、記錄完整度。可以修改，核對後保存，下載列印版、文字檔或直接複製。沒記錄的項目會明白列出來：未記錄不代表正常。</p>
+      </article>
+      <article class="card">
+        <figure class="phone"><img src="img/06-pet-640.webp" srcset="img/06-pet-320.webp 320w, img/06-pet-640.webp 640w" sizes="(max-width: 600px) 62vw, 300px" width="320" height="695" alt="毛孩資料頁：照片、疫苗與驅蟲提醒、管理食品" loading="lazy" decoding="async"></figure>
+        <h3>毛孩資料</h3>
+        <p>照片、疫苗與驅蟲提醒（日期由你填）、管理常吃的食品。</p>
+      </article>
+    </div>
+    <div class="mini-grid">
+      <article class="mini">
+        <h3>紀錄</h3>
+        <p>依日期列出所有紀錄，可以篩選，也能搜尋。</p>
+      </article>
+      <article class="mini">
+        <h3>語音快記<span class="tag">選用</span></h3>
+        <p>在手機上把說的話轉成文字草稿。模型約 240 MB，下載後可以離線使用；記憶體夠的手機，還能把口述整理成餵食草稿。結果都是草稿，核對後才存。</p>
+      </article>
+      <article class="mini">
+        <h3>備份</h3>
+        <p>匯出備份檔，換手機時還原。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="privacy" id="privacy">
+  <div class="wrap">
+    <h2>資料只在你的手機裡</h2>
+    <div class="priv-grid">
+      <article class="priv"><h3>免註冊</h3><p>打開就能用，不用建帳號。</p></article><article class="priv"><h3>資料只在這台裝置</h3><p>紀錄存在你的手機裡，不會自動上傳。</p></article><article class="priv"><h3>雲端整理會先問你</h3><p>雲端整理是選用功能，目前只開放給內測受邀者；每次送出前都會先請你同意。</p></article><article class="priv"><h3>換手機用備份還原</h3><p>匯出備份檔，換手機時還原。家人同步與雲端備份目前還沒有開放。</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap narrow">
+    <h2>常見問題</h2>
+    <div class="faq-list"><details open><summary>要付費嗎？</summary><div class="ans"><p>價格與方案會在上架時公布。</p></div></details><details><summary>什麼時候可以下載？</summary><div class="ans"><p>目前 iOS 與 Android 都在測試中，上架時會在這裡公布。</p></div></details><details><summary>資料存在哪裡？</summary><div class="ans"><p>存在你使用的這台手機裡，不會自動上傳。換手機時可以用備份檔還原。</p></div></details><details><summary>可以給獸醫看嗎？</summary><div class="ans"><p>可以。看診摘要可以下載列印版、文字檔，或直接複製傳給獸醫。摘要是整理你的紀錄，不是診斷。</p></div></details><details><summary>陪玩的聲音會不會嚇到貓？</summary><div class="ans"><p>聲音探索每天兩段，按下播放才開始，不會自動連播。播放前先把手機音量調低；牠走開或看起來不安，就停下來。小魚遊戲全程沒有聲音。</p></div></details><details><summary>一定要用 AI 嗎？</summary><div class="ans"><p>不用。語音快記是選用功能，不下載模型也能用按鈕或打字記錄。</p></div></details><details><summary>支援狗或其他寵物嗎？</summary><div class="ans"><p>目前只支援貓。</p></div></details></div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>上架的時候，第一時間告訴你</h2>
+    <p class="sub">在那之前，先讓牠玩玩看小魚。</p>
+    <div class="cta-row center">
+      <span class="soon"><span class="btn btn-soon" aria-disabled="true">即將推出</span><span class="soon-note">iOS 與 Android 測試中</span></span>
+      <a class="btn btn-ghost" href="#try">先讓牠玩玩看</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<aside class="medical" data-medical>
+  <div class="wrap">
+    <p><strong>醫療提醒</strong>小本本是幫你整理紀錄的工具，不是醫療器材，看診摘要也不是診斷。如果貓咪呼吸困難、昏倒或無法排尿，請立即聯絡獸醫。</p>
+  </div>
+</aside>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <img src="img/logo.svg" alt="毛孩小本本 In Paw AI" width="110" height="48" loading="lazy">
+      <p>看診前，把貓咪的日常整理成一頁。</p>
+    </div>
+    <nav class="foot-links" aria-label="頁尾連結">
+      <a href="privacy">隱私權政策</a>
+      
+    </nav>
+    
+    <p class="copy">© 2026 毛孩小本本 In Paw AI</p>
+  </div>
+</footer>
+
+<script src="assets/site.js?v=87099411" defer></script>
+</body>
+</html>
