@@ -1,0 +1,1 @@
+.care-history-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid #eee6dc}.care-history-row .danger-link,.o-care-dialog .danger-link{min-height:44px;padding:8px 12px}.care-dose-delete .m-action-dialog{color:var(--ink,#40372f)}.care-history .care-success{font-size:13px;line-height:1.6}

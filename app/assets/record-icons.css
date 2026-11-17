@@ -1,0 +1,13 @@
+/* Fixed category identity, separate from clinical status and selected state. */
+.inpaw-app img.record-kind-icon,.cj-dialog img.record-kind-icon,.cj-workspace img.record-kind-icon {display:inline-block;flex:0 0 auto;object-fit:contain;vertical-align:middle;filter:none;opacity:1;}
+.health-category {display:flex;align-items:center;gap:7px;}
+.inpaw-app .native-other-records .health-quick-track {flex:1 1 190px;flex-wrap:wrap;min-width:0;overflow-x:visible;}
+.inpaw-app .native-other-records .health-quick-track button {display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;flex:1 1 max-content;min-width:0;max-width:100%;white-space:normal;}
+.inpaw-app .health-metric-pool label {display:flex;align-items:center;gap:6px;}
+.record-sort-label {display:flex;align-items:center;gap:6px;min-width:0;}
+.inpaw-app .entry-kind-tabs button {gap:5px;min-width:0;white-space:normal;}
+.inpaw-app .entry-kind-tabs button>span,.inpaw-app .native-other-records .health-quick-track button>span {min-width:0;white-space:normal;overflow-wrap:anywhere;line-height:1.35;}
+.cj-entry-kinds>button {gap:8px;}
+@media (forced-colors:active){.record-kind-icon{forced-color-adjust:none;}}
+/* Keep small label text neutral and high contrast on translucent light cards. */
+.inpaw-app .health-category {color:#51463d;}

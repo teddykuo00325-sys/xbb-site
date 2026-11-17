@@ -1,0 +1,98 @@
+/* v52: shared warm glass across all app routes; no layout or storage changes. */
+:root{
+ --paw-canvas:#fbf7ef;
+ --paw-glass:linear-gradient(135deg,#ffffffa8,#fffaf352 48%,#ffffff80);
+ --paw-glass-strong:linear-gradient(135deg,#ffffffe0,#fff8eeb8);
+ --paw-rim:#bfa78c66;
+ --paw-depth:0 6px 18px #79543a12;
+}
+.inpaw-app,.inpaw-app.health-app,.inpaw-app.health-home{background:var(--paw-canvas)!important;--ij-primary:linear-gradient(150deg,#d48b4e,#a74c20);--ij-line:#d8cbbd;--ij-shadow:var(--paw-depth)}
+/* Page headers use the same canvas. Floating controls can still use glass. */
+.inpaw-app .app-header,.inpaw-app.ij-secondary>.app-header{background:var(--paw-canvas);border-color:var(--paw-rim)}
+.inpaw-app .ps-tabs,.inpaw-app .ux-play-start,.inpaw-app .ih-play-controls{
+ background:linear-gradient(125deg,#fffaf0b8,#ffffff80,#f7eee6a6);
+ border-color:var(--paw-rim);box-shadow:var(--paw-depth);
+ backdrop-filter:blur(18px) saturate(145%);-webkit-backdrop-filter:blur(18px) saturate(145%);
+}
+/* Outer cards tint the shared canvas; avoid stacking blur on every record row. */
+.inpaw-app :is(.ij-card,.profile,.mc-family,.menu-row,.health-profile-menu,.health-list,
+ .feeding-today,.feeding-recent,.food-card,.food-card-row,.food-source,.food-nutrient-list,.ij-food-hero,.food-quick,
+ .food-review-summary,.food-review-fields,.food-nutrition-editor,.food-quick-confirm,
+ .records-tools,.entry,.care-card,.ps-card,.ps-shortcuts,.pro-free,.pro-paid,.pro-entry,.pro-benefit,
+ .pro-task,.pro-sample,.pro-report,.ih-card,.ih-feature,.ih-voice-entry,.ih-owner-panel,
+ .m-unavailable-sound,.si-track,.si-clock,.si-previous,.si-result,.ob-card,
+ .home-drafts,.unified-drafts,.ux-saved-drafts,.ux-play-options,.ux-play-help,.ux-care-examples,.ux-first-food,
+ .health-insight,.health-trend,.ux-summary-details){
+ background:var(--paw-glass);border:1px solid var(--paw-rim);box-shadow:var(--paw-depth);
+}
+.inpaw-app.ij-page-detail .app-content>.details,.inpaw-app.ij-page-detail .feeding-source{background:var(--paw-glass-strong);border-color:var(--paw-rim);box-shadow:var(--paw-depth)}
+/* Larger outer surfaces refract the shared backdrop; nested rows stay lightweight. */
+.inpaw-app :is(.ij-card,.food-card-row,.food-source,.profile,.mc-family,.health-profile-menu,.health-list,.feeding-today,.feeding-recent,.ij-food-hero,.food-review-summary,.food-review-fields,.food-nutrition-editor,.care-card,.ps-card,.pro-free,.pro-paid,.pro-report,.ih-card,.m-unavailable-sound,.si-track,.si-result,.health-trend){backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%)}
+.inpaw-app .ux-metric-wrap{background:var(--paw-glass)!important;border-color:var(--paw-rim);box-shadow:var(--paw-depth);backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%)}
+.inpaw-app .ux-metric-wrap .health-card{background:transparent!important;box-shadow:none;border-color:transparent}
+/* Dense records, form controls and chart readings keep solid backing. */
+.inpaw-app .record-values,
+.inpaw-app :is(.field input,.field textarea,.field select,.pro-field input,.pro-field textarea,.pro-field select){background:#fff}
+.inpaw-app :is(.segment,.care-filters,.ps-cycle,.pro-cycle,.filters){background:transparent;border:0;box-shadow:none}
+.inpaw-app :is(.secondary-btn,.ps-button.secondary,.mc-button.secondary,.ps-feature-button,.print-entry,.health-settings-entry){background:var(--paw-glass-strong);border-color:#d8c6b6;box-shadow:0 3px 10px #79543a10;color:#754321}
+.inpaw-app :is(.ps-tab[aria-current=page],.ps-cycle-button[aria-pressed=true],.care-filters button.chosen,.segment button.active){background:var(--paw-glass-strong)!important;box-shadow:0 3px 8px #79543a1a;color:#754321;border-color:#d8c6b6}
+.inpaw-app :is(.primary:not(.danger):not(.ij-demo-control),.ps-button:not(.secondary):not(.danger)){border-color:#a85b32;box-shadow:0 4px 12px #9b53231a}
+/* Dialogs may render through a portal outside .inpaw-app. */
+:is(.bottom-sheet,.mc-dialog,.ps-dialog,.m-action-dialog,.h-first-food-dialog,.ij-food-delete-dialog){background:var(--paw-glass-strong)!important;border:1px solid var(--paw-rim);box-shadow:0 18px 56px #4f382b30;backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%)}
+:is(.mc-dialog,.ps-dialog,.m-action-dialog,.h-first-food-dialog,.ij-food-delete-dialog)::backdrop{background:#392c263d;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+/* Preserve state colors and actual scene artwork. */
+.inpaw-app .pro-paid{border-color:#cba578}
+.inpaw-app .ih-play-layer .ih-play-controls{background:#fffaf0d9}
+.inpaw-app .ih-owner-panel{background:var(--paw-glass-strong);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ :root{--paw-glass:#fffaf4;--paw-glass-strong:#fffaf4}
+ .inpaw-app :is(.ps-tabs,.ux-play-start,.ih-play-controls){background:#fff8ef}
+}
+@media(prefers-reduced-transparency:reduce){
+ :root{--paw-glass:#fffaf4;--paw-glass-strong:#fffaf4}
+ .inpaw-app .app-header{backdrop-filter:none;-webkit-backdrop-filter:none}
+ .inpaw-app :is(.ps-tabs,.ux-play-start,.ih-play-controls,.ih-owner-panel,.ij-card,.food-card-row,.food-source,.profile,.mc-family,.health-profile-menu,.health-list,.feeding-today,.feeding-recent,.ij-food-hero,.food-review-summary,.food-review-fields,.food-nutrition-editor,.care-card,.ps-card,.pro-free,.pro-paid,.pro-report,.ih-card,.m-unavailable-sound,.si-track,.si-result,.health-trend,.ux-metric-wrap),
+ :is(.bottom-sheet,.mc-dialog,.ps-dialog,.m-action-dialog,.h-first-food-dialog,.ij-food-delete-dialog){background:#fff8ef!important;backdrop-filter:none;-webkit-backdrop-filter:none}
+}
+@media print{
+ .inpaw-app,.inpaw-app.health-app,.inpaw-app.health-home{background:#fff!important}
+ .inpaw-app *{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
+}
+.entry-kind-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:5px;margin:0 0 14px;border:1px solid var(--paw-rim);border-radius:16px;background:var(--paw-glass);box-shadow:var(--paw-depth)}
+.inpaw-app .entry-kind-tabs button{min-height:44px;padding:6px 2px;border:1px solid transparent;border-radius:12px;color:#625348;font:inherit;font-size:14px;white-space:nowrap}
+.inpaw-app .entry-kind-tabs button[aria-pressed=true]{background:#fffaf2;border-color:#b98158;color:#754321;font-weight:700;box-shadow:0 2px 6px #79543a1a}
+.entry-voice{margin:18px 0;color:#655a51;font-size:13px}.entry-voice summary{min-height:44px;cursor:pointer;line-height:44px}.entry-voice p{font-size:13px;line-height:1.7}.entry-voice button{min-height:44px}
+
+/* Scroll-responsive capsule: every destination keeps a direct 44px+ target. */
+.inpaw-app .glass-nav{transition:height .26s ease,left .26s ease,right .26s ease,padding .26s ease,box-shadow .26s ease}
+.inpaw-app .glass-nav .glass-tab{transition:height .26s ease,min-height .26s ease,transform .14s ease,background .14s ease}
+.inpaw-app .glass-nav .glass-paw{transition:width .26s ease,height .26s ease,min-height .26s ease,margin-top .26s ease,transform .14s ease}
+.inpaw-app .glass-nav.is-compact:not(:has(:focus-visible)){left:22px;right:22px;height:58px;padding:4px 6px;box-shadow:0 6px 18px #694b3224}
+.inpaw-app .glass-nav.is-compact:not(:has(:focus-visible)) .glass-tab{height:46px;min-height:46px}
+.inpaw-app .glass-nav.is-compact:not(:has(:focus-visible)) .glass-paw{width:50px;height:50px;min-height:50px;margin-top:-17px}
+@media(prefers-reduced-motion:reduce){.inpaw-app .glass-nav,.inpaw-app .glass-nav .glass-tab,.inpaw-app .glass-nav .glass-paw{transition:none}}
+
+/* Labels retreat with the capsule; accessible button names always remain. */
+.inpaw-app .glass-nav .glass-tab-label{max-height:18px;opacity:1;overflow:hidden;transition:max-height .2s ease,opacity .16s ease}
+.inpaw-app .glass-nav .glass-paw-label{transition:opacity .16s ease}
+.inpaw-app .glass-nav.is-compact:not(:has(:focus-visible)) .glass-tab{gap:0!important}
+.inpaw-app .glass-nav.is-compact:not(:has(:focus-visible)) .glass-tab-label{max-height:0;opacity:0}
+.inpaw-app .glass-nav.is-compact:not(:has(:focus-visible)) .glass-paw-label{opacity:0}
+.inpaw-app .glass-paw .glass-paw-plus{position:absolute;top:-2px;right:-2px;width:18px;height:18px;display:grid;place-items:center;border-radius:50%;background:#fff8eb;color:#824319;border:1px solid #d4ad80;box-shadow:0 1px 4px #71412024;font:700 16px/1 system-ui;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.inpaw-app .glass-nav .glass-tab-label,.inpaw-app .glass-nav .glass-paw-label{transition:none}}
+
+/* One continuous edge per surface; rows inside a card use separators only. */
+.inpaw-app :is(.health-list,.health-profile-menu)>.menu-row{background:transparent;border:0;border-radius:0;box-shadow:none}
+.inpaw-app :is(.health-list,.health-profile-menu)>.menu-row+.menu-row{border-top:1px solid var(--paw-rim)}
+.inpaw-app :is(.app-header,.ps-tabs){box-shadow:0 1px 0 var(--paw-rim)}
+.inpaw-app :is(.food-card-row,.entry,.care-card,.ps-card,.pro-free,.pro-paid,.ux-metric-wrap){background-clip:padding-box}
+.inpaw-app .food-nutrient-list:empty{display:none}
+.inpaw-app .backup-warning{border-left-width:1px}
+.inpaw-app .pro-feedback{border:1px solid #54856a66}
+/* The simulated device resets focus; restore a clear keyboard-only indicator. */
+:is(.inpaw-app,.task-sheet-panel,.mc-dialog,.ps-dialog,.m-action-dialog,.o-care-dialog,.h-first-food-dialog,.ij-food-delete-dialog) :is(button,summary,a):focus-visible{outline:3px solid #8b5937!important;outline-offset:2px}
+/* Scrollable chip rows should not draw a rectangular white track. */
+.inpaw-app :is(.h-food-category-track,.o-filter-track,.ps-tabs){scrollbar-width:thin;scrollbar-color:#b6a48c80 transparent}
+.inpaw-app :is(.h-food-category-track,.o-filter-track,.ps-tabs)::-webkit-scrollbar{height:4px}
+.inpaw-app :is(.h-food-category-track,.o-filter-track,.ps-tabs)::-webkit-scrollbar-track{background:transparent}
+.inpaw-app :is(.h-food-category-track,.o-filter-track,.ps-tabs)::-webkit-scrollbar-thumb{background:#b6a48c80;border-radius:4px}

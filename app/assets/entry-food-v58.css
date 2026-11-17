@@ -1,0 +1,34 @@
+.inpaw-app .entry-input-method{margin:0 0 14px;padding:0;border:0;background:none}
+.entry-method-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.entry-controls .entry-kind-tabs{margin-bottom:0}
+.inpaw-app .entry-voice-shortcut{
+ display:flex;align-items:center;gap:6px;min-height:44px;margin:0 0 6px auto;padding:4px 10px;
+ color:var(--flower-ink);font-weight:650;
+}
+.entry-voice-shortcut img{flex:none;object-fit:contain}
+.inpaw-app .entry-method-options button{min-height:50px;padding:10px;border:1px solid var(--paw-rim);border-radius:16px;background:#ffffff8c;display:flex;align-items:center;justify-content:center;gap:6px;font-size:15px;color:#65503f;box-shadow:0 3px 12px #65503f0a}
+.inpaw-app .entry-method-options button[aria-pressed=true]{background:#efe0cd;border-color:#c8a580;color:#70421f;font-weight:700}
+.entry-method-options img{width:20px;height:20px}.entry-method-options small{font-size:10px;background:#ede2d7;border-radius:5px;padding:2px 4px}
+.inpaw-app .entry-input-method p{font-size:11px;line-height:1.6;margin:7px 0 0;color:#78695b}
+.inpaw-app .food-entry-direct{width:100%;min-height:48px;margin:10px 0 14px;border-radius:16px}
+.food-entry-photos,.food-entry-summary{margin:12px 0;border:1px solid var(--paw-rim);border-radius:16px;background:#ffffff80;padding:0 12px}
+.food-entry-photos>summary,.food-entry-summary>summary{min-height:46px;padding:12px 0;cursor:pointer;font-size:13px;font-weight:600;color:#70553d}
+.food-entry-photos .food-file-button{margin:8px 0;min-height:44px}.food-entry-photos .food-local{font-size:11px}
+.inpaw-app [data-testid=food-review]>.eyebrow{display:none}
+.inpaw-app [data-testid=food-review]>.subtitle{font-size:13px;line-height:1.7;margin:4px 0 14px}
+.inpaw-app [data-testid=food-review]>.food-review-fields{margin:12px 0;padding:0 12px;border-radius:16px}
+.inpaw-app [data-testid=food-review]>.food-review-fields>summary{min-height:46px;padding:12px 0;font-size:13px}
+.inpaw-app .food-entry-save{width:100%;min-height:50px;margin:16px 0 10px}
+.entry-method-options button:focus-visible,.food-entry-direct:focus-visible{outline:3px solid #916b40;outline-offset:3px}
+@media(max-width:360px){.inpaw-app .entry-method-options button{font-size:13px}.entry-method-options{gap:8px}}
+
+/* Compact only the feeding entry; the home care flower keeps its existing layout. */
+.unified-meal-form .meal-context{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.unified-meal-form .meal-reuse-action{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;width:100%;text-align:left;padding:10px 12px;min-height:48px}
+.unified-meal-form .meal-reuse-action small{font-size:12px}
+.unified-meal-form .meal-time .meal-two{grid-template-columns:1fr}
+.unified-meal-form .meal-time input{box-sizing:border-box;width:100%;min-width:0}
+.unified-meal-form .meal-save-bar{margin-bottom:12px}
+.unified-meal-form .meal-observations .diet-no-eating{margin-block:8px}
+.inpaw-app .unified-meal-form .meal-context{display:none}
+.inpaw-app .unified-meal-form .meal-save-bar{position:sticky;bottom:0;z-index:3;margin-bottom:8px;padding-top:8px}

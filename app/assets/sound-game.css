@@ -1,0 +1,91 @@
+.sound-game-bar,.sound-game-reaction,.sound-game-library{color:#65513e;font-size:13px;line-height:1.55}
+.sound-game-bar{margin:8px 0 10px;padding:8px 10px 2px;background:#eee5d780;border:1px solid #bda88940;border-radius:18px}
+.sound-game-ribbon{display:flex;align-items:center;justify-content:space-between;gap:5px 10px;flex-wrap:wrap;font-size:12px}.sound-game-ribbon strong{color:#845430;font-size:15px}.sound-game-wallet{white-space:nowrap;font-size:11px}
+.sound-game-toolbar{display:flex;align-items:flex-start;gap:2px 6px;flex-wrap:wrap}.sound-game-rules{flex:1;min-width:70px}.sound-game-rules summary{cursor:pointer;min-height:44px;display:flex;align-items:center;justify-content:flex-end;font-size:11px}.sound-game-rules summary::after{content:'⌄';margin-left:5px}.sound-game-rules[open]{flex-basis:100%}.sound-game-rules[open] summary{justify-content:flex-start}.sound-game-rule-copy{padding:0 2px 8px;font-size:12px}.sound-game-rule-copy p{margin:4px 0 8px}
+.sound-game-bar button,.sound-game-library button,.sound-game-reaction button{min-width:44px;min-height:44px;border:1px solid #bda88955;border-radius:15px;background:#fff8e9;color:#725038;font:inherit;padding:8px 10px;cursor:pointer;box-shadow:none;margin:0}
+.sound-game-bar .sound-game-toolbar>button{font-size:11px;padding:6px 8px;background:transparent;border-color:transparent}
+.sound-game-bar button:focus-visible,.sound-game-rules summary:focus-visible,.sound-game-library button:focus-visible,.sound-game-reaction button:focus-visible{outline:2px solid #98633e;outline-offset:2px}
+.sound-game-bar button:disabled,.sound-game-library button:disabled,.sound-game-reaction button:disabled{opacity:.48;cursor:default}
+.sound-game-reaction{margin:12px 0;padding:14px;border-radius:20px;background:#f1e8dc;border:1px solid #bda88955}.sound-game-reaction h2,.sound-game-library h2{font-size:16px;line-height:1.5;margin:0 0 6px}.sound-game-muted{font-size:12px;color:#7c6957;line-height:1.6;margin:6px 0 10px}
+.sound-game-reaction fieldset{min-width:0;border:0;padding:0;margin:12px 0}.sound-game-reaction legend{font-size:12px;font-weight:600;padding:0;margin-bottom:6px}.sound-game-choices{display:grid;grid-template-columns:1fr 1fr;gap:7px}.sound-game-preferences{display:flex;gap:6px;flex-wrap:wrap}.sound-game-preferences button{flex:1;font-size:12px;white-space:nowrap;padding:7px}
+.sound-game-reaction button[aria-pressed=true],.sound-game-switch button[aria-pressed=true]{background:#dfcbae;border-color:#a9865d;color:#533e29}.sound-game-care{padding:9px 10px;border-radius:12px;background:#f1dccd;font-size:12px}.sound-game-actions{display:flex;justify-content:flex-end;gap:7px;flex-wrap:wrap}.sound-game-reaction .sound-game-primary{background:#846446;color:#fffaf0;border-color:#846446}
+.sound-game-library{margin:10px 0 18px}.sound-game-library-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.sound-game-library-heading h2{margin:0}.sound-game-library-heading button{font-size:12px;background:transparent;border-color:transparent}.sound-game-switch{display:flex;gap:5px;padding:4px;border-radius:18px;background:#e6dacb80}.sound-game-switch button{flex:1;font-size:12px;padding:7px 4px;background:transparent;border-color:transparent}
+.sound-game-item{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #bda88940;flex-wrap:wrap}.sound-game-item>strong{flex:1;font-size:13px}.sound-game-item img{object-fit:contain;flex:0 0 44px}.sound-game-item-actions{display:flex;gap:5px}.sound-game-item-actions button{font-size:11px;padding:7px}.sound-game-empty{padding:18px 12px;text-align:center;font-size:12px;background:#eee5d750;border-radius:18px}
+.sound-game-history{padding:12px 0;border-bottom:1px solid #bda88940}.sound-game-history-copy{display:flex;align-items:center;justify-content:space-between;gap:8px}.sound-game-history-copy time{font-size:11px;color:#7c6957}.sound-game-history>p{margin:5px 0;font-size:12px}.sound-game-history button{font-size:12px}.sound-game-delete{padding:10px;margin-top:8px;border-radius:14px;background:#eddbcc}.sound-game-delete p{font-size:12px;margin:0 0 8px}
+@media(max-width:360px){.sound-game-bar{padding-left:8px;padding-right:8px}.sound-game-ribbon{font-size:11px}.sound-game-reaction{padding:11px}.sound-game-choices button{font-size:12px;padding:7px}.sound-game-item-actions{margin-left:auto}}
+@media(max-height:680px){.ih-sound-explorer:has(.sound-game-bar) .sound-tier-heading,.ih-sound-explorer:has(.sound-game-bar) .sound-tier-note{display:none}.sound-game-bar{margin:4px 0 6px;padding-top:4px}.ih-sound-explorer:has(.sound-game-bar) .sound-tabs{margin-bottom:6px}.ih-sound-explorer:has(.sound-game-bar) .native-sound-card{padding-top:6px;padding-bottom:2px}.ih-sound-explorer:has(.sound-game-bar) .native-sound-list{gap:8px}}
+/* Daily access is per cat, not an intrinsic free/Pro track tier. */
+.sound-game-unlimited{font-size:11px}.sound-game-bonus{font-size:12px;margin:5px 0 2px;line-height:1.6}.sound-game-pro-note{margin:9px 0 13px;padding:10px 11px;border-radius:14px;background:#eee1cc75;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.sound-game-pro-note p{flex:1;min-width:160px;font-size:12px;margin:0}.sound-game-pro-note button{font-size:12px}
+.sound-game-item-copy{flex:1;min-width:96px}.sound-game-item-copy strong,.sound-game-item-copy small{display:block}.sound-game-item-copy small{font-size:11px;color:#7c6957;margin-top:2px}.sound-game-item-actions{flex-wrap:wrap;justify-content:flex-end}
+.sound-game-playback{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border:1px solid #bda88955;border-radius:15px;padding:5px 10px;font-size:12px;color:#725038}.sound-game-playback>span{flex:1}.sound-game-playback button{min-width:44px;min-height:44px;margin:0}
+.sound-catalog-note{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 10px}.sound-catalog-note p{flex:1;min-width:170px;font-size:12px;line-height:1.6;color:#725b48;margin:0}.sound-catalog-note button{min-width:44px;min-height:44px;font-size:12px}
+.ih-sound-explorer .native-sound-card.is-locked{background:#f3eee6}.ih-sound-explorer .native-sound-play:disabled{opacity:.55;cursor:default}.ih-sound-explorer .sound-free{max-width:100%;white-space:normal;line-height:1.5}.ih-sound-explorer .sound-synthetic-label{display:block;font-size:10px;line-height:1.45;color:#715b49}.ih-sound-explorer .sound-tabs button{min-width:0;gap:5px}.sound-card-rain{--sound-ink:#607c88;--sound-soft:#d9e8ed;background:linear-gradient(130deg,#e9f2f5,#fff9ed)}.sound-card-drops{--sound-ink:#5b827e;--sound-soft:#d9eae6;background:linear-gradient(130deg,#e8f3ee,#fff9ed)}.sound-card-chimes{--sound-ink:#927345;--sound-soft:#f1e4c8;background:linear-gradient(130deg,#f7efdc,#fff9ed)}.sound-card-hum{--sound-ink:#82718a;--sound-soft:#e9dfe9;background:linear-gradient(130deg,#f0e9f1,#fff9ed)}
+@media(max-width:360px){.sound-game-history-copy{align-items:flex-start;flex-wrap:wrap;gap:3px}.sound-game-item-actions{width:100%}.ih-sound-explorer .sound-tabs button{font-size:12px}.sound-game-preferences button{white-space:normal;min-width:64px}.ih-sound-explorer .native-sound-copy h3{font-size:16px}.ih-sound-explorer .native-sound-card{grid-template-columns:minmax(0,1fr) 76px;padding-left:9px;padding-right:9px}.inpaw-app .ih-sound-explorer .native-sound-play{width:76px;font-size:11px}.ih-sound-explorer .sound-friend{width:46px;height:54px;flex-basis:46px}}
+
+/* Saving a favorite is independent of listening and never unlocks playback. */
+.ih-sound-explorer .sound-card-actions{flex-direction:column;gap:6px;align-items:stretch}.inpaw-app .native-sound-favorite{width:80px;min-height:44px;padding:5px 3px;font:600 11px system-ui;border:1px solid #bfa78c66;border-radius:14px;background:transparent;color:var(--sound-ink);line-height:1.45;white-space:normal}.inpaw-app .native-sound-favorite[aria-pressed=true]{background:var(--sound-soft);border-color:var(--sound-ink)}.native-sound-favorite:disabled{opacity:.55}.native-sound-favorite:focus-visible{outline:3px solid #94744b;outline-offset:3px}@media(max-width:360px){.inpaw-app .native-sound-favorite{width:76px}}html[data-theme=dark] .inpaw-app .native-sound-favorite{color:#dfcfb8;border-color:#a1918066}html[data-theme=dark] .inpaw-app .native-sound-favorite[aria-pressed=true]{background:#554c40}
+/* Each sound has an identifiable illustration rather than a shared note. */
+html .inpaw-app .ih-sound-explorer .native-sound-card .sound-friend{width:68px;height:68px;flex-basis:68px;object-fit:contain;border-radius:0;box-shadow:none}
+@media(max-width:360px){html .inpaw-app .ih-sound-explorer .native-sound-card .sound-friend{width:46px;height:46px;flex-basis:46px}}
+
+/* Four cards per page keep the twelve-sound catalog compact on every plan. */
+.sound-pagination{margin:8px 0 10px}.sound-page-count{margin:0 0 5px;font-size:12px;line-height:1.5;color:#725b48;text-align:center}.sound-page-buttons{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}.inpaw-app .sound-page-buttons button,.sound-page-buttons button{font:inherit;font-size:14px;min-width:44px;min-height:44px;padding:6px 10px;margin:0;border:1px solid #c4ad92;border-radius:13px;background:#fff9ee;color:#725038;cursor:pointer;box-shadow:none}.sound-page-buttons button[aria-current=page]{background:#846446;border-color:#846446;color:#fffaf0;font-weight:700}.sound-page-buttons button[aria-disabled=true]{opacity:.45;cursor:default}.sound-page-buttons button:focus-visible{outline:3px solid #98633e;outline-offset:2px}.sound-card-stream{--sound-ink:#547d79;--sound-soft:#d9eae4}.sound-card-drizzle{--sound-ink:#5b7d96;--sound-soft:#dbe6ef}.sound-card-paper{--sound-ink:#a07d4d;--sound-soft:#f0e4cd}.sound-card-cloth{--sound-ink:#8a7896;--sound-soft:#e9dfec}
+
+/* Artwork palettes remain visible before daily playback unlocks, in both themes. */
+.sound-card-can{--track-ink:#80532e;--track-tint:#f7dfbd;--track-soft:#f2d3a6;--track-dark:#49382b;--track-dark-ink:#efc69b}
+.sound-card-bag{--track-ink:#4e6c50;--track-tint:#dfebd9;--track-soft:#cbdfc5;--track-dark:#303e30;--track-dark-ink:#c1d8b6}
+.sound-card-bird{--track-ink:#476c7b;--track-tint:#dbeef1;--track-soft:#c1dfe7;--track-dark:#2b3d43;--track-dark-ink:#b8dbe6}
+.sound-card-rustle{--track-ink:#725b85;--track-tint:#e9dff0;--track-soft:#d8c6e5;--track-dark:#3c3245;--track-dark-ink:#d5c3e4}
+.sound-card-rain{--track-ink:#4b7662;--track-tint:#d7efdf;--track-soft:#bce1cb;--track-dark:#2d4237;--track-dark-ink:#b8dfc8}
+.sound-card-drops{--track-ink:#39747a;--track-tint:#cdf0ef;--track-soft:#a9dfe1;--track-dark:#284145;--track-dark-ink:#aae0e1}
+.sound-card-chimes{--track-ink:#896130;--track-tint:#fae9cb;--track-soft:#f1d5a6;--track-dark:#46392a;--track-dark-ink:#eed09b}
+.sound-card-hum{--track-ink:#76608c;--track-tint:#e8dcf4;--track-soft:#d8c4ed;--track-dark:#3b3147;--track-dark-ink:#d8c2ee}
+.sound-card-stream{--track-ink:#416e65;--track-tint:#dbece3;--track-soft:#badcd0;--track-dark:#2c4038;--track-dark-ink:#b5dacf}
+.sound-card-drizzle{--track-ink:#4e7189;--track-tint:#e0edf5;--track-soft:#c4dbe9;--track-dark:#2e3c48;--track-dark-ink:#bfd8e9}
+.sound-card-paper{--track-ink:#81633b;--track-tint:#f3e7ce;--track-soft:#e8d3ab;--track-dark:#423a2b;--track-dark-ink:#e5cfa6}
+.sound-card-cloth{--track-ink:#7b6088;--track-tint:#eee0ef;--track-soft:#dfc7e5;--track-dark:#423347;--track-dark-ink:#ddc3e5}
+.sound-card-meow{--track-ink:#4f7089;--track-tint:#dcebf5;--track-soft:#c2dcec;--track-dark:#2c3c49;--track-dark-ink:#bcd7ea}
+.sound-card-scratch{--track-ink:#6b6a3f;--track-tint:#ecebcb;--track-soft:#dcdba6;--track-dark:#3b3b28;--track-dark-ink:#d6d49c}
+.sound-card-box{--track-ink:#85602f;--track-tint:#f8e3c4;--track-soft:#efcf9f;--track-dark:#473628;--track-dark-ink:#ebc49c}
+.sound-card-toy{--track-ink:#96586a;--track-tint:#f6dfe5;--track-soft:#ecc4d0;--track-dark:#47303a;--track-dark-ink:#ecc0cf}
+.sound-card-jingle{--track-ink:#7e621f;--track-tint:#faf0c8;--track-soft:#f2e19b;--track-dark:#453d26;--track-dark-ink:#efdc94}
+.sound-card-plastic{--track-ink:#5b7384;--track-tint:#e2edf3;--track-soft:#c9dce8;--track-dark:#2f3b44;--track-dark-ink:#c0d6e6}
+.sound-card-wood{--track-ink:#84503f;--track-tint:#f1dcd3;--track-soft:#e5c1b2;--track-dark:#44312c;--track-dark-ink:#e6bdac}
+html .inpaw-app .ih-sound-explorer .native-sound-card{
+ --sound-ink:var(--track-ink);--sound-soft:var(--track-soft);
+ background:linear-gradient(120deg,var(--track-tint),#fffbf4);
+ border-color:var(--track-soft);
+}
+html .inpaw-app .ih-sound-explorer .native-sound-card.is-locked{background:linear-gradient(120deg,var(--track-tint),#fffbf4)}
+html .inpaw-app .ih-sound-explorer .native-sound-card .native-sound-copy h3,
+html .inpaw-app .ih-sound-explorer .native-sound-card .sound-free,
+html .inpaw-app .ih-sound-explorer .native-sound-card :is(.native-sound-play,.native-sound-favorite){color:var(--sound-ink)}
+html .inpaw-app .ih-sound-explorer .native-sound-card .native-sound-favorite[aria-pressed=true]{background:var(--sound-soft);border-color:var(--sound-ink)}
+html[data-theme=dark] .inpaw-app .ih-sound-explorer .native-sound-card{
+ --sound-ink:var(--track-dark-ink);--sound-soft:var(--track-dark);
+ background:linear-gradient(120deg,var(--track-dark),#292724);
+ border-color:var(--track-ink);
+}
+html[data-theme=dark] .inpaw-app .ih-sound-explorer .native-sound-card.is-locked{background:linear-gradient(120deg,var(--track-dark),#292724)}
+
+/* Playback and favorite actions share the same capsule frame. */
+html .inpaw-app .ih-sound-explorer .native-sound-favorite{display:flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;letter-spacing:0}
+.sound-favorite-heart{display:block;width:13px;height:13px;flex:0 0 13px}
+html .inpaw-app .ih-sound-explorer :is(.native-sound-play,.native-sound-favorite){box-sizing:border-box;width:80px;min-width:0;height:44px;min-height:44px;padding:7px 4px;border:1px solid #bfa78c66;border-radius:22px;background:#fffdf5}
+html[data-theme=dark] .inpaw-app .ih-sound-explorer :is(.native-sound-play,.native-sound-favorite){border-color:#a1918066;background:#322f2c}
+@media(max-width:360px){html .inpaw-app .ih-sound-explorer :is(.native-sound-play,.native-sound-favorite){width:76px}}
+html .inpaw-app .ih-sound-explorer .native-sound-card.is-playing .native-sound-play{background:var(--sound-soft);border-color:var(--sound-ink)}
+/* 迷你播放器：播放、載入、暫停時固定在畫面下方（底部導覽列上方），隨時可暫停或停止。 */
+html .inpaw-app .ih-sound-explorer .sound-mini-player{position:sticky;bottom:calc(88px + env(safe-area-inset-bottom,0px));z-index:6;margin:8px 0;padding:8px 12px;border:1px solid #bda889;border-radius:16px;background:#fffaf0;box-shadow:0 4px 14px #5d44292e;font-size:13px}
+html .inpaw-app .ih-sound-explorer .sound-mini-player button{min-height:40px;min-width:64px;padding:6px 12px;border:1px solid #bfa78c88;border-radius:20px;background:#fffdf5;font-weight:600}
+html .inpaw-app .ih-sound-explorer .sound-mini-player .sound-mini-stop{color:#9a3d2b;border-color:#c98b7a}
+html[data-theme=dark] .inpaw-app .ih-sound-explorer .sound-mini-player{background:#322f2c;border-color:#a1918088;box-shadow:0 4px 14px #0008}
+html[data-theme=dark] .inpaw-app .ih-sound-explorer .sound-mini-player button{background:#3b3733;border-color:#a1918066;color:#eadfd2}
+html[data-theme=dark] .inpaw-app .ih-sound-explorer .sound-mini-player .sound-mini-stop{color:#f0a898;border-color:#b57a6c}
+/* 循環播放開關：預設關，開啟時用實心底色標示。 */
+html .inpaw-app .ih-sound-explorer .sound-loop-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 10px}
+html .inpaw-app .ih-sound-explorer .sound-loop-row small{flex:1;min-width:160px;color:#725038;font-size:12px}
+html .inpaw-app .ih-sound-explorer .sound-loop-toggle{min-height:40px;padding:6px 14px;border:1px solid #bfa78c88;border-radius:20px;font-weight:600}
+html .inpaw-app .ih-sound-explorer .sound-loop-toggle[aria-pressed=true]{background:var(--sound-soft,#e9dcc6);border-color:var(--sound-ink,#725038)}
+html[data-theme=dark] .inpaw-app .ih-sound-explorer .sound-loop-row small{color:#cfc3b6}
+html[data-theme=dark] .inpaw-app .ih-sound-explorer .sound-loop-toggle[aria-pressed=true]{background:#4a4036;border-color:#c9b79c}

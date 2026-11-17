@@ -1,0 +1,11 @@
+/* First-batch warm illustrated stickers; other icon families remain intact. */
+img.cute-action-icon{display:inline-block;flex:0 0 28px;width:28px;height:28px;object-fit:contain;vertical-align:middle;filter:none!important;opacity:1!important;pointer-events:none;user-select:none}
+html[data-theme] body .inpaw-app .today-quick-actions img.cute-action-icon{filter:none!important;width:28px!important;height:28px!important}
+.cute-action-label{min-width:0;white-space:normal;word-break:normal;overflow-wrap:normal;line-height:1.4}
+:is(.ld-heading,.ld-editor-actions,.care-add,.vv-empty) button:has(>.cute-action-icon){display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px}
+.care-add-menu .care-add-visit>strong:has(>.cute-action-icon){display:flex;align-items:center;gap:8px}
+.ld-strip .ld-strip-add>img.cute-action-icon{width:32px;height:32px;flex-basis:32px;object-fit:contain!important;border-radius:0}
+.ld-strip .ld-strip-add-icon>img.cute-action-icon{width:30px;height:30px}
+.ld-strip .ld-strip-add-icon{background:transparent!important}
+@media(max-width:360px){.inpaw-app .today-quick-actions.has-four>button:has(>.cute-action-icon){gap:6px;padding-left:8px!important;padding-right:8px!important}.ld-editor-actions button:has(>.cute-action-icon){gap:6px;padding-left:10px;padding-right:10px}.ld-editor-actions img.cute-action-icon{width:26px;height:26px;flex-basis:26px}}
+@media(forced-colors:active){img.cute-action-icon{forced-color-adjust:none}}

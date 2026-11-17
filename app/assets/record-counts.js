@@ -1,0 +1,19 @@
+import {t, K} from './i18n.js?v=audit1117b';
+import {recordIsLive} from './record-identity.js?v=8f5745b7843b';
+import {recordSearchRows,isHandoverRecord} from './o-records-v59.js?v=photo-simplify1';
+/** The catalogue is one shared source; clinical views explicitly exclude demos. */
+export function recordCountModel({entries=[],careItems=[],foodCards=[],catId,today,isDemo=()=>false,isDemoCare=()=>false,start='',end='',category=K('全部')}={}){
+ const rows=recordSearchRows(entries,careItems,foodCards,{catId,today,isDemo:isDemoCare,isDemoEntry:isDemo});
+ const seen=new Set();const undatedCare=careItems.filter(item=>recordIsLive(item,catId)&&!item.demo&&!isDemoCare(item)&&!String(item.source||'').includes(K('示範'))).reduce((count,item)=>{if(seen.has(item.id))return count;seen.add(item.id);return count+new Set((Array.isArray(item.undatedHistory)?item.undatedHistory:[]).filter(row=>row?.id&&row.dateStatus==='unknown').map(row=>row.id)).size;},0);
+ const demo=rows.filter(row=>row.isDemo).length,care=rows.filter(row=>row.careId).length;
+ const inScope=rows.filter(row=>(!start||row.date>=start)&&(!end||row.date<=end)&&(category===K('全部')||(category===K('日常變化')?[K('嘔吐'),K('其他'),K('聲音反應')].includes(row.category):row.category===category)));
+ const clinical=inScope.filter(row=>!row.isDemo&&!isHandoverRecord(row));
+ return {rows,undatedCare,total:rows.length,actual:rows.length-demo,demo,care,observations:rows.filter(row=>!row.isDemo&&!row.careId&&!isHandoverRecord(row)).length,scopeTotal:inScope.length,scopeDemo:inScope.filter(row=>row.isDemo).length,scopeCare:clinical.filter(row=>row.careId).length,scopeObservations:clinical.filter(row=>!row.careId).length};
+}
+export function recordCountLabel(data){const m=recordCountModel(data),scoped=!!data.start;return t('{scope}日常觀察 {observations} 筆／照護完成 {care} 次{demo}{undated}', {scope: scoped?t('這段期間 · '):'', observations: scoped?m.scopeObservations:m.observations, care: scoped?m.scopeCare:m.care, demo: m.demo?t(' · {demo} 筆示範另計', {demo: m.demo}):'', undated: m.undatedCare?t('；另 {undatedCare} 筆完成日期待確認（未納入期間，見完成紀錄）', {undatedCare: m.undatedCare}):''});}
+export function summaryEmptyText(data){const m=recordCountModel(data);return (m.scopeCare?t('這段期間已有 {scopeCare} 筆疫苗與驅蟲，', {scopeCare: m.scopeCare}):t('這段期間'))+t('還沒有日常觀察。')+(m.undatedCare?t('另有 {undatedCare} 筆完成日期待確認。', {undatedCare: m.undatedCare}):'')+t('示範資料不計入摘要；可記一筆，或查看疫苗與驅蟲歷程。');}
+export function recordScopeText(data){const m=recordCountModel(data);return recordCountLabel(data)+t('。')+(data.start?t('本次 {start} 至 {end} · {category}：{scopeObservations} 筆實際日常；{scopeCare} 次照護完成另見完成紀錄。示範與交接不納入看診摘要。', {start: data.start.replaceAll('-','/'), end: String(data.end||'').replaceAll('-','/'), category: t(data.category||K('全部')), scopeObservations: m.scopeObservations, scopeCare: m.scopeCare}):t('實際紀錄含 {observations} 筆日常與 {care} 次照護完成；相同 ID 只計一次。', {observations: m.observations, care: m.care}));}
+export function RecordCountScope({react:R,onCare,...data}){
+ const m=recordCountModel(data),h=R.createElement;
+ return h('div',{className:'t-record-count-scope','data-testid':'record-count-scope'},h('p',{className:'microcopy left'},recordCountLabel(data)),onCare&&(m.scopeCare>0||m.undatedCare>0)&&h('button',{type:'button',className:'text-btn',onClick:onCare},t('查看疫苗與驅蟲歷程')),h('details',{className:'health-data-note'},h('summary',null,t('查看紀錄統計說明')),h('p',{className:'microcopy left'},data.start?t('本次 {start} 至 {end} · {category}：{scopeObservations} 筆實際日常；{scopeCare} 次照護完成另見完成紀錄。示範與交接不納入看診摘要。', {start: data.start.replaceAll('-','/'), end: String(data.end||'').replaceAll('-','/'), category: t(data.category||K('全部')), scopeObservations: m.scopeObservations, scopeCare: m.scopeCare}):t('實際紀錄含 {observations} 筆日常與 {care} 次照護完成；相同 ID 只計一次。', {observations: m.observations, care: m.care}))));
+}

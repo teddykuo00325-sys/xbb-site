@@ -1,0 +1,40 @@
+/* v49: direct actions, readable status and compact task-first pages. */
+.ux-play-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.ux-play-actions button{min-height:44px;margin:0;font-size:14px}
+.health-quick-track{display:flex;flex-wrap:wrap;gap:8px}.health-quick-track button{flex:1 1 54px;min-height:44px}
+.ux-metric-wrap{position:relative;min-width:0;display:flex;flex-direction:column;border-radius:20px;background:#fff;overflow:hidden;box-shadow:0 3px 12px #3540520b}
+.ux-metric-wrap>.health-card{width:100%;flex:1;border-radius:0;box-shadow:none;padding-bottom:12px}.ux-metric-add{min-height:44px;border:0;border-top:1px solid #edeae4;background:#fcfaf7;color:#78533a;font:inherit;font-size:14px;cursor:pointer}
+.ux-metric-wrap .health-empty-chart{font-size:13px;color:#606976}.ux-metric-wrap .ux-empty-card .health-empty-chart{display:block}
+.ux-play-options,.ux-play-help,.ux-care-examples,.ux-first-food{border:1px solid #deded9;border-radius:16px;padding:14px;margin:14px 0;background:#fffdf9;color:#3d4654}
+.ux-play-options>summary,.ux-play-help>summary,.ux-care-examples>summary,.ux-first-food>summary{min-height:32px;cursor:pointer;font-weight:600;font-size:14px;line-height:1.6}
+.ux-care-examples article{border-top:1px solid #e5e5df;padding:12px 0}.ux-care-examples p,.ux-first-food p{font-size:14px;line-height:1.7}
+.ih-fish-ready{padding-bottom:170px}.ih-fish-ready .ih-lead{font-size:14px;line-height:1.6;margin:8px 0 14px}.ih-fish-ready .play-scene-preview{height:170px;min-height:0}.ih-fish-ready .ih-small{font-size:13px;color:#596373;line-height:1.7}
+.ux-play-start{position:absolute;bottom:calc(150px + env(safe-area-inset-bottom,0px));left:16px;right:16px;z-index:35;padding:8px;background:rgba(250,248,244,.96);border-radius:18px;box-shadow:0 -3px 18px #33415510}.ux-play-start .primary{width:100%;margin:0;min-height:48px}
+.ij-page-profile .profile{display:grid;grid-template-columns:64px 1fr;gap:4px 14px;text-align:left;padding:16px;margin:12px 0}.ij-page-profile .profile>img{grid-row:1/5;width:64px;height:64px;margin:0}.ij-page-profile .profile>h2,.ij-page-profile .profile>p{margin:0}.ij-page-profile .profile>p{font-size:13px}.ij-page-profile .health-profile-menu{margin:12px 0 24px}.ij-page-profile .mc-family{margin-top:24px}.ij-page-profile .health-settings-entry{min-height:44px}
+.ij-page-profile .notice{font-size:13px;color:#596373}.pro-demo-note{font-size:14px;line-height:1.7}.pro-tag{font-size:12px;color:#4b526d}.m-paw-actions button{min-height:48px}.m-paw-actions{max-height:65vh;overflow:auto}
+.ux-first-food .secondary-btn{min-height:44px}.ux-first-food .text-btn{min-height:44px;margin-left:8px}
+@media(max-width:360px){.ux-play-actions{grid-template-columns:1fr}.ih-fish-ready .play-scene-preview{height:140px}.ux-play-start{left:10px;right:10px}}
+/* Home follows DOM order: care, records, shortcuts, then compact play. */
+.inpaw-app .m-companion{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 16px;margin:12px 0;background:#fff5e9}
+.inpaw-app .m-companion h2{font-size:16px;line-height:1.5;margin:0;overflow-wrap:anywhere}
+.inpaw-app .m-companion .ux-play-copy{min-width:0}
+.inpaw-app .m-companion .text-btn{display:block;min-height:44px;padding:4px 0;text-align:left;font-size:13px;line-height:1.5;white-space:normal;color:#775a45!important}
+.inpaw-app .m-companion .ux-play-fish{grid-column:2;grid-row:auto;width:auto;min-height:44px;min-width:86px;padding:10px 14px;margin:0;font-size:14px;color:#fff!important}
+.ux-home-reminder{display:flex;justify-content:space-between;gap:12px;align-items:center;min-height:48px;margin:4px 0 12px;padding:10px 14px;border:1px solid #e5dfd5;border-radius:14px;background:#fffdf9;color:#5b5047;font:inherit;font-size:14px;text-align:left;cursor:pointer}
+.ux-home-reminder>span:last-child{font-size:13px;color:#74543e;white-space:nowrap}
+
+/* v51: warm glass on navigation and play; record surfaces stay opaque. */
+.inpaw-app.health-home{background:radial-gradient(ellipse at 0% 17%,#f3ceb8a6,transparent 52%),radial-gradient(ellipse at 100% 63%,#d4dfd7b8,transparent 49%),radial-gradient(ellipse at 30% 100%,#f0c9b9a6,transparent 45%),#faf7f2!important}
+.inpaw-app .glass-nav{background:linear-gradient(125deg,#fffaf0a8,#ffffff59 44%,#f7eee67a);border:1px solid #ffffffbf;backdrop-filter:blur(18px) saturate(155%);-webkit-backdrop-filter:blur(18px) saturate(155%);box-shadow:0 12px 30px #694b322b,0 2px 5px #694b3214,inset 0 1px 1px #fff,inset 1px 0 1px #ffffffd9,inset -1px -1px 2px #bca18c42}
+.inpaw-app .glass-nav:before{left:12px;right:12px;height:18px;background:linear-gradient(180deg,#ffffffe6,#ffffff00);opacity:.85}
+.inpaw-app .glass-tab.selected{background:linear-gradient(145deg,#ffffffd9,#fffaf466);border:1px solid #ffffffb3;box-shadow:0 3px 8px #7b533b12,inset 0 1px 1px #fff}
+.inpaw-app .glass-tab span{color:#51463f}.inpaw-app .glass-tab.selected span{color:#874019}
+.inpaw-app .glass-paw,.inpaw-app .glass-paw:not(.selected){background:radial-gradient(ellipse at 28% 10%,#ffffffa6 0,transparent 43%),linear-gradient(145deg,#f3c287bf,#bf652cdb 68%,#d78c50c7);border:1px solid #fff3dfd9;backdrop-filter:blur(12px) saturate(155%);-webkit-backdrop-filter:blur(12px) saturate(155%);box-shadow:0 8px 18px #92552e40,inset 0 2px 2px #fff4ded9,inset 2px 0 3px #ffd9ad99,inset -2px -3px 4px #85421f47!important}
+.inpaw-app .glass-paw:before{content:'';position:absolute;inset:3px 8px 53%;border-radius:50%;background:linear-gradient(180deg,#ffffffb3,#ffffff00);pointer-events:none}
+.inpaw-app .glass-paw img{filter:drop-shadow(0 1px 1px #683b2366)}
+.inpaw-app .glass-paw:active{box-shadow:0 3px 8px #92552e33,inset 0 1px 2px #fff4dea6!important}
+.inpaw-app .m-companion{position:relative;isolation:isolate;background:linear-gradient(120deg,#ffffffa6,#ffe0c673 56%,#fff6ed8c);border:1px solid #ffffffd9;backdrop-filter:blur(14px) saturate(135%);-webkit-backdrop-filter:blur(14px) saturate(135%);box-shadow:0 8px 22px #84533914,inset 0 1px 1px #fff,inset -1px -1px 2px #d9a27b4d}
+.inpaw-app .m-companion:before{content:'';position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(115deg,#ffffff66,transparent 38%,transparent 76%,#ffffff4d);pointer-events:none;z-index:-1}
+.inpaw-app .m-companion h2{color:#493c34}.inpaw-app .m-companion .text-btn{color:#68503f!important}
+.inpaw-app .m-companion .ux-play-fish{--ij-primary:linear-gradient(150deg,#d48b4e,#a74c20);border:1px solid #fff1dfb3;box-shadow:0 4px 10px #9b53232b,inset 0 1px 1px #ffe1bfa6}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.inpaw-app .glass-nav{background:#fff8ef}.inpaw-app .m-companion{background:#fff0e2}.inpaw-app .glass-paw{background:linear-gradient(145deg,#e4ac70,#b66532)}}
+@media(prefers-reduced-transparency:reduce){.inpaw-app .glass-nav{background:#fff8ef;backdrop-filter:none;-webkit-backdrop-filter:none}.inpaw-app .m-companion{background:#fff0e2;backdrop-filter:none;-webkit-backdrop-filter:none}.inpaw-app .glass-paw{background:linear-gradient(145deg,#e4ac70,#b66532);backdrop-filter:none;-webkit-backdrop-filter:none}}

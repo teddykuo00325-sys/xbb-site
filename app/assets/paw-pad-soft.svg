@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 140" fill="none">
+  <defs>
+    <radialGradient id="soft" cx=".32" cy=".24" r=".8">
+      <stop stop-color="#FBD4B6"/>
+      <stop offset=".3" stop-color="#F8C39D"/>
+      <stop offset=".64" stop-color="#F4AB7E"/>
+      <stop offset=".88" stop-color="#ECA174"/>
+      <stop offset="1" stop-color="#E09063"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-25%" width="160%" height="165%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#A96236" flood-opacity=".12"/>
+    </filter>
+    <filter id="soft-light" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.6"/>
+    </filter>
+    <g id="pads">
+      <ellipse cx="27" cy="53" rx="14" ry="19" transform="rotate(-28 27 53)"/>
+      <ellipse cx="55" cy="29" rx="15" ry="20" transform="rotate(-10 55 29)"/>
+      <ellipse cx="89" cy="29" rx="15" ry="20" transform="rotate(10 89 29)"/>
+      <ellipse cx="117" cy="53" rx="14" ry="19" transform="rotate(28 117 53)"/>
+      <path d="M43 82C51 75 55 59 72 59C89 59 93 75 101 82C114 93 116 111 105 120C94 129 84 122 72 122C60 122 50 129 39 120C28 111 30 93 43 82Z"/>
+    </g>
+  </defs>
+  <g filter="url(#shadow)">
+    <use href="#pads" fill="#E39A70" transform="translate(0 2)"/>
+    <use href="#pads" fill="url(#soft)"/>
+  </g>
+  <g fill="#FFF0E1" opacity=".22" filter="url(#soft-light)">
+    <ellipse cx="21" cy="44" rx="3" ry="6" transform="rotate(-28 21 44)"/>
+    <ellipse cx="49" cy="20" rx="3.5" ry="6" transform="rotate(-10 49 20)"/>
+    <ellipse cx="83" cy="20" rx="3.5" ry="6" transform="rotate(10 83 20)"/>
+    <ellipse cx="112" cy="43" rx="3" ry="6" transform="rotate(28 112 43)"/>
+    <ellipse cx="61" cy="77" rx="10" ry="5.5" transform="rotate(-38 61 77)"/>
+  </g>
+</svg>

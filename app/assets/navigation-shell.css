@@ -1,0 +1,166 @@
+/* Five destinations stay visible. The separate paw is an action, not a tab. */
+.shell-nav-dock{position:absolute;z-index:40;left:12px;right:12px;bottom:calc(9px + env(safe-area-inset-bottom,0px));pointer-events:none}
+.shell-bottom-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;width:88%;min-width:250px;max-width:324px;margin:0 auto;padding:4px;border:1px solid #fffaf070;border-radius:999px;background:linear-gradient(125deg,#fffdf49c,#fff8ec73);box-shadow:0 4px 16px #684b301a;backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);pointer-events:auto;transition:width .28s ease,max-width .28s ease}
+.inpaw-app .shell-tab,.shell-tab{appearance:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0;min-height:44px;padding:3px 2px;border:0;border-radius:18px;background:transparent;color:#6d6054;font:inherit;font-size:12px;font-weight:650;line-height:1.2;cursor:pointer}
+.shell-tab-label{max-height:none;opacity:1;overflow:visible;white-space:normal;overflow-wrap:anywhere;max-width:100%;text-align:center;transition:opacity .18s ease}
+.shell-nav-dock.is-compact .shell-bottom-tabs{width:84%;max-width:300px;padding-top:1px;padding-bottom:1px}
+.shell-nav-dock.is-compact .shell-tab{gap:0}
+.shell-nav-dock.is-compact .shell-tab-icon{height:21px}
+.shell-nav-dock.is-compact .shell-tab .navigation-icon{width:20px;height:20px}
+.shell-tab-icon{display:flex;align-items:center;justify-content:center;width:42px;height:25px;border-radius:14px;transition:background .16s ease}
+.navigation-icon{display:block;flex:none;width:22px;height:22px;overflow:visible;pointer-events:none}
+.shell-tab .navigation-icon{width:22px;height:22px}
+.inpaw-app .shell-tab.is-active,.shell-tab.is-active{color:#582e1a;background:#f1d8bd;font-weight:750}
+.shell-bottom-tabs{position:relative;isolation:isolate;touch-action:pan-y pinch-zoom;user-select:none;-webkit-user-select:none}
+.shell-bottom-tabs.has-indicator::before{
+ content:"";position:absolute;z-index:0;pointer-events:none;inset-block:4px;inset-inline-start:4px;
+ width:calc((100% - 16px) / 5);border-radius:18px;
+ transform:translateX(calc((100% + 2px) * var(--shell-indicator-index,0))) scale(var(--shell-glass-stretch,1),var(--shell-glass-height,1));
+ background:var(--shell-lens-fill,linear-gradient(155deg,#fff8,#d7d7d77d 65%,#eee9));
+ border:1px solid var(--shell-lens-rim,#3a3a3a42);box-sizing:border-box;
+ box-shadow:var(--shell-lens-shadow,inset 0 1px 2px #fff9,0 1px 3px #0002);
+ backdrop-filter:blur(28px) saturate(.5);-webkit-backdrop-filter:blur(28px) saturate(.5);
+ transition:transform .23s cubic-bezier(.22,1.12,.38,1),box-shadow .2s ease,border-color .2s ease;
+}
+.shell-nav-dock.is-compact .shell-bottom-tabs.has-indicator::before{inset-block:1px}
+.shell-bottom-tabs.is-settling::before{transition-duration:.28s,.2s,.2s}
+.shell-bottom-tabs.is-sliding::before{
+ transition:none;border-radius:999px;z-index:1;
+ background:var(--shell-lens-drag-fill,radial-gradient(ellipse at 28% 10%,#fffc,transparent 70%),linear-gradient(154deg,#f7f7f78f,#c8c8c86e 55%,#f5f5f5ae));
+ border-color:var(--shell-lens-drag-rim,#51515187);
+ box-shadow:var(--shell-lens-drag-shadow,inset 0 2px 4px #ffffffe8,inset 0 -2px 5px #0002,0 3px 9px #0004);
+}
+.shell-bottom-tabs[data-tap-pulse]::before{animation-duration:.24s;animation-timing-function:ease-out}
+.shell-bottom-tabs[data-tap-pulse="1"]::before{animation-name:shell-tab-tap-1}
+.shell-bottom-tabs[data-tap-pulse="2"]::before{animation-name:shell-tab-tap-2}
+@keyframes shell-tab-tap-1{0%,100%{scale:1}38%{scale:1.12 1.1;box-shadow:var(--shell-lens-drag-shadow,inset 0 2px 4px #fffc,0 2px 6px #0003)}}
+@keyframes shell-tab-tap-2{0%,100%{scale:1}38%{scale:1.12 1.1;box-shadow:var(--shell-lens-drag-shadow,inset 0 2px 4px #fffc,0 2px 6px #0003)}}
+.shell-bottom-tabs.has-indicator .shell-tab{position:relative;z-index:1}
+.inpaw-app .shell-bottom-tabs.has-indicator .shell-tab.is-active,.shell-bottom-tabs.has-indicator .shell-tab.is-active{background:transparent;box-shadow:none;color:#28231f}
+/* Only the portion of each icon under the lens is refracted. Labels stay still. */
+.shell-tab-lens{
+ --shell-lens-offset:calc((var(--shell-indicator-index) - var(--shell-tab-index)) * (100% + 2px));
+ --shell-lens-overhang:calc((var(--shell-glass-stretch,1) - 1) * 50%);
+ position:absolute;inset:0;box-sizing:border-box;display:inherit;flex-direction:inherit;align-items:inherit;justify-content:inherit;gap:inherit;padding:inherit;
+ clip-path:inset(0 max(0px,calc(0px - var(--shell-lens-offset) - var(--shell-lens-overhang))) 0 max(0px,calc(var(--shell-lens-offset) - var(--shell-lens-overhang))));
+ pointer-events:none;color:var(--shell-lens-ink,#28231f)
+}
+.shell-tab-lens .shell-tab-label{visibility:hidden}
+.shell-tab-lens .navigation-icon{transform:scale(1.15);stroke-width:2.05}
+.inpaw-app .shell-bottom-tabs.is-sliding.has-indicator .shell-tab[data-lens-target]>.shell-tab-label,.shell-bottom-tabs.is-sliding.has-indicator .shell-tab[data-lens-target]>.shell-tab-label{color:var(--shell-lens-ink,#28231f);font-weight:750}
+@media(prefers-reduced-motion:reduce){.shell-bottom-tabs.has-indicator::before{transform:translateX(calc((100% + 2px) * var(--shell-indicator-index,0)));transition:none;animation:none}}
+@media(prefers-reduced-motion:reduce),(prefers-reduced-transparency:reduce),(forced-colors:active){.shell-tab-lens{display:none}}
+@media(prefers-reduced-transparency:reduce){.shell-bottom-tabs.has-indicator::before{background:#f4f4f4;backdrop-filter:none;-webkit-backdrop-filter:none}}
+.shell-tab-label{color:inherit}
+.shell-tab-icon{position:relative}
+.shell-tab-badge{position:absolute;right:-2px;top:-5px;min-width:15px;height:15px;padding:1px 3px;border-radius:9px;background:#a45932;color:white;font-size:10px;line-height:13px;text-align:center}
+.inpaw-app.shell-with-tabs>.ux-save-summary,.inpaw-app.shell-with-tabs>.ux-save-record,.inpaw-app.shell-with-tabs>.ux-save-meal,.inpaw-app.shell-with-tabs>.ux-save-voice{bottom:calc(90px + env(safe-area-inset-bottom,0px))!important}
+.task-sheet-content>.inpaw-app.shell-with-tabs>.ux-save-record,.task-sheet-content>.inpaw-app.shell-with-tabs>.ux-save-meal{bottom:calc(12px + env(safe-area-inset-bottom,0px))!important}
+.inpaw-app .shell-add-record,.shell-add-record{position:absolute;right:4px;bottom:calc(100% + 9px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;width:70px;min-height:78px;padding:0 3px 3px;border:0;border-radius:22px;background:transparent;color:#71462c;box-shadow:none;font:inherit;font-size:12px;font-weight:750;pointer-events:auto;cursor:pointer;transition:transform .18s ease}
+.shell-add-record img{box-sizing:border-box;width:64px;height:64px;padding:7px;border-radius:50%;background:#fff8eb;box-shadow:0 3px 10px #6d3d281a,inset 0 1px 0 #fffdf8;filter:none}
+.shell-add-record span{padding:1px 8px;border-radius:10px;background:#fff8eceb;line-height:1.3}
+.shell-add-record:active{transform:scale(.92)}
+.shell-tab:focus-visible,.shell-add-record:focus-visible,.task-sheet-header button:focus-visible{outline:3px solid #8b5937;outline-offset:3px}
+.shell-nav-dock button:disabled,.task-sheet-header button:disabled{opacity:.45;cursor:wait}
+.inpaw-app.ih-fish-active>.shell-nav-dock{display:none!important}
+.shell-with-tabs>.app-scroll .app-content{padding-bottom:var(--shell-bottom-reserve,calc(170px + env(safe-area-inset-bottom,0px)))!important}
+.shell-with-tabs>.app-scroll,.shell-with-tabs>.app-scroll .mobile-scroll{scroll-padding-bottom:var(--shell-bottom-reserve,calc(170px + env(safe-area-inset-bottom,0px)))}
+.shell-add-plus{position:absolute;right:4px;top:1px;display:grid;place-items:center;width:23px;height:23px;border-radius:50%;border:2px solid #fff8eb;background:#8c4e2b;color:#fff;font-size:20px;line-height:1;font-weight:700;pointer-events:none}
+.inpaw-app.shell-dialog-open>.shell-nav-dock .shell-add-record,.inpaw-app:has(input:focus,textarea:focus,select:focus,[contenteditable=true]:focus)>.shell-nav-dock .shell-add-record{visibility:hidden;pointer-events:none}
+.quick-today-notice{display:flex;align-items:center;gap:12px;margin:14px 0;padding:12px;border:1px solid var(--paw-rim);border-radius:15px;background:#fff7e8;color:#735136;font-size:13px;line-height:1.6}
+.quick-today-notice p{margin:0;flex:1}.quick-today-notice button{flex-shrink:0;min-height:44px}
+
+/* The surface fills the simulated phone, not the surrounding browser. */
+.navigation-route-surface{position:relative;width:100%;height:100%;min-height:0;isolation:isolate;background:#51463d}
+.navigation-route-background{position:absolute;inset:0;min-height:0;background:var(--paw-canvas);transform-origin:50% 0;transition:transform .34s cubic-bezier(.2,.7,.2,1),border-radius .34s ease;transform:translateY(0) scale(1);border-radius:0}
+.navigation-route-surface.has-task-sheet>.navigation-route-background,.navigation-route-surface:has(>.task-sheet-overlay)>.navigation-route-background{transform:translateY(12px) scale(.94);border-radius:26px;overflow:hidden}
+.navigation-route-background>.inpaw-app{width:100%;height:100%;min-height:0}
+.navigation-route-background[inert]{pointer-events:none;user-select:none}
+.task-sheet-overlay{position:absolute;inset:0;z-index:80;display:flex;align-items:flex-end;justify-content:center;background:#46372952;overscroll-behavior:none;animation:sheet-scrim-in .24s ease both}
+.task-sheet-panel{position:relative;display:flex;flex-direction:column;width:100%;height:90%;max-height:90%;min-height:0;border:1px solid var(--paw-rim);border-bottom:0;border-radius:28px 28px 0 0;background:var(--paw-canvas);box-shadow:0 -12px 42px #513c2a26;overflow:hidden;outline:none;transform:translateY(var(--sheet-drag,0));animation:sheet-rise-in .34s cubic-bezier(.2,.7,.2,1) both}
+.task-sheet-handle{flex:0 0 23px;display:flex;align-items:center;justify-content:center;touch-action:none;cursor:grab;user-select:none}
+.task-sheet-handle>span{width:36px;height:4px;border-radius:4px;background:#8b7663}
+.task-sheet-header{flex:0 0 auto;display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:6px;padding:0 12px 10px;background:var(--paw-canvas);border-bottom:1px solid #ebdfd2}
+.task-sheet-header h2{margin:0;color:#463b32;font:inherit;font-size:17px;font-weight:750;line-height:1.4;text-align:center;overflow-wrap:anywhere}
+.task-sheet-header button{display:flex;align-items:center;justify-content:center;width:44px;height:44px;min-width:44px;min-height:44px;padding:10px;border:0;border-radius:50%;background:#f4eade;color:#614b39;cursor:pointer}
+.task-sheet-header button img{width:22px;height:22px}
+.task-sheet-content{position:relative;flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-bottom:env(safe-area-inset-bottom,0px)}
+.task-sheet-content>.inpaw-app{position:relative!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;border-radius:0!important;box-shadow:none!important}
+.task-sheet-content>.inpaw-app>.app-header{display:none!important}
+/* Every record type shares this sheet. Its own header replaces the hidden app
+   header, so the later clean-header stylesheet must not reserve 116/172px again.
+   Keep bottom/save-bar rules separate so safe-area and keyboard space survive. */
+.task-sheet-content>.inpaw-app{--shell-header-inset:0px!important}
+.task-sheet-panel>.task-sheet-content>.inpaw-app>.app-scroll{top:0!important}
+.task-sheet-content>.inpaw-app>.app-scroll{bottom:0!important}
+.task-sheet-content .shell-nav-dock{display:none!important}
+.task-sheet-content>.inpaw-app>.app-scroll .app-content{padding-top:18px!important;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))!important}
+.task-sheet-content .mobile-scroll{overscroll-behavior:contain}
+@keyframes sheet-rise-in{from{translate:0 100%}to{translate:0 0}}
+@keyframes sheet-scrim-in{from{opacity:0}to{opacity:1}}
+@media(max-width:360px){.shell-nav-dock{left:8px;right:8px}.shell-tab{font-size:12px}.task-sheet-header{padding-left:8px;padding-right:8px}.task-sheet-header h2{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.task-sheet-overlay,.task-sheet-panel{animation:none}.shell-tab-icon,.shell-add-record,.shell-bottom-tabs,.shell-tab-label,.navigation-route-background{transition:none}.shell-add-record:active{transform:none}}
+@media(prefers-reduced-transparency:reduce){.shell-bottom-tabs{background:#fff8ee;backdrop-filter:none;-webkit-backdrop-filter:none}.task-sheet-overlay{backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media print{.shell-nav-dock,.task-sheet-handle,.task-sheet-header{display:none!important}.task-sheet-overlay{position:static;background:none;display:block}.task-sheet-panel{height:auto;max-height:none;overflow:visible;border:0;box-shadow:none}.navigation-route-background[inert]{display:none}.task-sheet-content{overflow:visible}}
+
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.shell-bottom-tabs{background:#fff8ee}}
+/* Filter sheets render outside the app surface and need explicit button styles. */
+.o-filter-sheet-body :is(.primary,.secondary-btn,.text-btn){appearance:none;font:inherit;font-size:14px;min-height:44px;padding:10px 14px;border:1px solid var(--paw-rim);border-radius:14px;cursor:pointer}
+.o-filter-sheet-body .primary{background:linear-gradient(150deg,#d48b4e,#a74c20)!important;color:#fff;border-color:#a85b32;font-weight:700}
+.o-filter-sheet-body .secondary-btn{background:#fffaf4;color:#754321}
+.o-filter-sheet-body .text-btn{background:transparent;color:#754321;border-color:transparent}
+.o-filter-sheet-body button:focus-visible{outline:3px solid #8b5937!important;outline-offset:2px}
+.task-sheet-content,.mc-dialog,.ps-dialog{scrollbar-width:thin;scrollbar-color:#b6a48c80 transparent}
+
+/* Reserve real scroll space for the action bar, including keyboard-height sheets.
+   Padding alone lets native focus scrolling put fields underneath the button. */
+.task-sheet-content>.inpaw-app:has(>.ux-save-record,>.ux-save-meal)>.app-scroll{bottom:calc(80px + env(safe-area-inset-bottom,0px))!important}
+.task-sheet-content>.inpaw-app:has(>.ux-save-record,>.ux-save-meal)>.app-scroll .app-content{padding-bottom:12px!important}
+.task-sheet-content>.inpaw-app:has(>.ux-save-record,>.ux-save-meal)>.app-scroll .mobile-scroll{scroll-padding-bottom:18px}
+/* Editing an existing record keeps the bottom navigation; reserve both bars. */
+.inpaw-app.shell-with-tabs:has(>.ux-save-record,>.ux-save-meal,>.ux-save-summary)>.app-scroll{bottom:calc(160px + env(safe-area-inset-bottom,0px))!important}
+.inpaw-app.shell-with-tabs:has(>.ux-save-record,>.ux-save-meal,>.ux-save-summary)>.app-scroll .app-content{padding-bottom:12px!important}
+.task-sheet-content>.inpaw-app.shell-with-tabs:has(>.ux-save-record,>.ux-save-meal)>.app-scroll{bottom:calc(80px + env(safe-area-inset-bottom,0px))!important}
+
+/* A short visible keyboard viewport needs the form, not two stacked action bars.
+   Back remains in the header; the normal tabs return when the keyboard closes. */
+@media(max-width:600px),(max-width:960px) and (max-height:500px){
+ html[data-compact-viewport] .inpaw-app.shell-with-tabs:has(>.ux-save-record,>.ux-save-meal,>.ux-save-summary)>.shell-nav-dock{display:none!important}
+ html[data-compact-viewport] .inpaw-app.shell-with-tabs>:is(.ux-save-record,.ux-save-meal,.ux-save-summary){bottom:calc(12px + env(safe-area-inset-bottom,0px))!important}
+ html[data-compact-viewport] .inpaw-app.shell-with-tabs:has(>.ux-save-record,>.ux-save-meal,>.ux-save-summary)>.app-scroll{bottom:calc(80px + env(safe-area-inset-bottom,0px))!important}
+}
+
+/* T2: the entire scrolling viewport ends above the paw/tabs. End padding alone
+   cannot protect a row stopped mid-scroll. Full-width rows keep their width,
+   but no part of them can enter this separate fixed action area. Child pages
+   without the paw reserve only the tabs; existing form bars keep their insets. */
+.inpaw-app.shell-with-tabs{--shell-viewport-fallback:calc(88px + env(safe-area-inset-bottom,0px));--shell-tabs-fallback:calc(74px + env(safe-area-inset-bottom,0px))}
+.inpaw-app.shell-with-tabs:has(>.shell-nav-dock>.shell-add-record){--shell-viewport-fallback:calc(175px + env(safe-area-inset-bottom,0px))}
+.navigation-route-background>.inpaw-app.shell-with-tabs:not(.ih-fish-active):not(:has(>.ux-save-record,>.ux-save-meal,>.ux-save-summary,>.ux-save-voice))>.app-scroll{
+ bottom:var(--shell-viewport-inset,var(--shell-viewport-fallback))!important;
+ overflow:hidden;
+ scroll-padding-bottom:16px;
+}
+.navigation-route-background>.inpaw-app.shell-with-tabs:not(.ih-fish-active):not(:has(>.ux-save-record,>.ux-save-meal,>.ux-save-summary,>.ux-save-voice))>.app-scroll .app-content{padding-bottom:24px!important}
+.navigation-route-background>.inpaw-app.shell-with-tabs:not(.ih-fish-active)>.app-scroll .mobile-scroll{scroll-padding-bottom:16px}
+
+/* Every compact form needs its input area, including profile/food/reminder
+   editors without a separate .ux-save-* bar. Keep tabs out of the way for the
+   whole form while short, including the blur/click that submits it. */
+@media(max-width:600px),(max-width:960px) and (max-height:500px){
+ html[data-compact-viewport] .inpaw-app.shell-with-tabs:has(>.app-scroll :is(input:not([type=hidden]):not([type=file]):not([type=checkbox]):not([type=radio]):not([type=range]),textarea,select))>.shell-nav-dock{display:none!important}
+ html[data-compact-viewport] .navigation-route-background>.inpaw-app.shell-with-tabs:not(.ih-fish-active):not(:has(>.ux-save-record,>.ux-save-meal,>.ux-save-summary,>.ux-save-voice)):has(>.app-scroll :is(input:not([type=hidden]):not([type=file]):not([type=checkbox]):not([type=radio]):not([type=range]),textarea,select))>.app-scroll{bottom:env(safe-area-inset-bottom,0px)!important}
+}
+
+/* Keep the same icon/label color and a visible selection in contrast modes. */
+@media(prefers-contrast:more){.shell-bottom-tabs{background:#fff8ec;border-color:#6d6054}.inpaw-app .shell-tab,.shell-tab{color:#493629}.inpaw-app .shell-tab.is-active,.shell-tab.is-active{outline:1px solid currentColor;outline-offset:-2px}}
+@media(forced-colors:active){.inpaw-app .shell-tab,.shell-tab{color:ButtonText}.inpaw-app .shell-tab.is-active,.shell-tab.is-active{outline:2px solid Highlight;outline-offset:-2px;color:Highlight}}
+
+/* In a keyboard-height viewport, keep 44px close/back controls and usable form
+   space instead of spending the remaining height on a drag handle and scrim. */
+@media(max-width:600px),(max-width:960px) and (max-height:500px){
+ html[data-compact-viewport] .task-sheet-panel{height:100%;max-height:100%}
+ html[data-compact-viewport] .task-sheet-handle{display:none}
+ html[data-compact-viewport] .task-sheet-header{padding-top:4px;padding-bottom:4px}
+ html[data-compact-viewport] .task-sheet-content>.inpaw-app:has(>.ux-save-record,>.ux-save-meal)>.app-scroll{bottom:calc(70px + env(safe-area-inset-bottom,0px))!important}
+}

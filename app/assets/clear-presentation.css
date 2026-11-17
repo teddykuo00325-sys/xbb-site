@@ -1,0 +1,74 @@
+/* A warm translucent fill keeps labels readable over scrolling records. */
+/* Let the page scroll behind the floating controls. Focus clearance includes
+   the paw; end padding accounts for the full-width obstruction from the dock. */
+.navigation-route-background>.inpaw-app.shell-with-tabs:not(.ih-fish-active):not(:has(>.ux-save-record,>.ux-save-meal,>.ux-save-summary,>.ux-save-voice))>.app-scroll{
+ bottom:0!important;
+ scroll-padding-bottom:var(--shell-viewport-inset,var(--shell-viewport-fallback));
+}
+.navigation-route-background>.inpaw-app.shell-with-tabs:not(.ih-fish-active):not(:has(>.ux-save-record,>.ux-save-meal,>.ux-save-summary,>.ux-save-voice))>.app-scroll .app-content{
+ padding-bottom:var(--shell-tabs-inset,var(--shell-tabs-fallback))!important;
+}
+.navigation-route-background>.inpaw-app.shell-with-tabs:not(.ih-fish-active)>.app-scroll .mobile-scroll{
+ scroll-padding-bottom:var(--shell-viewport-inset,var(--shell-viewport-fallback));
+}
+.inpaw-app .shell-nav-dock{background:transparent!important;border:0;box-shadow:none}
+.inpaw-app .shell-nav-dock::before,.inpaw-app .shell-nav-dock::after{content:none}
+.inpaw-app .shell-nav-dock .shell-bottom-tabs{
+ background:rgb(255 249 240 / .88)!important;
+ border:1px solid rgb(255 255 255 / .62);
+ box-shadow:inset 0 1px 1px rgb(255 255 255 / .75),inset 0 -1px 1px rgb(91 65 43 / .14),0 5px 20px rgb(73 52 32 / .12);
+ backdrop-filter:blur(22px) saturate(145%) contrast(103%);
+ -webkit-backdrop-filter:blur(22px) saturate(145%) contrast(103%);
+}
+.inpaw-app .shell-nav-dock .shell-tab-icon{background:transparent!important}
+.inpaw-app [data-testid=feeding-form] .food-quick{margin:4px 0 12px;padding:0;background:transparent;border:0;box-shadow:none}
+.inpaw-app [data-testid=feeding-form] .food-quick h2{font-size:13px;margin:0 0 7px}
+.inpaw-app [data-testid=feeding-form] .food-recent{display:flex;gap:8px;overflow:auto;padding:1px}
+.inpaw-app [data-testid=feeding-form] .food-recent button{flex:0 0 auto;min-height:44px;padding:8px 12px}
+.inpaw-app [data-testid=feeding-form] .food-recent small{font-size:12px}
+.inpaw-app [data-testid=feeding-form] .ij-feeding-fields{margin-top:0}
+.inpaw-app [data-testid=feeding-form] .ux-meal-time{margin:12px 0}
+.inpaw-app [data-testid=feeding-form] .meal-extra{margin:14px 0;padding:0 12px;border:1px solid var(--paw-rim);border-radius:16px}
+.meal-extra>summary{min-height:44px;padding:12px 0;cursor:pointer;font-size:14px}
+.meal-extra .diet-no-eating{margin-top:8px}
+.inpaw-app [data-testid=feeding-form] .meal-draft-note{font-size:12px;color:#6b5746;margin:10px 0;line-height:1.6}
+.inpaw-app .health-value.is-unrecorded{font-size:15px;min-height:36px;font-weight:650}
+.inpaw-app .health-value.is-unrecorded strong{font-size:15px}
+.inpaw-app .health-data-note{font-size:12px;color:#6b5746;margin:4px 0 14px}
+.health-data-note>summary{min-height:44px;padding:12px 0;cursor:pointer}
+.food-version-details{margin:14px 0;font-size:13px;color:#6b5746}
+.food-version-details>summary{min-height:44px;padding:12px 0;cursor:pointer}
+/* Feeding uses its own rows: food and time first, quantities on the next line. */
+.inpaw-app .feeding-today{padding:16px}
+.inpaw-app .feeding-today>.section-title{margin:0 0 6px}
+.feeding-meal-list{display:grid;min-width:0}
+.inpaw-app .feeding-meal-row{display:grid;grid-template-columns:36px minmax(0,1fr) 12px;align-items:center;gap:10px;width:100%;min-height:82px;padding:14px 0;margin:0;border:0;border-radius:0;background:transparent;box-shadow:none;text-align:left;color:#403b36;font:inherit}
+.inpaw-app .feeding-meal-row+.feeding-meal-row{border-top:1px solid var(--paw-rim)}
+.feeding-meal-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#f5e7d780}
+.feeding-meal-icon img{width:22px;height:22px}
+.feeding-meal-body,.food-card-copy{display:block;min-width:0}
+.feeding-meal-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;min-width:0}
+.feeding-meal-head strong{font-size:18px;font-weight:700;line-height:1.5;overflow-wrap:anywhere}
+.feeding-meal-head time{font-size:13px;font-weight:400;line-height:1.5;color:#82756a;white-space:nowrap;flex-shrink:0}
+.feeding-meal-amounts{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:7px;font-size:14px;line-height:1.6;color:#82756a}
+.feeding-meal-amounts>span{white-space:nowrap}
+.feeding-meal-amounts b{font-size:15px;font-weight:600;color:#63584e}
+.feeding-meal-amounts .is-unknown b{font-weight:400;color:#8b7e73}
+.feeding-row-chevron{font-size:22px;font-weight:400;line-height:1;color:#94785f;justify-self:end}
+.inpaw-app .food-recent-home{margin:20px 0;padding:16px;border:1px solid var(--paw-rim);border-radius:20px;background:#fff9ef70}
+.inpaw-app .food-recent-home h2,.inpaw-app .h-feeding-food-list>h2{font-size:19px;line-height:1.5;margin:0 0 12px}
+.inpaw-app .food-recent-home .food-recent{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;overflow:visible}
+.inpaw-app .food-recent-home .food-recent-shortcut{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;width:100%;min-width:0;min-height:70px;margin:0;padding:12px;border:1px solid var(--paw-rim);border-radius:15px;background:#fffdf7a3;box-shadow:none;text-align:left;color:#5e5147;font:inherit}
+.food-recent-shortcut strong{font-size:16px;font-weight:650;line-height:1.5;overflow-wrap:anywhere}
+.food-recent-shortcut small{font-size:13px;line-height:1.5;color:#8b7e73;overflow-wrap:anywhere}
+.inpaw-app .h-feeding-food-list{margin:24px 0 18px}
+.inpaw-app .h-feeding-food-list .food-list{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin:12px 0 0;padding:0;min-width:0}
+.inpaw-app .h-feeding-food-list .food-card-row{display:grid;grid-template-columns:minmax(0,1fr) auto 12px;align-items:center;gap:10px;width:100%;min-width:0;min-height:72px;margin:0;padding:14px;border:1px solid var(--paw-rim);border-radius:17px;background:#fffaf175;box-shadow:none;text-align:left;color:#403b36;font:inherit}
+.food-card-copy strong{display:block;font-size:18px;line-height:1.5;font-weight:700;overflow-wrap:anywhere}
+.food-card-copy .food-subtitle{display:block;margin-top:3px;font-size:14px;line-height:1.5;color:#8b7e73;overflow-wrap:anywhere}
+.inpaw-app .h-feeding-food-list .h-food-category-badge{white-space:nowrap;margin:0;font-size:12px;font-weight:500;line-height:1.5;padding:4px 8px}
+.inpaw-app :is(.feeding-meal-row,.food-card-row,.food-recent-shortcut):focus-visible{outline:2px solid #9b623b;outline-offset:3px}
+@media(max-width:360px){.inpaw-app .feeding-today{padding:14px}.inpaw-app .feeding-meal-row{grid-template-columns:30px minmax(0,1fr) 10px;gap:8px}.feeding-meal-icon{width:30px;height:30px}.feeding-meal-icon img{width:20px;height:20px}.feeding-meal-amounts{gap:3px 10px}.inpaw-app .h-feeding-food-list .food-card-row{gap:8px;padding:12px}}
+@media(prefers-reduced-transparency:reduce){
+ .inpaw-app .shell-nav-dock .shell-bottom-tabs{backdrop-filter:none;-webkit-backdrop-filter:none;border-color:#8d7862;box-shadow:inset 0 0 0 1px #fff,0 2px 8px #49342024}
+}

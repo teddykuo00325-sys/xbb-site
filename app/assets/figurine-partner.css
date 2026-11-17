@@ -1,0 +1,32 @@
+.partner-print-app .figurine-status{display:inline-block;max-width:100%;padding:6px 10px;margin:6px 0 14px;border-radius:10px;background:#eee5d8;color:#684b34;font-size:13px;font-weight:650;line-height:1.5;overflow-wrap:anywhere}
+.partner-print-app .figurine-partner-notice{margin:18px 0;padding:16px;border:1px solid #ddc9b0;border-radius:18px;background:#faf3e9;color:#503d2e}
+.partner-print-app .figurine-partner-notice strong{font-size:17px}
+.partner-print-app .figurine-partner-notice p{margin:9px 0 0;line-height:1.7}
+.partner-print-app .figurine-process{padding-left:24px;margin:16px 0;line-height:1.75}
+.partner-print-app .figurine-process li{padding-left:3px;margin-bottom:10px;overflow-wrap:anywhere}
+.partner-print-app .figurine-terms{padding:14px;border-radius:14px;background:#f1eee9;color:#655245;font-size:14px;line-height:1.7}
+.partner-print-app .figurine-local-note{margin-top:18px;font-size:13px;line-height:1.7}
+.partner-print-app .figurine-photo-field{min-width:0}
+.partner-print-app .figurine-photo-field .photo-slot{height:100%;min-height:160px}
+.partner-print-app .figurine-photo-field:has(.text-btn) .photo-slot{height:auto}
+.partner-print-app .photo-grid{align-items:start}
+.partner-print-app .print-check{align-items:flex-start;line-height:1.65}
+.partner-print-app .print-check input{margin-top:5px;flex-shrink:0}
+.partner-print-app .print-steps{padding:0;gap:6px}
+.partner-print-app .print-steps li{min-width:0;flex:1;font-size:12px;overflow-wrap:anywhere;line-height:1.5}
+.partner-print-app .app-header strong{font-size:15px;min-width:0;overflow-wrap:anywhere}
+.partner-print-app .app-header .h-back{flex-shrink:0}
+.partner-print-app .primary:disabled{opacity:1;background:#e2ddd6;color:#6e655d;cursor:not-allowed;box-shadow:none}
+.partner-print-app .print-order{align-items:center;gap:14px}
+.partner-print-app .print-order>div{min-width:0;overflow-wrap:anywhere}
+.partner-print-app .print-order img{width:84px;height:84px;flex-shrink:0;object-fit:cover;border-radius:14px}
+.partner-print-app .print-content h1{overflow-wrap:anywhere}
+@media(max-width:360px){.partner-print-app .app-header{gap:8px}.partner-print-app .app-header strong{font-size:14px}.partner-print-app .print-content h1{font-size:26px}.partner-print-app .photo-grid{gap:10px}.partner-print-app .figurine-partner-notice{padding:14px}}
+/* 前往萌點3D（2026-11-13）：連結做成按鈕的樣子，開手機瀏覽器 */
+.partner-print-app a.figurine-shop-link{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;margin:12px 0;padding:10px 16px;box-sizing:border-box;border-radius:999px;text-decoration:none;font-weight:700;text-align:center}
+.partner-print-app a.figurine-shop-link::after{content:'↗';margin-left:6px;font-weight:700}
+.partner-print-app a.figurine-shop-link.primary{background:#b6652f;color:#fff;border:1.5px solid #b6652f}
+.partner-print-app a.figurine-shop-link.secondary-btn{background:transparent;color:#784a30;border:1.5px solid #b6652f}
+:where(html[data-theme="dark"]) .partner-print-app a.figurine-shop-link.primary{background:#d99a5f;color:#2a1a0e;border-color:#d99a5f}
+:where(html[data-theme="dark"]) .partner-print-app a.figurine-shop-link.secondary-btn{color:#f3c99f;border-color:#d99a5f}
+@media (prefers-color-scheme:dark){:where(html:not([data-theme="light"])) .partner-print-app a.figurine-shop-link.primary{background:#d99a5f;color:#2a1a0e;border-color:#d99a5f}:where(html:not([data-theme="light"])) .partner-print-app a.figurine-shop-link.secondary-btn{color:#f3c99f;border-color:#d99a5f}}

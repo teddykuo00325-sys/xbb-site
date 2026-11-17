@@ -1,0 +1,119 @@
+.native-sound-list{display:grid;gap:14px;margin-top:18px}
+.native-sound-card{padding:18px;border-radius:24px;background:linear-gradient(135deg,#ffffffb5,#ffffff60);border:1px solid var(--paw-rim);box-shadow:0 6px 22px #74563812;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.native-sound-card.is-playing{border-color:#ad8a5f;box-shadow:0 6px 24px #94744b22}
+.native-sound-row{display:flex;align-items:center;gap:12px}.native-sound-copy{flex:1;min-width:0}.native-sound-copy h2{font-size:17px;margin:0 0 4px}.native-sound-copy small{color:#725b48;font-size:13px}
+.native-sound-play{min-width:76px;min-height:48px;padding:10px 12px;border-radius:24px;border:1px solid var(--paw-rim);background:#fff9;color:#5b402b;font:600 15px system-ui;flex-shrink:0}
+.native-sound-card progress{display:block;width:100%;height:5px;margin-top:20px;border:0;border-radius:5px;accent-color:#9f7952;background:#e9dfd2}.native-sound-card progress::-webkit-progress-bar{background:#e9dfd2;border-radius:5px}.native-sound-card progress::-webkit-progress-value{background:#9f7952;border-radius:5px}
+.native-sound-footer{display:flex;justify-content:space-between;align-items:center;min-height:44px;font-size:12px;color:#725b48}.native-sound-footer button{min-height:44px;min-width:60px}
+.native-sound-hint,.native-sound-status{font-size:14px;line-height:1.6;color:#6b513a}.native-sound-status{min-height:24px}.native-sound-details{margin:14px 0;color:#6b513a;font-size:14px;line-height:1.7}.native-sound-details summary{padding:12px 0;min-height:44px;cursor:pointer}.native-sound-details a{color:#72502c;text-decoration:underline}.native-sound-play:focus-visible{outline:3px solid #94744b;outline-offset:3px}
+/* v57: compact cards, photo editing and responsive play surfaces. */
+.inpaw-app .app-content{padding:12px clamp(12px,4vw,20px) calc(112px + env(safe-area-inset-bottom,0px))!important;min-width:0}
+.health-summary{padding-top:2px}.health-header{margin-bottom:4px}
+.health-summary .ux-home-reminder{width:100%;min-height:44px;height:auto;margin:0 0 6px;padding:10px 12px;line-height:1.5}
+.health-section-title{min-height:40px;margin-top:12px;margin-bottom:6px}.health-section-title h2{font-size:19px}
+.health-summary .health-favorites{gap:10px}.ux-metric-wrap{border-radius:19px}
+.health-summary .health-card.ux-empty-card{min-height:76px;padding:12px 13px}.ux-empty-card .health-empty-chart{margin-top:8px;padding-top:0;font-size:12px}
+.ux-metric-add{min-height:44px;padding:8px;line-height:1.4}
+.health-quick-track{display:flex;gap:8px;overflow-x:auto;padding:2px 0 7px;scrollbar-width:none}
+.health-quick-track button{flex:0 0 auto;min-width:54px;min-height:44px;white-space:nowrap;padding:9px 13px}.health-quick>p{margin:3px 0 8px}
+.native-play-section{margin:8px 0 14px}.native-play-section h2{font-size:19px;overflow-wrap:anywhere}
+.native-play-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.inpaw-app .native-play-card{width:100%;min-width:0;min-height:148px;border-radius:23px;border:1px solid var(--paw-rim);box-shadow:0 5px 16px #58453510;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:flex-start;text-align:left;padding:14px;gap:5px;color:#3e4942;white-space:normal}
+.native-play-fish{background:linear-gradient(135deg,#ffffffa6,#dbe9dba6)}.native-play-sound{background:linear-gradient(135deg,#ffffffb3,#e9dceea6);color:#5c4864!important}
+.native-play-icon{height:36px;display:flex;align-items:center;margin-bottom:2px}.native-play-icon svg{width:46px;height:36px}.native-play-icon img{width:29px;height:29px;opacity:.72}.native-play-card strong{font-size:18px}.native-play-card small{font-size:13px;line-height:1.5}.native-play-meta{font-size:11px;color:#6c6561;margin-top:2px}
+.inpaw-app.native-play-page>.app-header{display:none!important}.inpaw-app.native-play-page>.app-scroll,.inpaw-app.ih-fish-active>.app-scroll{top:0!important;bottom:0!important}
+.native-play-page .mc-current-owner{display:none!important}.native-play-page .app-content{padding-top:6px!important}.native-play-page .h-back{margin:0 0 4px;min-height:44px;padding:8px 0}
+.ih-fish-ready{padding:0}.ih-fish-ready h1{font-size:27px;margin:2px 0 7px!important}.ih-fish-ready>.ih-lead{margin:4px 0 12px}
+.ih-fish-ready .play-scene-preview{height:clamp(150px,27svh,250px);min-height:0;margin:10px 0;border-radius:24px}
+.ih-fish-ready .ux-play-start{position:static;inset:auto;padding:0;margin:12px 0;background:none;box-shadow:none;border-radius:16px;width:100%}.ux-play-start .primary{min-height:50px}
+.ih-fish-ready .ux-play-options{margin:12px 0}.ih-fish-ready .ux-play-options>summary{min-height:48px;padding:12px 14px;line-height:1.6}
+.ih-fish-ready>.ih-small{margin:12px 0;font-size:12px}.ih-fish-ready .ux-play-help{margin:8px 0}
+.inpaw-app.ih-fish-active .app-content{padding:0!important}.ih-play-layer{height:100%;min-height:0}
+.ih-play-controls{padding:10px 14px;min-height:66px;gap:8px}.ih-play-controls strong{font-size:15px}.ih-play-controls small{font-size:11px}.ih-play-controls button{min-height:44px;white-space:nowrap}
+.ih-play-field{flex:1;min-height:0;margin:8px 12px;border-radius:26px}.ih-play-footer{padding:8px 14px calc(12px + env(safe-area-inset-bottom,0px));font-size:11px;gap:5px}
+.ih-owner-panel{top:50%;transform:translateY(-50%);max-height:calc(100% - 32px);left:16px;right:16px;padding:20px;overscroll-behavior:contain}
+.ih-fish-done{padding-top:clamp(12px,4svh,32px)}
+.native-photo-editor{padding:0 0 18px;margin-bottom:18px;border-bottom:1px solid #bda88933}.native-photo-row{display:flex;align-items:center;gap:16px}.native-photo-row>div{min-width:0;flex:1}.native-photo-row h2{font-size:17px;margin:0 0 8px}.native-photo-row .secondary-btn{min-height:44px;padding:10px 14px;margin:0}.native-photo-row .text-btn{display:block;min-height:44px;padding:6px 0;font-size:13px}
+.native-cat-photo{width:86px;height:86px;flex:0 0 86px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 18px #4734201a}
+.native-photo-note{font-size:12px;line-height:1.7;color:#756453;margin:10px 0 0}.native-photo-crop{padding:16px 0 0}.native-photo-crop h3{font-size:16px;margin:0 0 12px}.native-crop-preview{display:block;width:160px;height:160px;border-radius:50%;object-fit:cover;margin:0 auto 18px}.native-photo-crop label{display:grid;grid-template-columns:70px 1fr;gap:10px;align-items:center;font-size:13px;min-height:48px}.native-photo-crop input[type=range]{min-width:0;width:100%;min-height:44px;accent-color:#b56b39}.native-photo-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.native-photo-actions button{min-height:48px;margin:0!important}
+.native-crop-preview{touch-action:none;user-select:none;cursor:grab;margin-bottom:6px}
+.native-crop-preview:active{cursor:grabbing}
+.native-crop-gesture-note{text-align:center;font-size:12px;margin:0 0 8px;color:var(--muted,#756453)}
+.inpaw-app .native-profile-photo-button{display:flex;flex-direction:column;align-items:center;gap:7px;padding:0 0 8px;border:0;background:none;margin:0 auto;color:#85532f}.native-profile-photo-button img{width:92px!important;height:92px!important;object-fit:cover;border-radius:50%;margin:0!important;border:3px solid #fff}.native-profile-photo-button span{font-size:12px}.profile{padding:16px}.profile h2{margin:8px 0 4px}.profile p{margin:4px 0;line-height:1.6}
+:is(.cat-selector img,.health-avatar img,.pet-strip img,.mc-avatar){object-fit:cover}img.mc-avatar{width:44px;height:44px;flex:0 0 44px;border-radius:50%}
+.native-sound-card{padding:15px}.native-sound-card progress{margin-top:14px}.native-sound-list{gap:12px;margin-top:14px}
+@media(max-width:360px){.native-play-grid{gap:10px}.inpaw-app .native-play-card{padding:12px;min-height:142px}.native-play-card strong{font-size:17px}.native-play-card small{font-size:12px}.ih-play-controls{padding:8px 10px;gap:6px}.ih-play-controls button{padding:8px}.health-summary .health-favorites{gap:8px}.health-section-title h2{font-size:18px}}
+@media(max-height:650px){.ih-fish-ready .play-scene-preview{height:145px}.ih-fish-ready>.ih-lead{margin-bottom:8px}.ih-play-controls{min-height:60px;padding-top:8px;padding-bottom:8px}.ih-play-footer{padding-top:5px;padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}.ih-fish-target{width:82px;height:68px;min-height:68px}}
+@media(prefers-reduced-transparency:reduce){.native-play-fish{background:#eaf1e6}.native-play-sound{background:#eee6f1}.native-play-card{backdrop-filter:none;-webkit-backdrop-filter:none}}
+.inpaw-app .health-summary .native-other-records{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;margin:12px 0 8px!important}
+.native-other-records .health-section-title{margin:0!important;min-height:44px}.native-other-records .health-section-title h2{font-size:14px;font-weight:600;color:#685b50}.native-other-records .health-quick-track{padding:0;flex:1;min-width:190px}.native-other-records .health-quick-track button{font-size:13px}
+.inpaw-app .health-summary .health-card.ux-empty-card{min-height:68px}
+.inpaw-app .health-summary .health-section-title{margin-bottom:6px}
+.inpaw-app>.ux-save-meal,.inpaw-app>.ux-save-record,.inpaw-app>.ux-save-summary{bottom:calc(12px + env(safe-area-inset-bottom,0px))!important}
+.inpaw-app.ij-page-record>.ux-save-voice{bottom:calc(102px + env(safe-area-inset-bottom,0px))!important}
+.inpaw-app.ij-page-review .app-content,.food-app .app-content,.inpaw-app.ij-page-summary .app-content{padding-bottom:calc(130px + env(safe-area-inset-bottom,0px))!important}
+.inpaw-app .profile{grid-template-columns:92px minmax(0,1fr);gap:0 16px;align-items:start}
+.inpaw-app .profile>.native-profile-photo-button{grid-column:1;grid-row:1 / 5}
+.inpaw-app .profile>:is(h2,p){grid-column:2;min-width:0;overflow-wrap:anywhere}
+.inpaw-app .profile>p:empty{display:none}
+
+.inpaw-app .health-summary .health-card:not(.ux-empty-card){min-height:140px;padding:12px 13px}
+.inpaw-app .health-card .health-line,.inpaw-app .health-card .health-line svg{height:32px}
+.inpaw-app .health-card .health-detail{min-height:18px;line-height:18px}
+.inpaw-app .health-summary>.health-header{margin-bottom:0}
+.inpaw-app .health-summary>.native-play-section{margin-top:0}
+/* The web prototype has a simulated status bar; keep owner controls below it. */
+.device-screen .ih-play-layer{padding-top:58px;box-sizing:border-box}
+.device-screen .inpaw-app.native-play-page:not(.ih-fish-active) .app-content{padding-top:58px!important}
+@media(max-width:600px),(max-width:960px) and (max-height:500px){
+ .device-screen .inpaw-app.native-play-page:not(.ih-fish-active) .app-content{padding-top:calc(12px + env(safe-area-inset-top,0px))!important}
+}
+/* The two free sounds get their own little pantry illustrations. */
+.sound-page-heading{display:flex;align-items:center;gap:14px;margin:0 0 5px}
+.native-play-page .sound-page-heading .h-back{flex:0 0 auto;margin:0;min-height:44px;font-size:12px}
+.inpaw-app .sound-page-heading h1{font-size:24px!important;line-height:1.25!important;margin:0!important}
+.pet-owner-static:has(+.ih-sound-explorer){margin:4px 0 6px}
+.ih-sound-explorer>.ih-lead{font-size:12px;line-height:1.6;margin:0 0 5px}
+.ih-sound-explorer>.native-sound-hint{font-size:12px;line-height:1.5;margin:0 0 10px}
+.native-sound-list{gap:10px;margin-top:0}
+.native-sound-card{--sound-ink:#98633e;--sound-soft:#f4dfc2;display:grid;grid-template-columns:minmax(0,1fr) 80px;column-gap:8px;padding:10px 12px 4px;border-radius:22px;background:linear-gradient(130deg,#fff9ed,#f9ecdb);box-shadow:var(--paw-depth)}
+.native-sound-card.sound-card-bag{--sound-ink:#56765d;--sound-soft:#dce9d8;background:linear-gradient(130deg,#edf5e9,#fff9ec)}
+.native-sound-card.is-playing{border-color:var(--sound-ink);box-shadow:0 5px 18px #79543a12}
+.native-sound-row{gap:8px;align-items:center;min-width:0}
+.sound-friend{width:68px;height:68px;object-fit:contain;flex:0 0 68px}
+.native-sound-copy h3{font-size:18px;line-height:1.35;margin:3px 0 1px;color:var(--sound-ink);overflow-wrap:anywhere}
+.native-sound-copy small{font-size:11px;color:#806b55}
+.native-sound-copy p{display:none}
+.sound-free{display:inline-block;padding:2px 6px;border-radius:10px;background:#fffaf0c9;color:var(--sound-ink);font-size:10px;white-space:nowrap}
+.sound-card-actions{display:flex;align-items:center;justify-content:flex-end;margin-top:0}
+.inpaw-app .native-sound-play{display:flex;align-items:center;justify-content:center;gap:5px;width:80px;min-width:0;min-height:44px;border:1px solid #bfa78c66;border-radius:22px;background:#fffdf5;color:var(--sound-ink);font-size:12px;font-weight:700;padding:7px 4px;white-space:nowrap}
+.native-sound-play>span{font-size:12px}
+.native-sound-card.is-playing .native-sound-play{background:var(--sound-soft);border-color:var(--sound-ink)}
+.sound-waves{display:none}
+.sound-waves i{display:block;width:4px;height:8px;background:var(--sound-ink);opacity:.3;border-radius:3px}
+.sound-waves i:nth-child(2),.sound-waves i:nth-child(4){height:16px}.sound-waves i:nth-child(3){height:24px}
+.is-playing .sound-waves i{animation:pantry-wave .7s ease-in-out infinite alternate;opacity:.65}.is-playing .sound-waves i:nth-child(even){animation-delay:-.35s}
+.native-sound-card progress{flex:1;min-width:24px;width:auto;height:3px;margin:0;accent-color:var(--sound-ink)}
+.native-sound-card progress::-webkit-progress-value{background:var(--sound-ink)}
+.native-sound-footer{grid-column:1 / -1;gap:10px;min-height:44px;font-size:10px;color:#8d7965}
+.native-sound-footer>span{white-space:nowrap;font-variant-numeric:tabular-nums}
+.native-sound-footer button{min-width:44px;min-height:44px;padding:0 3px;color:var(--sound-ink);font-size:12px}
+@keyframes pantry-wave{to{transform:scaleY(.45)}}
+@media(max-width:360px){.sound-friend{width:54px;height:60px;flex-basis:54px}.native-sound-copy h3{font-size:17px}.native-sound-row{gap:5px}.native-sound-card{column-gap:6px}}
+@media(prefers-reduced-motion:reduce){.is-playing .sound-waves i{animation:none}}
+.sound-tabs{display:flex;gap:8px;margin:10px 0 10px;padding:4px;border-radius:21px;background:#d9caba42}
+.inpaw-app .sound-tabs button{display:flex;align-items:center;justify-content:center;gap:9px;flex:1;min-height:44px;border:1px solid transparent;border-radius:17px;background:transparent;color:#8a7765;font-size:14px;font-weight:700}
+.inpaw-app .sound-tabs button[aria-selected=true]{background:#fff9ece6;color:#805535;border-color:#bfa78c66;box-shadow:0 3px 8px #79543a0c}
+.sound-tabs button span{font-size:10px;font-weight:400;opacity:.85}
+.sound-tabs button:focus-visible{outline:2px solid #98633e;outline-offset:2px}
+.sound-tier{margin-top:0}
+.sound-tier-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 2px 7px}
+.sound-tier-heading h2{font-size:14px;margin:0;color:#695749}
+.sound-tier-heading>span,.sound-tier-note{font-size:11px;color:#8a7765}
+.sound-tier-note{line-height:1.5;margin:0 2px 7px}
+.sound-card-bird{--sound-ink:#607d89;--sound-soft:#dbeaf1;background:linear-gradient(130deg,#edf6f8,#fff9ee)}
+.sound-card-rustle{--sound-ink:#827096;--sound-soft:#e6ddec;background:linear-gradient(130deg,#f0eaf5,#fff7ed)}
+.sound-pro{background:#eee2cf;color:#795536}
+@media(max-height:680px){.ih-sound-explorer>.ih-lead{display:none}.ih-sound-explorer>.native-sound-hint{margin-bottom:4px}.sound-tabs{margin-top:6px}.ih-sound-explorer>.native-sound-status{font-size:12px;margin:8px 0}}
+/* Free-play settings have their own back button, with no shell title above. */
+html .inpaw-app.ij-secondary.native-play-page:has(.fish-game:not(.fish-fullscreen))>.app-scroll{top:0!important}

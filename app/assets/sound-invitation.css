@@ -1,0 +1,11 @@
+.sound-invitation{margin:0 0 18px;padding:16px;border:1px solid #e5d8c9;border-radius:18px;background:#fbf6ee;color:#403833;min-width:0}
+.sound-invitation-heading{display:flex;align-items:flex-start;gap:6px;justify-content:space-between}
+.sound-invitation h2{margin:0;font-size:17px;line-height:1.5;overflow-wrap:anywhere;min-width:0}
+.inpaw-app .sound-invitation .sound-invitation-close{flex:0 0 44px;min-height:44px;margin:-10px -10px 0 0;border:0;border-radius:50%;background:transparent;color:#63564d;font-size:24px;line-height:1}
+.sound-invitation p{margin:8px 0 12px;font-size:14px;line-height:1.65;color:#62564d}
+.sound-invitation-actions{display:flex;flex-wrap:wrap;gap:8px}
+.sound-invitation-actions button{flex:1 1 130px;min-height:44px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:650;line-height:1.4;white-space:normal}
+.inpaw-app .sound-invitation .sound-invitation-start{background:#77573d;color:#fff;border:1px solid #77573d}
+.inpaw-app .sound-invitation .sound-invitation-skip{background:#fffaf4;color:#594a3d;border:1px solid #d9cbbd}
+.sound-invitation small{display:block;margin-top:10px;font-size:12px;line-height:1.6;color:#6c5e52}
+.sound-invitation button:focus-visible{outline:3px solid #98704e;outline-offset:3px}

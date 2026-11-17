@@ -1,0 +1,13 @@
+.entry-kind-tabs {grid-template-columns:repeat(3,minmax(0,1fr))!important;}
+.entry-kind-tabs button {min-height:44px;white-space:normal;}
+.vaccine-entry-actions {display:grid;gap:12px;margin:20px 0;}
+.vaccine-entry-action {display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;min-height:90px;padding:18px;border:1px solid #d9e5de;border-radius:18px;background:#f5faf7;color:#315b48;text-align:left;}
+.vaccine-entry-action strong {font-size:18px;}
+.vaccine-entry-action span {font-size:13px;color:#55665c;line-height:1.6;}
+.vaccine-entry-action:focus-visible {outline:3px solid #6b9e88;outline-offset:3px;}
+#health-care-entry {min-height:76px;}
+#health-care-entry .care-entry-copy {flex:1;display:flex;flex-direction:column;gap:4px;}
+#health-care-entry .care-entry-copy strong {font-size:16px;}
+#health-care-entry .care-entry-copy small {font-size:12px;font-weight:400;color:#637568;}
+.inpaw-app .entry-kind-tabs button {display:flex;align-items:center;justify-content:center;gap:4px;}
+.entry-kind-tabs img,.care-kind-icon {flex-shrink:0;object-fit:contain;}

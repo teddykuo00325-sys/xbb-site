@@ -1,0 +1,20 @@
+/* Plain disclosure rows keep unknown legal and provider details easy to scan. */
+.app-privacy-support,.app-data-use,.app-subscription-disclosure{min-width:0;overflow-wrap:anywhere}
+.app-privacy-support .ps-card{display:grid;gap:12px}
+.app-privacy-support .ps-card>*{margin:0}
+.app-privacy-support h2{font-size:19px;line-height:1.45}
+.app-privacy-support p,.app-data-use p,.app-subscription-disclosure p{font-size:14px;line-height:1.75}
+.app-policy-status,.app-data-use dl,.app-subscription-disclosure dl{margin:0;display:grid;gap:7px}
+.app-policy-status dt,.app-data-use dt,.app-subscription-disclosure dt{font-size:13px;font-weight:750;color:#3a4b45;margin-top:8px}
+.app-policy-status dd,.app-data-use dd,.app-subscription-disclosure dd{margin:0;font-size:14px;line-height:1.75;color:#526159}
+.app-disclosure-status{color:#436f5e;font-size:12px!important;font-weight:750}
+.app-disclosure-note{color:#6d6254;background:#fbf5e9;border-radius:12px;padding:11px 13px;font-size:13px!important}
+.app-data-use,.app-subscription-disclosure{border:1px solid #dfe8df;background:#fbfdf9;border-radius:14px;padding:13px 14px;margin:10px 0}
+.app-data-use summary,.app-subscription-disclosure summary{cursor:pointer;font-size:14px;font-weight:750;line-height:1.55;min-height:24px}
+.app-data-use[open]>summary,.app-subscription-disclosure[open]>summary{margin-bottom:12px}
+.app-consent-preview{min-width:0;border:1px solid #e0e6df;border-radius:13px;padding:12px;margin:12px 0;color:#626b63;background:#f7f8f4}
+.app-consent-preview legend{font-size:12px;font-weight:750;padding:0 6px}
+.app-consent-preview label{display:flex;align-items:flex-start;gap:9px;font-size:13px;line-height:1.7}
+.app-consent-preview input{flex:0 0 auto;width:18px;height:18px;margin:3px 0 0}
+.app-consent-preview p{font-size:12px;line-height:1.7;margin:8px 0 0}
+.app-data-use summary:focus-visible,.app-subscription-disclosure summary:focus-visible{outline:2px solid #3b775f;outline-offset:4px}

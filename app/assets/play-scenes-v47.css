@@ -1,0 +1,23 @@
+.play-scene-art{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;user-select:none}.play-scene-preview{position:relative;height:220px;overflow:hidden;border-radius:20px;isolation:isolate;border:1px solid #ddd9cd;margin:15px 0}.play-scene-preview .play-scene-art{height:100%;width:100%}.play-scene-preview-fish{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:82px;height:64px;filter:drop-shadow(0 2px 2px #60492c16)}.play-scene-caption{position:absolute;bottom:12px;left:12px;right:12px;text-align:center;font-size:11px;line-height:1.6;border-radius:10px;padding:6px;background:#fffcf0ec;color:#5d5b49}.play-scene-picker{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:0;border:0;margin:14px 0}.play-scene-picker legend{font-size:12px;font-weight:700;color:#716257;margin-bottom:8px}.inpaw-app .play-scene-picker button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:10px 3px;min-height:62px;border:1px solid #d8cbbb;border-radius:12px;color:#725541;background:#fffaf4}.play-scene-picker strong{font-size:13px}.play-scene-picker small{font-size:9px;line-height:1.5}.inpaw-app .play-scene-picker button[aria-pressed=true]{background:#ebe2d1;border-color:#ac8562;box-shadow:inset 0 0 0 1px #ac8562}.inpaw-app .play-scene-picker button:focus-visible{outline:3px solid #995325;outline-offset:2px}
+/* Shared artwork stays behind the target and never intercepts a paw or button. */
+.ih-play-layer .ih-play-field{margin:8px 16px 0;border-radius:24px;background:none;overflow:hidden}.ih-play-field>.play-scene-art{z-index:-1}.ih-play-layer .ih-play-controls{background:#fcf5e9;border-color:#e7d9c5}.ih-play-layer{background:#fcf5e9}.ih-play-layer .ih-play-controls strong{color:#604c3c}.ih-play-layer .ih-play-controls small,.ih-play-layer .ih-play-footer{color:#79634e}.ih-play-layer .ih-play-controls button{background:#fffbf3;border-color:#d9c6ab;color:#705135}.ih-play-layer .ih-paused{z-index:2;background:#faf5e9ed}.ih-play-layer.play-scene-night .ih-touch-ring{border-color:transparent}.ih-play-layer.play-scene-night .touched .ih-touch-ring{border-color:#e4dec3}.ih-play-layer.play-scene-night .ih-fish-target:focus-visible{outline-color:#fff3d3!important}.ih-play-layer .ih-fish-target{z-index:1}.ih-play-footer{padding-top:12px}.ih-fish-ready>.play-scene-preview{height:190px}.ih-fish-ready .ih-card{margin-top:12px}
+@media(max-width:340px){.play-scene-picker small{font-size:8px}.ih-play-layer .ih-play-field{margin-left:12px;margin-right:12px}}
+@media(max-height:480px){.ih-play-layer .ih-play-field{margin:3px 16px 0;border-radius:14px}}
+
+.fish-count-picker{grid-template-columns:repeat(3,minmax(0,1fr))}
+/* Separate horizontal lanes keep all targets accessible even in short viewports. */
+.inpaw-app .ih-multi-fish .ih-fish-target{width:min(70px,22%);height:56px;min-height:44px}
+@media(max-height:480px){.inpaw-app .ih-multi-fish .ih-fish-target{height:44px;min-height:44px}}
+/* r4: fish ready page keeps 開始陪玩 on the first screen; Pro appears once as a one-line preview link. */
+.fish-game .fish-intro{padding:12px 0 10px}.fish-game .fish-modes{margin-bottom:14px}.fish-game .fish-preview{height:150px}.fish-game .fish-setting-row{padding:12px 0 4px}
+.fish-game .fish-pro-link{display:block;width:100%;background:transparent;color:#6f5a2c;font-size:14px;font-weight:600;padding:8px 12px;margin:4px 0 0;text-align:center;text-decoration:underline;text-underline-offset:3px}
+.fish-game .fish-sequence-note{margin:14px 0 0;text-align:center;font-size:12px}
+.fish-pro-banner{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#f5edda;color:#5d4b25;border-radius:16px;padding:10px 12px;margin:0 0 12px}.fish-pro-banner:focus{outline:none}.fish-pro-banner:focus-visible{outline:3px solid #778963;outline-offset:3px}
+.fish-pro-banner>span{display:flex;flex-direction:column;gap:3px;min-width:0}.fish-pro-banner strong{font-size:15px}.fish-pro-banner small{font-size:12px;line-height:1.5;color:#6b5a35}
+.fish-game .fish-pro-exit{flex-shrink:0;background:#fffbf3;color:#5d4b25;font-size:13px;font-weight:600;box-shadow:inset 0 0 0 1px #d9c6ab;padding:8px 12px}
+.fish-game .fish-pro-options{margin-top:10px;border-top:1px solid #e7e1d4;padding-top:6px}
+:where(html[data-theme="dark"]) .fish-game .fish-pro-link{background:transparent;color:#e2cfa8}
+:where(html[data-theme="dark"]) .fish-pro-banner{background:#3a342b;color:#f1e4c8}
+:where(html[data-theme="dark"]) .fish-pro-banner small{color:#d9cbb0}
+:where(html[data-theme="dark"]) .fish-game .fish-pro-exit{background:#2a2622;color:#f1e4c8;box-shadow:inset 0 0 0 1px #6d604c}
+:where(html[data-theme="dark"]) .fish-game .fish-pro-options{border-top-color:#47423b}

@@ -1,0 +1,31 @@
+/* Play landing only: two illustrated invitations, with the shared paw and tabs intact. */
+.ih-hub>.eyebrow{display:inline-flex;align-items:center;gap:7px;padding:5px 10px;border:1px solid var(--paw-rim);border-radius:20px;background:#fffaf0b8;color:#88614a;font-size:11px;font-weight:700;letter-spacing:.04em}
+.ih-hub>.eyebrow::before{content:'✦';color:#b28752;font-size:14px}
+.ih-hub h1{font-size:27px;line-height:1.45;overflow-wrap:anywhere;margin:9px 0 4px!important;color:#634b3c}
+.ih-hub>.ih-lead{font-size:13px;line-height:1.8;margin:5px 0 20px;color:#7a6659}
+.ih-hub-cards{gap:16px}
+.inpaw-app .ih-hub .ih-feature{position:relative;grid-template-columns:110px minmax(0,1fr);gap:12px;min-height:180px;padding:18px 16px;border:1px solid var(--paw-rim);border-radius:29px;box-shadow:var(--paw-depth);transition:transform .18s ease,box-shadow .18s ease}
+.inpaw-app .ih-hub .ih-fish-card{background:linear-gradient(120deg,#e5f1e7,#f7faef)}
+.inpaw-app .ih-hub .ih-sound-card{background:linear-gradient(120deg,#eee5f5,#fcf4f3)}
+.ih-hub .ih-feature-art{min-height:130px;align-self:center;isolation:isolate}
+.ih-hub .ih-feature-art::before{content:'';position:absolute;width:108px;height:108px;border-radius:47% 53% 56% 44%;background:#ffffff70;transform:rotate(-12deg);z-index:-1}
+.ih-hub .ih-sound-card .ih-feature-art::before{border-radius:53% 47% 43% 57%;transform:rotate(12deg)}
+.ih-hub .ih-feature-art img{display:block;width:128px;height:128px;max-width:none;filter:drop-shadow(0 3px 0 #fff8)}
+.ih-hub .ih-feature-body{gap:7px;align-items:flex-start;min-width:0}
+.ih-hub .ih-feature-body small{font-size:10px;line-height:1.6;color:#53735c}
+.ih-hub .ih-sound-card .ih-feature-body small{color:#7d628d}
+.ih-hub .ih-feature-body strong{font-size:23px;line-height:1.4;letter-spacing:.01em;color:#435d4b}
+.ih-hub .ih-sound-card .ih-feature-body strong{color:#705580}
+.ih-hub .ih-feature-body>span{font-size:12px;line-height:1.8;color:#64705e}
+.ih-hub .ih-sound-card .ih-feature-body>span{color:#7c687e}
+.ih-hub .ih-feature-body b{display:inline-block;margin-top:4px;padding:6px 12px;border-radius:20px;background:#fffdf5d9;color:#527058;font-size:12px;line-height:1.6;box-shadow:0 2px 0 #7f9c7c13}
+.ih-hub .ih-sound-card .ih-feature-body b{color:#7c5d87;background:#fffbfed9}
+.inpaw-app .ih-hub .ih-feature:focus-visible{outline:3px solid #9b633d;outline-offset:4px}
+.inpaw-app .ih-hub .ih-feature:active{transform:scale(.985)}
+.ih-hub>.ih-care-note{position:relative;padding:15px 17px 15px 38px;border:0;background:#fff9ef80;border-radius:21px;margin:20px 0 14px}
+.ih-hub>.ih-care-note::before{content:'♡';position:absolute;left:14px;top:14px;font-size:19px;color:#ac7b65}
+.ih-hub>.ih-care-note strong{font-size:12px;color:#80654f}
+.ih-hub>.ih-care-note p{font-size:11px;color:#847261;line-height:1.8;margin-top:6px}
+@media(hover:hover){.inpaw-app .ih-hub .ih-feature:hover{transform:translateY(-2px);box-shadow:0 8px 24px #79543a17}}
+@media(max-width:360px){.inpaw-app .ih-hub .ih-feature{grid-template-columns:87px minmax(0,1fr)!important;gap:10px!important;padding:15px 12px!important;min-height:166px;border-radius:25px}.ih-hub .ih-feature-art img{width:104px;height:104px}.ih-hub .ih-feature-art::before{width:88px;height:88px}.ih-hub .ih-feature-body strong{font-size:21px}.ih-hub .ih-feature-body b{padding:5px 10px}.ih-hub h1{font-size:25px}}
+@media(prefers-reduced-motion:reduce){.inpaw-app .ih-hub .ih-feature{transition:none}.inpaw-app .ih-hub .ih-feature:hover,.inpaw-app .ih-hub .ih-feature:active{transform:none}}

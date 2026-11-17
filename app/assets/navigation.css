@@ -1,0 +1,9 @@
+.navigation-home{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-height:44px;min-width:76px;padding:8px 9px;border:1px solid #dbcbbb;border-radius:22px;background:#fffaf2;color:#634b38;font:inherit;font-size:13px;font-weight:700;white-space:nowrap;cursor:pointer;flex-shrink:0}
+.navigation-home:focus-visible{outline:3px solid #98643d;outline-offset:2px}
+.navigation-home:disabled{opacity:.5;cursor:wait}
+.app-header>.navigation-home{margin-left:auto}
+.app-header>strong{min-width:0}
+.navigation-sound-home{display:flex;justify-content:flex-end;padding:4px 0 8px}
+.navigation-leave-name{padding:16px;border:1px solid #d8b38f;background:#fff7eb;border-radius:16px;margin-bottom:16px}
+.navigation-leave-name button{margin-top:8px;width:100%}
+@media(max-width:360px){.navigation-home{min-width:70px;padding:7px;font-size:12px}.app-header{gap:6px}}

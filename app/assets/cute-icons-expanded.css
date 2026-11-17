@@ -1,0 +1,34 @@
+html:root body img[src^="/xbb-site/app/assets/icons/bowl-food.svg"]{content:url("/xbb-site/app/assets/cute-actions/meal.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/microphone.svg"]{content:url("/xbb-site/app/assets/cute-actions/voice.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/body-scale.svg"]{content:url("/xbb-site/app/assets/cute-actions/weight.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/scales.svg"]{content:url("/xbb-site/app/assets/cute-actions/weight.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/drop.svg"]{content:url("/xbb-site/app/assets/cute-actions/water.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/note-pencil.svg"]{content:url("/xbb-site/app/assets/cute-actions/edit.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/pencil-simple.svg"]{content:url("/xbb-site/app/assets/cute-actions/edit.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/file-text.svg"]{content:url("/xbb-site/app/assets/cute-actions/summary.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/gear-six.svg"]{content:url("/xbb-site/app/assets/cute-actions/settings.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/music-notes.svg"]{content:url("/xbb-site/app/assets/cute-actions/music.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/paw-print.svg"]{content:url("/xbb-site/app/assets/cute-actions/paw.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/paw-voice-filled.svg"]{content:url("/xbb-site/app/assets/cute-actions/voice.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/play-fish.svg"]{content:url("/xbb-site/app/assets/cute-actions/play-wand.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/record-food.svg"]{content:url("/xbb-site/app/assets/cute-actions/meal.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/record-water.svg"]{content:url("/xbb-site/app/assets/cute-actions/water.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/record-stool.svg"]{content:url("/xbb-site/app/assets/cute-actions/stool.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/record-weight.svg"]{content:url("/xbb-site/app/assets/cute-actions/weight.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/record-vomit.svg"]{content:url("/xbb-site/app/assets/cute-actions/vomit.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/record-mood.svg"]{content:url("/xbb-site/app/assets/cute-actions/mood.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/record-other.svg"]{content:url("/xbb-site/app/assets/cute-actions/edit.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/record-care.svg"]{content:url("/xbb-site/app/assets/cute-actions/care-add.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/house.svg"]{content:url("/xbb-site/app/assets/cute-actions/house.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/notebook.svg"]{content:url("/xbb-site/app/assets/cute-actions/notebook.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/cat-face.svg"]{content:url("/xbb-site/app/assets/cute-actions/cat-face.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/stool.svg"]{content:url("/xbb-site/app/assets/cute-actions/stool.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/play.svg"]{content:url("/xbb-site/app/assets/cute-actions/play.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/pause.svg"]{content:url("/xbb-site/app/assets/cute-actions/pause.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body img[src^="/xbb-site/app/assets/icons/stop.svg"]{content:url("/xbb-site/app/assets/cute-actions/stop.svg?v=expanded1");filter:none!important;opacity:1}
+html:root body .inpaw-app img:is(.navigation-icon,.settings-icon,.cute-action-icon){filter:none!important;object-fit:contain;flex-shrink:0}
+
+html:root body .health-settings-entry>.profile-settings-icon:first-child{background:center/contain no-repeat url("/xbb-site/app/assets/cute-actions/settings.svg?v=expanded1");filter:none!important}
+html:root body .health-settings-entry>.profile-settings-icon:first-child>*{opacity:0}
+html:root body .today-summary-card .outcome157-icon{background:center/contain no-repeat url("/xbb-site/app/assets/cute-actions/summary.svg?v=expanded1");filter:none!important}
+html:root body .today-summary-card .outcome157-icon>svg{visibility:hidden}

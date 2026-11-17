@@ -1,0 +1,119 @@
+/* I1/J0: shared paint tokens match the accepted F5 home gradient exactly. */
+.inpaw-app{--ij-ink:#39312e;--ij-line:rgba(0,0,0,.07);--ij-shadow:0 4px 16px rgba(90,50,10,.12);--ij-primary:linear-gradient(145deg,#ffa257,#e8731f);--ij-demo:#536780;--ij-demo-pale:#edf1f7;background:radial-gradient(ellipse at 6% 18%,#f6d8c6a8 0,transparent 42%),radial-gradient(ellipse at 94% 41%,#dbdbf4b0 0,transparent 44%),radial-gradient(ellipse at 16% 73%,#e7d5e7cc 0,transparent 46%),radial-gradient(ellipse at 90% 100%,#edcddbcc 0,transparent 48%),#f4ece8}
+.inpaw-app .app-content{padding-left:16px;padding-right:16px}
+/* Existing semantic primary classes, never arbitrary button or color selectors.
+   Danger, demo playback, warning panels and the glass paw are not primary targets. */
+.inpaw-app .primary:not(.danger):not(.ij-demo-control),.inpaw-app .ps-button:not(.secondary):not(.danger),.mc-dialog .mc-button:not(.secondary):not(.mc-add){background:var(--ij-primary,linear-gradient(145deg,#ffa257,#e8731f))!important;color:#fff!important;border:1px solid transparent;border-radius:12px;box-shadow:0 4px 12px rgba(220,113,37,.24);font-weight:750}
+.inpaw-app .primary:not(.danger):not(.ij-demo-control):disabled,.inpaw-app .ps-button:not(.secondary):disabled{opacity:.48;box-shadow:none;cursor:not-allowed}
+.inpaw-app .secondary-btn,.inpaw-app .qa-change-actions .secondary{background:#fff;color:#a34c1c;border:1px solid #e2d9d2;border-radius:12px;min-height:44px;padding:11px 14px;font-weight:650}
+.inpaw-app .qa-change-actions .danger-text{color:#ad3535;background:transparent;box-shadow:none}
+.inpaw-app .text-btn:not(.danger-text):not(.h-clear-date):not(.ij-demo-control),.inpaw-app .small-link{color:#a34c1c}
+/* Secondary header: back above the existing left-aligned page label. */
+.inpaw-app.ij-secondary>.app-header{height:112px;display:grid;grid-template-columns:1fr auto;grid-template-rows:44px auto;gap:0 12px;align-items:center;padding:0 16px 10px;background:rgba(249,241,239,.73);backdrop-filter:blur(18px)}
+.inpaw-app.ij-secondary>.app-header>.h-back{grid-column:1;grid-row:1;margin:0;justify-self:start}
+.inpaw-app.ij-secondary>.app-header>strong{grid-column:1 / -1;grid-row:2;font-size:28px;line-height:1.25;font-weight:800;color:var(--ij-ink);text-align:left}
+.inpaw-app.ij-secondary>.app-header>:last-child:not(strong){grid-column:2;grid-row:1;justify-self:end}
+.inpaw-app.ij-secondary>.app-scroll{top:172px!important}
+.inpaw-app.ij-secondary h1,.inpaw-app.ob-app h1{font-size:30px;line-height:1.35;font-weight:800;color:var(--ij-ink);text-align:left;overflow-wrap:anywhere}
+/* White cards: outer groups only. Existing G record gap/navigation remain untouched. */
+.inpaw-app .ij-card,.inpaw-app .care-card,.inpaw-app .food-nutrient-list,.inpaw-app.ij-page-detail .app-content>.details,.inpaw-app.ij-page-detail .feeding-source{background:#fff;border:1px solid var(--ij-line);border-radius:18px;box-shadow:var(--ij-shadow);padding:16px;margin:0 0 12px}
+.inpaw-app .ij-card h1:first-child,.inpaw-app .ij-card h2:first-child{margin-top:0}
+.inpaw-app .ij-card>.field:first-child{margin-top:0}
+.inpaw-app .ij-card>.field:last-child{margin-bottom:0}
+.inpaw-app .ij-review-fields,.inpaw-app .ij-profile-fields{margin-top:20px}
+.inpaw-app .ij-review-fields>.pet-strip{margin-top:0}
+.inpaw-app .ij-review-fields>.record-values{box-shadow:none;border-color:rgba(60,40,10,.14);margin-bottom:0}
+.inpaw-app .ij-page-detail .details>div,.inpaw-app.ij-page-detail .details>div{border-bottom:1px solid rgba(60,40,10,.14);padding:13px 0}
+.inpaw-app.ij-page-detail .details>div:last-child{border-bottom:0}
+.inpaw-app.ij-page-detail .feeding-source>.details{background:transparent;box-shadow:none;border:0;padding:0}
+.inpaw-app .care-card{margin:12px 0;padding:16px}
+.inpaw-app .care-card .care-actions{border-top:1px solid rgba(60,40,10,.14);padding-top:12px}
+.inpaw-app .care-card details{border-top:1px solid rgba(60,40,10,.14);margin-top:12px}
+.inpaw-app .care-card .care-note{background:#f6f4f5}
+.inpaw-app .care-filters{display:flex;gap:6px;padding:5px;background:rgba(255,255,255,.38);border:1px solid rgba(255,255,255,.7);border-radius:24px;margin:20px 0}
+.inpaw-app .care-filters button{flex:1;min-height:44px;border:0;border-radius:22px;background:transparent;color:#655f64;box-shadow:none}
+.inpaw-app .care-filters button.chosen{background:#fff!important;color:#39312e;box-shadow:0 2px 7px #60402a14}
+/* Filter controls, but never colored category badges or cat swatches. Summary untouched. */
+.inpaw-app .filters .chip,.inpaw-app .h-food-category-track .chip,.inpaw-app .food-content .print-options button,.inpaw-app .example-chips button{background:rgba(255,255,255,.35)!important;color:#655f64;border:1px solid transparent;border-radius:22px}
+.inpaw-app .filters .chip.active,.inpaw-app .filters .chip[aria-pressed=true],.inpaw-app .h-food-category-track .chip[aria-pressed=true],.inpaw-app .h-food-category-track .chip[aria-checked=true],.inpaw-app .food-content .print-options button.chosen,.inpaw-app .example-chips button.chosen{background:#fff!important;color:#39312e;border-color:rgba(0,0,0,.06);box-shadow:0 2px 7px #60402a14}
+.inpaw-app .ij-food-hero{color:var(--ij-ink);background:#fff}
+.inpaw-app .ij-food-hero .subtitle{margin-bottom:12px}
+.inpaw-app .ij-food-hero .food-detail-head{background:transparent;color:#536780;padding:0;border:0;box-shadow:none}
+.inpaw-app.food-app .food-nutrient-list{margin:20px 0 12px;padding:4px 16px}
+.inpaw-app.food-app .food-nutrient-list>div{border-bottom:1px solid rgba(60,40,10,.14);padding:14px 0}
+.inpaw-app.food-app .food-nutrient-list>div:last-child{border-bottom:0}
+.inpaw-app .ij-food-ingredients h2{margin:0 0 10px}
+.inpaw-app .ij-food-ingredients p{margin:0}
+/* I1: one bluegray language across shared sound/onboarding/record demo players. */
+.inpaw-app .ob-play,.inpaw-app .ob-play.playing{background:var(--ij-demo)!important;color:#fff!important;border:0;box-shadow:0 0 0 14px rgba(83,103,128,.12),0 0 0 30px rgba(83,103,128,.06)}
+.inpaw-app .ob-play .ui-icon,.inpaw-app .ij-demo-control .ui-icon,.inpaw-app .voice-demo-button .ui-icon{filter:brightness(0) invert(1)}
+.inpaw-app .ob-play.playing{animation:ijDemoPulse 1.2s ease-in-out infinite}
+@keyframes ijDemoPulse{50%{box-shadow:0 0 0 18px rgba(83,103,128,.14),0 0 0 36px rgba(83,103,128,.05)}}
+.inpaw-app .ij-demo-control,.inpaw-app .demo-voice-entry .voice-demo-button{background:var(--ij-demo)!important;color:#fff!important;border:1px solid #536780;border-radius:12px;box-shadow:0 4px 12px rgba(83,103,128,.18)}
+.inpaw-app .record-stage{background:var(--ij-demo-pale);color:#536780;border:1px solid #d5dee9;border-radius:18px;box-shadow:var(--ij-shadow)}
+.inpaw-app .record-stage>.ij-voice-orb{display:grid;place-items:center;background:#536780;color:#fff;border-radius:50%;padding:15px;width:92px;height:92px;box-shadow:0 0 0 10px rgba(83,103,128,.09)}
+.inpaw-app .record-stage .ij-voice-orb .ui-icon{filter:brightness(0) invert(1)}
+.inpaw-app .ob-screen{padding-left:16px;padding-right:16px;text-align:left}
+.inpaw-app .ij-sound-heading{margin:0 0 20px}
+.inpaw-app .ij-sound-heading h1{margin:0 0 8px}
+.inpaw-app .ij-sound-heading .ob-progress{font-size:13px;margin:0;color:#70666b}
+.inpaw-app .ij-sound-steps{display:flex;gap:6px;margin-top:12px}
+.inpaw-app .ij-sound-steps span{height:5px;flex:1;border-radius:4px;background:#dddce1}
+.inpaw-app .ij-sound-steps span.complete{background:#e8731f}
+.inpaw-app .ij-sound-content{padding:16px;text-align:center}
+.inpaw-app .ij-sound-content h1{font-size:24px;text-align:left;margin:0 0 12px!important}
+.inpaw-app .ij-sound-content .ob-title{font-size:24px!important}
+.inpaw-app .ij-sound-content .ob-status{line-height:1.7}
+.inpaw-app .ob-card{border-color:#d5dee9;box-shadow:none;border-radius:14px;background:#f3f5f9}
+.inpaw-app .ob-card span{color:#536780}
+.inpaw-app .ob-reactions .r-interest{background:#edf1f7;border-color:#c5d0de;color:#43566f}
+.inpaw-app .ob-screen>.h-back{margin-bottom:12px}
+.inpaw-app .ob-screen .ob-skip{margin-top:8px}
+/* I2 footer is intentionally separated from all meal and edit CTAs. */
+.inpaw-app .ij-food-delete-section{margin-top:32px;padding:20px 0 8px;border-top:1px solid rgba(60,40,10,.14)}
+.inpaw-app .ij-food-delete-section>button{color:#ad3535;background:transparent;min-height:44px;border:0;padding:10px 0;font-weight:650}
+.inpaw-app .ij-food-undo{color:#655f64;background:#fff;border:1px solid var(--ij-line);border-radius:12px;padding:12px 14px;line-height:1.7}.inpaw-app .ij-food-undo button{color:#a34c1c;text-decoration:underline;min-height:44px}
+.ij-food-delete-dialog{color:#39312e;background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:18px;padding:22px;width:calc(100% - 32px);max-width:380px;box-shadow:0 16px 55px #37252033}
+.ij-food-delete-dialog::backdrop{background:#30232f66}.ij-food-delete-dialog p{line-height:1.8;overflow-wrap:anywhere}.ij-food-delete-dialog button{min-height:44px}
+@media(max-width:600px),(max-width:960px) and (max-height:500px){.inpaw-app.ij-secondary>.app-scroll{top:calc(116px + env(safe-area-inset-top,0px))!important}.inpaw-app .app-content{padding-left:16px;padding-right:16px}.inpaw-app.ob-app>.app-scroll{top:calc(12px + env(safe-area-inset-top,0px))!important}}
+@media(prefers-reduced-motion:reduce){.inpaw-app .ob-play.playing{animation:none}}
+
+.inpaw-app .primary:not(.danger):not(.ij-demo-control) .ui-icon{filter:brightness(0) invert(1)}
+.inpaw-app:not(.ij-page-summary) .segment{background:rgba(255,255,255,.4);border-radius:24px}.inpaw-app:not(.ij-page-summary) .segment button{border-radius:22px;color:#655f64}.inpaw-app:not(.ij-page-summary) .segment button.active{color:#39312e;background:#fff}
+.inpaw-app .ps-button.danger{background:#ad3535!important;border-color:#ad3535;color:#fff!important;box-shadow:none}
+.inpaw-app .food-review-summary,.inpaw-app .food-review-fields,.inpaw-app .food-nutrition-editor,.inpaw-app .food-quick-confirm,.inpaw-app .food-quick{background:#fff;border:1px solid var(--ij-line);border-radius:18px;box-shadow:var(--ij-shadow);padding:14px 16px;margin:20px 0 12px}
+
+.ij-food-delete-dialog .ij-dialog-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.ij-food-delete-dialog .ij-dialog-actions .primary.danger{background:#ad3535!important;color:#fff!important;border-radius:12px;box-shadow:none}
+
+/* Voice clock stays above the fold; its scroll viewport ends above the raised paw. */
+.inpaw-app.ij-page-record>.app-scroll{bottom:calc(112px + var(--voice-navigation-inset,0px) + env(safe-area-inset-bottom,0px))!important;scroll-padding-bottom:16px}
+.inpaw-app.ij-page-record .app-content{padding-bottom:24px}
+.inpaw-app.ij-page-record .record-stage{display:grid;grid-template-columns:56px minmax(0,1fr);grid-template-rows:auto auto;column-gap:18px;row-gap:2px;min-height:132px;padding:20px;margin:16px 0;align-content:center;justify-content:start}
+.inpaw-app.ij-page-record .record-stage>.ij-voice-orb{grid-column:1;grid-row:1/3;width:56px;height:56px;padding:14px;box-shadow:0 0 0 7px rgba(83,103,128,.07)}
+.inpaw-app.ij-page-record .ij-voice-orb .ui-icon{width:28px!important;height:28px!important}
+.inpaw-app.ij-page-record .record-stage time{grid-column:2;grid-row:1;font-size:36px;line-height:1.25;color:#394b63}
+.inpaw-app.ij-page-record .record-stage>span:last-child{grid-column:2;grid-row:2;font-size:12px;line-height:1.65;color:#536780}
+@media(max-width:340px){.inpaw-app.ij-page-record .record-stage{column-gap:14px;padding:16px}.inpaw-app.ij-page-record h1{font-size:28px}}
+
+/* K1/K2: Radix sheets portal to .device-screen, outside .inpaw-app.
+   Scope to known semantic actions; danger, demo and secondary controls stay distinct. */
+.bottom-sheet .primary:not(.danger):not(.ij-demo-control){background:var(--ij-primary,linear-gradient(145deg,#ffa257,#e8731f))!important;color:#fff!important;border:1px solid transparent;border-radius:12px;box-shadow:0 4px 12px rgba(220,113,37,.24);font-weight:750}
+.bottom-sheet .primary:not(.danger):not(.ij-demo-control):disabled{opacity:.48;box-shadow:none;cursor:not-allowed}
+.bottom-sheet .primary.danger{background:#ad3535!important;color:#fff!important;border-radius:12px;box-shadow:none}
+.bottom-sheet .text-btn:not(.danger-text):not(.ij-demo-control){color:#a34c1c}
+.bottom-sheet .danger-text{color:#ad3535}
+.bottom-sheet .h-quick-owner{border-radius:10px;padding:12px}
+.bottom-sheet button:focus-visible,.mc-dialog button:focus-visible,.ps-dialog button:focus-visible,.h-first-food-dialog button:focus-visible,.ij-food-delete-dialog button:focus-visible{outline:3px solid #753c17;outline-offset:3px}
+/* The success notice keeps its live region, text, undo callback and position. */
+.inpaw-app .toast{background:#fff;color:#39312e;border:1px solid rgba(0,0,0,.07);border-radius:14px;box-shadow:0 4px 16px rgba(90,50,10,.12)}
+.inpaw-app .app-content>.toast,.inpaw-app .mc-inline-notice{
+ position:static;inset:auto;transform:none;width:100%;max-width:none;box-sizing:border-box;
+ margin:0 0 12px;padding:9px 10px;overflow-wrap:anywhere;
+}
+.inpaw-app .app-content>.toast{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.inpaw-app .mc-inline-notice{border:1px solid #e2d9d2;border-radius:14px;background:#fff;color:#39312e;font-size:14px}
+.inpaw-app .toast>.k-toast-mark{display:grid;place-items:center;flex:none;width:28px;height:28px;border-radius:50%;background:linear-gradient(145deg,#ffa257,#e8731f)}
+.inpaw-app .k-toast-mark>.ui-icon{width:17px;height:17px;filter:brightness(0) invert(1)}
+.inpaw-app .toast-undo{flex:none;color:#a34c1c;background:#fff;border:1px solid #e2d9d2;min-height:44px;padding:6px 12px;margin-left:4px}
+.inpaw-app .toast-undo:focus-visible{outline:3px solid #753c17;outline-offset:3px}
+.inpaw-app .persistence-boot [role=dialog] .primary.danger{background:#ad3535!important;color:#fff!important;box-shadow:none}

@@ -1,0 +1,587 @@
+/* The four category colors describe record types, never health status. */
+.inpaw-app {
+ --flower-ink:#392b23;
+ --flower-muted:#69594d;
+ --flower-line:#e5d7c8;
+ --flower-paper:#fffaf3;
+ --flower-food:#3c7169;
+ --flower-stool:#a55238;
+ --flower-water:#4f609b;
+ --flower-weight:#895a28;
+}
+
+.inpaw-app :is(.feeding-headline,.records-heading) h1,
+.inpaw-app:is(.ij-page-profile,.ij-page-summary) .app-content>h1 {
+ color:var(--flower-ink);
+ font-size:clamp(29px,8vw,36px);
+ font-weight:780;
+ line-height:1.18;
+ letter-spacing:-.025em;
+}
+
+.inpaw-app .today-slim .today-compact-header {
+ display:grid;
+ grid-template-columns:1fr auto;
+ gap:1px 6px;
+ border:0;
+ background:transparent;
+ box-shadow:none;
+ padding:1px 0;
+}
+.today-original-brand {
+ grid-column:1 / -1;
+ width:108px;
+ height:35px;
+ object-fit:contain;
+ object-position:left center;
+}
+.inpaw-app .today-slim .today-heading {
+ display:flex;
+ flex-direction:column-reverse;
+ gap:2px;
+}
+.inpaw-app .today-slim .today-heading h1 {
+ font-size:clamp(30px,8vw,36px);
+ letter-spacing:-.035em;
+ color:var(--flower-ink);
+}
+.care-flower {
+ position:relative;
+ padding-top:3px;
+ color:var(--flower-ink);
+}
+.care-flower-range {
+ display:inline-flex;
+ padding:4px 10px;
+ border-radius:999px;
+ background:#f1e3d3;
+ color:#69462f;
+ font-size:12px;
+ font-weight:700;
+}
+.care-flower-grid {
+ position:relative;
+ isolation:isolate;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:1px;
+ width:min(100%, clamp(174px,55vw,238px));
+ margin:-3px auto 5px;
+}
+.care-flower-grid::before {
+ content:"";
+ position:absolute;
+ z-index:-1;
+ inset:-10% -14%;
+ background:radial-gradient(ellipse,#f4e4d6 0%,#f4e4d670 48%,transparent 72%);
+ pointer-events:none;
+}
+.inpaw-app .care-flower-petal {
+ position:relative;
+ isolation:isolate;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ gap:3px;
+ aspect-ratio:120 / 104;
+ min-width:0;
+ padding:8px;
+ border:0;
+ border-radius:35px;
+ background:transparent;
+ color:var(--petal-ink);
+ font:inherit;
+ font-size:14px;
+ font-weight:750;
+ cursor:pointer;
+}
+.care-flower-petal[data-petal=food] {--petal-ink:var(--flower-food);--petal-fill:#477c73;--petal-outline:#7b9a8a}
+.care-flower-petal[data-petal=stool] {--petal-ink:var(--flower-stool);--petal-fill:#aa553b;--petal-outline:#b9826f}
+.care-flower-petal[data-petal=water] {--petal-ink:var(--flower-water);--petal-fill:#576aa6;--petal-outline:#8994b7}
+.care-flower-petal[data-petal=weight] {--petal-ink:var(--flower-weight);--petal-fill:#97612a;--petal-outline:#a78b60}
+.today-quick-strip {display:grid;gap:8px;margin:4px 0 8px}
+.today-quick-actions {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.inpaw-app .today-quick-strip button {
+ display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;
+ padding:8px 7px;border:1px solid var(--flower-line);border-radius:14px;
+ background:var(--flower-paper);color:var(--flower-ink);font-weight:700;font-size:14px;white-space:normal
+}
+.inpaw-app .today-quick-strip .today-first-record {
+ justify-content:space-between;flex-wrap:wrap;padding-inline:12px;background:#f5e3d3;border-color:#e7cbb5;text-align:start
+}
+.today-first-record span {font-size:12px;font-weight:600;overflow-wrap:anywhere}
+.inpaw-app .meal-context {
+ position:sticky;top:0;z-index:2;display:flex;align-items:baseline;gap:5px 10px;flex-wrap:wrap;
+ padding:9px 11px;background:#fff8ef;border:1px solid #ecd8c6;border-radius:12px
+}
+.meal-owner {min-width:0;overflow-wrap:anywhere}
+.meal-context h2,.meal-context p {margin:0}
+.meal-context p {flex-basis:100%}
+.backup-warning h2 {margin:0 0 8px;font-size:18px;scroll-margin-top:12px}
+.inpaw-app .care-flower-petal[data-recorded=true] {color:#fffdf7}
+.care-flower-shape {
+ position:absolute;
+ inset:0;
+ width:100%;
+ height:100%;
+ z-index:-1;
+ overflow:visible;
+ fill:#fffcf577;
+ stroke:var(--petal-outline);
+ stroke-width:1.75;
+}
+.care-flower-petal[data-recorded=true] .care-flower-shape {
+ fill:var(--petal-fill);
+ stroke:var(--petal-fill);
+}
+.care-flower-icon {
+ width:24px;
+ height:24px;
+ fill:none;
+ stroke:currentColor;
+ stroke-width:1.65;
+ stroke-linecap:round;
+ stroke-linejoin:round;
+}
+.care-flower-center {
+ position:absolute;
+ top:50%;
+ left:50%;
+ translate:-50% -50%;
+ width:clamp(45px,24%,57px);
+ aspect-ratio:1;
+ object-fit:cover;
+ pointer-events:none;
+ border:3px solid var(--paw-canvas);
+ border-radius:50%;
+ background:#f2e4d4;
+ box-shadow:0 2px 7px #5b392434;
+}
+.care-flower-caption {text-align:center}
+.care-flower-days{font-size:11px;line-height:1.1;font-weight:650}
+.care-flower-caption h2 {
+ margin:0;
+ color:var(--flower-ink);
+ font-size:21px;
+ font-weight:780;
+ letter-spacing:-.02em;
+}
+.care-flower-caption p {
+ margin:3px 0 0;
+ color:var(--flower-muted);
+ font-size:12px;
+}
+.today-slim .today-care-section {margin:4px 0 0}
+.today-slim .today-care-section .health-section-title h2 {font-size:15px;color:var(--flower-ink)}
+.today-slim .today-care-list {
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:8px;
+ border:0;
+ background:transparent;
+}
+.inpaw-app .today-slim .today-care-row {
+ --care-card-fill:#fffaf4;
+ --care-card-line:var(--flower-line);
+ --care-card-ink:#372e29;
+ --care-action-ink:#674632;
+ display:grid;
+ grid-template-columns:minmax(0,1fr);
+ gap:3px;
+ padding:4px;
+ border:1px solid var(--care-card-line);
+ border-radius:17px;
+ background:var(--care-card-fill);
+}
+/* Card colors identify categories only; record state belongs to the flower. */
+.inpaw-app .today-slim .today-care-row[data-care-metric=food] {--care-card-fill:#e8efea;--care-card-line:#c7d9ce;--care-card-ink:var(--flower-food);--care-action-ink:var(--flower-food)}
+.inpaw-app .today-slim .today-care-row[data-care-metric=stool] {--care-card-fill:#f8e8dc;--care-card-line:#e7bcab;--care-card-ink:var(--flower-stool);--care-action-ink:var(--flower-stool)}
+.inpaw-app .today-slim .today-care-row[data-care-metric=water] {--care-card-fill:#e9edf7;--care-card-line:#c5cce6;--care-card-ink:var(--flower-water);--care-action-ink:var(--flower-water)}
+.inpaw-app .today-slim .today-care-row[data-care-metric=weight] {--care-card-fill:#f4eadb;--care-card-line:#dec39a;--care-card-ink:var(--flower-weight);--care-action-ink:var(--flower-weight)}
+.inpaw-app .today-care-row .today-care-status {
+ width:100%;
+ min-height:44px;
+ padding:3px 6px;
+ text-align:left;
+ color:var(--care-card-ink);
+}
+.inpaw-app .today-care-row .today-care-status img {width:22px;height:22px}
+.inpaw-app .today-care-row .today-care-status small {
+ white-space:normal;
+ overflow-wrap:anywhere;
+}
+.inpaw-app .today-care-row .today-care-action {
+ justify-self:stretch;
+ min-height:44px;
+ margin:0;
+ padding:4px;
+ border:0;
+ border-radius:12px;
+ background:#fffcf5c4;
+ color:var(--care-action-ink);
+}
+.inpaw-app .today-slim .home-vet-entry {
+ padding:8px 10px;
+ min-height:52px;
+ background:#fffaf3;
+ border:1px solid var(--flower-line);
+ border-radius:15px;
+ box-shadow:none;
+}
+.inpaw-app .today-slim .today-quick-strip .home-vet-entry {
+ display:grid;grid-template-columns:19px minmax(0,1fr) auto;align-items:center;
+ gap:8px;min-height:44px;padding:5px 10px;background:var(--flower-paper);
+}
+.today-quick-strip .home-vet-entry img {width:18px;height:18px}
+.today-quick-strip .home-vet-entry>span:nth-child(2) {display:flex;align-items:baseline;gap:8px;min-width:0}
+.today-quick-strip .home-vet-entry strong {font-size:14px;white-space:nowrap}
+.today-quick-strip .home-vet-entry small {min-width:0;font-size:11px;line-height:1.25}
+
+/* Single petal identifies the category on detail screens. */
+.inpaw-app :is(.feeding-headline .care-reading-card,.weight-headline,.vet-headline) {
+ position:relative;
+ min-height:76px;
+ padding:12px 12px 12px 78px;
+ border:1px solid var(--flower-line);
+ border-radius:20px;
+ background:var(--flower-paper);
+ box-shadow:none;
+}
+.inpaw-app :is(.feeding-headline .care-reading-card,.weight-headline,.vet-headline)::before,
+.inpaw-app :is(.feeding-headline .care-reading-card,.weight-headline,.vet-headline)::after {
+ content:"";
+ position:absolute;
+ pointer-events:none;
+}
+.inpaw-app :is(.feeding-headline .care-reading-card,.weight-headline,.vet-headline)::before {
+ top:13px;
+ left:13px;
+ width:50px;
+ height:48px;
+ border-radius:60% 42% 51% 38%;
+ rotate:-8deg;
+ background:#f2dfc1;
+}
+.inpaw-app :is(.feeding-headline .care-reading-card,.weight-headline,.vet-headline)::after {
+ top:25px;
+ left:26px;
+ width:24px;
+ height:24px;
+ /* 2026-11-17: cute full-colour SVGs are drawn directly (a mask turned them into blank tiles) */
+ background:url('./cute-actions/weight.svg') center / contain no-repeat;
+ mask:none;
+}
+.inpaw-app .feeding-headline .care-reading-card::before {background:#d9e9db}
+.inpaw-app .feeding-headline .care-reading-card::after {background:url('./cute-actions/meal.svg') center / contain no-repeat;mask:none}
+.inpaw-app .care-reading-card.vet-headline::before {
+ border-radius:0;
+ rotate:-12deg;
+ background:
+  radial-gradient(ellipse at center,#548d81 66%,transparent 69%) 0 0/49% 49% no-repeat,
+  radial-gradient(ellipse at center,#bf7057 66%,transparent 69%) 100% 0/49% 49% no-repeat,
+  radial-gradient(ellipse at center,#7e89be 66%,transparent 69%) 0 100%/49% 49% no-repeat,
+  radial-gradient(ellipse at center,#d5a365 66%,transparent 69%) 100% 100%/49% 49% no-repeat;
+}
+.inpaw-app .care-reading-card.vet-headline::after {display:none}
+.inpaw-app :is(.feeding-headline .care-reading-card,.weight-headline,.vet-headline)>strong {
+ color:var(--flower-ink);
+ font-size:clamp(21px,5.8vw,28px);
+ line-height:1.28;
+}
+.inpaw-app .feeding-headline {gap:10px;margin-bottom:12px}
+.inpaw-app [data-testid=feeding-dashboard]>.feeding-today {
+ border-color:var(--flower-line);
+ background:var(--flower-paper);
+ box-shadow:none;
+}
+.inpaw-app .feeding-top-actions .feeding-record-action {
+ --ij-primary:#416e60;
+ box-shadow:none;
+}
+.inpaw-app .feeding-top-actions .food-entry-direct {
+ border-color:#d6c6b3;
+ background:#fffbf5;
+}
+.inpaw-app .feeding-meal-icon {background:#e3eddf}
+
+.inpaw-app.records-app .records-heading {margin:0 0 13px}
+.inpaw-app .record-category-shortcuts {gap:5px}
+.inpaw-app .record-category-shortcuts button {
+ border:1px solid var(--flower-line);
+ border-radius:999px;
+ background:#fffaf4;
+ color:var(--flower-ink);
+}
+.inpaw-app .record-category-shortcuts button[aria-pressed=true] {
+ background:#695447;
+ border-color:#695447;
+ color:#fffdf6;
+}
+.inpaw-app .record-category-shortcuts button[data-care-metric=food][aria-pressed=true] {background:var(--flower-food);border-color:var(--flower-food)}
+.inpaw-app .record-category-shortcuts button[data-care-metric=stool][aria-pressed=true] {background:var(--flower-stool);border-color:var(--flower-stool)}
+.inpaw-app .record-category-shortcuts button[data-care-metric=weight][aria-pressed=true] {background:var(--flower-weight);border-color:var(--flower-weight)}
+.inpaw-app .o-filter-entry {
+ display:grid;
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+ align-items:stretch;
+ gap:14px 12px;
+ margin:16px 0;
+}
+.inpaw-app .o-filter-entry>.secondary-btn,
+.inpaw-app .o-filter-entry>.record-report-toggle {
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:8px;
+ width:100%;
+ min-width:0;
+ min-height:46px;
+ margin:0;
+ padding:10px 8px;
+ border:1px solid var(--flower-line);
+ border-radius:12px;
+ background:#fffaf4;
+ color:#674a37;
+ font:inherit;
+ font-size:14px;
+ font-weight:700;
+ line-height:1.5;
+ cursor:pointer;
+}
+.record-report-toggle::after {
+ content:"";
+ flex:0 0 6px;
+ width:6px;
+ height:6px;
+ border-right:1.5px solid currentColor;
+ border-bottom:1.5px solid currentColor;
+ transform:translateY(-2px) rotate(45deg);
+}
+.inpaw-app .record-report-toggle[aria-expanded=true] {background:#f2e6d6}
+.record-report-toggle[aria-expanded=true]::after {transform:translateY(2px) rotate(225deg)}
+.record-report-toggle:focus-visible {outline:2px solid #815336;outline-offset:3px}
+.record-report-tools {grid-column:1 / -1;min-width:0}
+.record-report-tools .home-detail-tools {
+ display:grid;
+ gap:12px;
+ width:100%;
+ min-width:0;
+ margin:0;
+ padding:0;
+ border:0;
+ background:transparent;
+ box-shadow:none;
+}
+.record-report-tools .home-detail-tools>.record-tool-row {
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:16px;
+ width:100%;
+ min-width:0;
+ min-height:88px;
+ margin:0;
+ padding:16px;
+ border:1px solid var(--flower-line);
+ border-radius:15px;
+ box-shadow:0 3px 12px #5f402808;
+ background:#fffaf3;
+ color:#574231;
+ font:inherit;
+ text-align:left;
+ text-decoration:none;
+ cursor:pointer;
+}
+.record-tool-copy {display:flex;flex:1;flex-direction:column;gap:7px;min-width:0}
+.record-tool-heading {display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.record-tool-heading strong {font-size:15px;line-height:1.5;font-weight:700;word-break:normal;overflow-wrap:normal}
+.record-tool-badge {flex:none;padding:2px 6px;border-radius:6px;background:#eee4d5;color:#725b42;font-size:10px;line-height:1.5;font-weight:500;white-space:nowrap}
+.record-tool-detail {color:#807061;font-size:13px;line-height:1.65;font-weight:400;word-break:normal;overflow-wrap:break-word;text-wrap:pretty}
+.record-tool-arrow {flex:0 0 12px;text-align:right;color:#8a6d52;font-size:22px;line-height:1}
+.record-report-tools .record-tool-row:focus-visible {outline:2px solid #815336;outline-offset:3px}
+.record-report-tools .record-tool-row:hover {background:#f4ede2}
+.record-result-meta {
+ display:flex;
+ flex-wrap:wrap;
+ align-items:center;
+ justify-content:space-between;
+ gap:3px 10px;
+ margin:0 0 8px;
+}
+.record-result-meta>.microcopy {margin:0}
+.inpaw-app .record-weight-panel {border-color:var(--flower-line);background:#fffaf4;box-shadow:none}
+.inpaw-app .record-weight-detail svg path[stroke="#4f7ebc"] {stroke:var(--flower-weight)}
+.inpaw-app .record-weight-detail svg circle[fill="#4f7ebc"] {fill:var(--flower-weight)}
+.inpaw-app .o-record-result {border-color:var(--flower-line);background:#fffaf4;box-shadow:none}
+
+.inpaw-app.ij-page-summary .segment {
+ padding:3px;
+ border:1px solid var(--flower-line);
+ border-radius:999px;
+ background:#f3e9db;
+}
+.inpaw-app.ij-page-summary .segment button {
+ min-height:44px;
+ border-radius:999px;
+}
+.inpaw-app.ij-page-summary .segment button.active {background:#fffcf6;color:#754829;box-shadow:0 1px 4px #5a352514}
+.inpaw-app.ij-page-summary .vet-grid {grid-template-columns:minmax(0,1fr);gap:8px}
+.inpaw-app.ij-page-summary .vet-card {
+ padding:12px 14px;
+ border:1px solid var(--flower-line);
+ border-radius:17px;
+ background:#fffaf3;
+ box-shadow:none;
+}
+.inpaw-app.ij-page-summary .vet-card small {color:#795237;font-size:13px;font-weight:750}
+.inpaw-app.ij-page-summary .vet-card strong {color:var(--flower-ink);font-size:19px}
+.inpaw-app.ij-page-summary .vet-card span {color:var(--flower-muted)}
+.inpaw-app.ij-page-report .summary-export {background:var(--flower-paper);border-color:var(--flower-line)}
+
+.inpaw-app.ij-page-profile .app-content>.profile {
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ gap:2px;
+ padding:12px 12px 17px;
+ border:0;
+ background:transparent;
+ box-shadow:none;
+ text-align:center;
+}
+.inpaw-app.ij-page-profile .native-profile-photo-button img {
+ width:clamp(112px,38vw,156px)!important;
+ height:clamp(112px,38vw,156px)!important;
+ border:3px solid var(--profile-cat-coat,#D99550);
+ box-shadow:0 0 0 5px #fff9f0,0 6px 20px #73482517;
+}
+.inpaw-app.ij-page-profile .profile h2 {font-size:clamp(28px,8vw,36px);color:var(--flower-ink);line-height:1.15}
+.inpaw-app.ij-page-profile .profile p {color:var(--flower-muted)}
+.inpaw-app.ij-page-profile .health-profile-menu {
+ border:1px solid var(--flower-line);
+ border-radius:20px;
+ background:#fffaf3;
+ box-shadow:none;
+}
+.inpaw-app.ij-page-profile .health-profile-menu>.menu-row {min-height:53px}
+.inpaw-app.ij-page-profile .app-content>.eyebrow {display:none}
+.inpaw-app.ij-page-profile .app-content>.health-settings-entry {
+ min-height:56px!important;
+ padding:14px!important;
+ margin-bottom:9px!important;
+ border:1px solid var(--flower-line)!important;
+ border-radius:20px;
+ background:var(--flower-paper);
+ box-shadow:none;
+ color:var(--flower-ink);
+ line-height:1.6;
+}
+.inpaw-app.ij-page-profile .health-settings-entry>.profile-settings-icon {
+ width:24px;
+ height:24px;
+ flex:0 0 24px;
+ color:inherit;
+ filter:none;
+}
+.inpaw-app.ij-page-profile .health-settings-entry>.profile-settings-icon:last-child {margin-left:auto}
+.inpaw-app:not(.health-home) .app-content>.today-family {margin-bottom:8px}
+.inpaw-app.native-play-page:has(.ih-hub)>.app-header.is-brand-header {display:flex!important}
+.inpaw-app.native-play-page:has(.ih-hub)>.app-header.is-brand-header+.app-scroll {top:110px!important}
+/* The Play hub has its brand header back; the scroll offset already clears the status area. */
+.device-screen .inpaw-app.native-play-page:has(.ih-hub)>.app-header.is-brand-header+.app-scroll .app-content {padding-top:12px!important}
+@media(max-width:600px),(max-width:960px) and (max-height:500px){
+ .inpaw-app.native-play-page:has(.ih-hub)>.app-header.is-brand-header+.app-scroll {
+  top:calc(50px + env(safe-area-inset-top,0px))!important;
+ }
+}
+
+/* One surface for the floating action; the paw and plus are foreground marks. */
+.inpaw-app:is(.ij-page-home,.ij-page-records) .shell-add-record {
+ right:3px;
+ bottom:calc(100% + 7px);
+ width:53px;
+ min-height:53px;
+ padding:0;
+ border:1px solid var(--paw-action-line,#b68a68);
+ border-radius:17px;
+ background:var(--paw-action-fill,linear-gradient(145deg,#fff4e5,#f5d7b8));
+ color:var(--paw-action-ink,#67432e);
+ box-shadow:0 4px 13px #38241730;
+}
+.inpaw-app:is(.ij-page-home,.ij-page-records) .shell-add-record img {
+ width:34px;
+ height:34px;
+ padding:0;
+ margin:4px 3px 0 0;
+ border:0;
+ background:none;
+ box-shadow:none;
+}
+.inpaw-app:is(.ij-page-home,.ij-page-records) .shell-add-record span {display:none}
+.inpaw-app:is(.ij-page-home,.ij-page-records) .shell-add-plus {
+ top:3px;
+ right:4px;
+ width:15px;
+ height:15px;
+ border:0;
+ background:none;
+ color:inherit;
+ font-size:14px;
+}
+.inpaw-app .care-flower-petal:focus-visible {
+ outline:2px solid #71442e;
+ outline-offset:1px;
+}
+
+.care-garden-heading,.care-garden-dialog-head {display:flex;align-items:center;justify-content:space-between;gap:8px}
+.care-garden-heading h2 {margin:0;font-size:16px}
+.care-garden-open {min-height:44px;padding:6px 9px;border:1px solid var(--flower-line);border-radius:16px;background:var(--flower-paper);color:var(--flower-ink);font:inherit;font-size:13px}
+.care-garden-dialog {padding:16px;border:1px solid var(--flower-line);border-radius:24px;background:var(--flower-paper);color:var(--flower-ink);overflow:auto;overscroll-behavior:contain}
+.care-garden-dialog::backdrop {background:#30271f66}
+.care-garden-dialog-head {position:sticky;top:-16px;z-index:3;background:var(--flower-paper);padding:8px 0}
+.care-garden-dialog-head h2 {font-size:22px;margin:0}
+.care-garden-month {display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:8px;margin:8px 0}
+.care-garden-month h3 {margin:0;text-align:center;font-size:16px;font-variant-numeric:tabular-nums}
+.inpaw-app .care-garden-month .secondary-btn {min-height:44px;padding:0;font-size:24px;line-height:1}
+.inpaw-app .care-garden-month .secondary-btn:disabled {opacity:.38}
+.care-garden-note,.care-garden-empty {font-size:14px;line-height:1.6}
+.care-garden-empty {padding:24px 8px;text-align:center}
+.care-garden-list {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px;margin:18px 0}
+.inpaw-app .care-garden-tile {display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0;padding:10px 4px;border:1px solid var(--flower-line);border-radius:18px;background:transparent;color:var(--flower-ink)}
+.care-garden-tile-date {font-size:10px;line-height:1.5;white-space:normal}
+.flower-record-origin {display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin:12px 0;padding:10px 12px;border:1px solid var(--flower-line);border-radius:16px}
+.flower-record-origin p {margin:0;font-size:14px;overflow-wrap:anywhere}
+.care-garden-style-entry {display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin:12px 0}
+.care-garden-style-entry > span {font-size:14px}
+.care-garden-style-note {margin:4px 0 8px;font-size:13px}
+.care-garden-style-picker {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0}
+.inpaw-app .care-garden-style-picker .care-garden-tile {position:relative;gap:4px;padding:6px 4px;font-size:13px}
+.inpaw-app .care-garden-style-picker .care-garden-tile[aria-pressed=true] {border-color:currentColor;background:#977d4420}
+.care-garden-style-current {position:absolute;z-index:1;inset-block-start:4px;inset-inline-end:4px;padding:2px 4px;border-radius:6px;background:var(--flower-paper);color:var(--flower-ink);border:1px solid var(--flower-line);font-size:10px;line-height:1.2}
+.care-garden-style-label {display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:2px 5px;max-width:100%;line-height:1.3}
+.care-garden-style-tier {font-size:11px;white-space:nowrap}
+.care-garden-style-footer {position:sticky;bottom:-16px;z-index:2;display:grid;gap:6px;padding:8px 0;background:var(--flower-paper)}
+.care-garden-style-footer p {margin:0;font-size:13px}
+.care-flower-preview {display:block;width:100%}
+.inpaw-app .today-slim .care-flower-preview .care-flower-grid {width:min(100%,104px);grid-template-columns:repeat(2,minmax(0,1fr));margin:0 auto}
+.inpaw-app .today-slim .care-garden-style-picker .care-flower-grid {width:min(100%,76px)}
+.inpaw-app .today-slim .care-flower-preview .care-flower-petal {width:100%;min-height:0;padding:0;pointer-events:none}
+.care-flower-preview .care-flower-center {width:25%;height:auto;aspect-ratio:1}
+.care-flower-small .care-flower-range {font-size:10px;padding:4px 5px}
+.inpaw-app .today-slim .care-flower-small .care-flower-grid {width:100%;grid-template-columns:repeat(2,minmax(0,1fr));margin:10px auto 0}
+.inpaw-app .today-slim .care-flower-small .care-flower-petal {width:100%;font-size:11px;gap:1px;padding:4px;min-height:44px}
+.care-flower-small .care-flower-icon {width:17px;height:17px}
+.care-flower-small .care-flower-days {font-size:10px}
+.care-flower-small .care-flower-center {width:25%;height:auto;aspect-ratio:1}
+.care-flower-small .care-flower-caption p {font-size:12px;margin:7px 0}
+.inpaw-app .care-flower:not(.care-flower-preview, [data-flower-style=classic]) .care-flower-petal {gap:2px;line-height:1.18}
+.inpaw-app .care-flower:not(.care-flower-preview, [data-flower-style=classic]) .care-flower-petal:is([data-petal=water],[data-petal=weight]) {padding-block:4px 22px}
+.care-flower:not([data-flower-style=classic]) .care-flower-icon {width:19px;height:19px}
+.care-flower:not([data-flower-style=classic]) .care-flower-days {font-size:11px;line-height:1.15}
+@media(max-width:350px) {
+ .care-flower-small .care-flower-grid {width:180px}
+ .care-flower-grid {width:min(100%,178px)}
+ .care-flower-caption h2 {font-size:19px}
+ .inpaw-app .today-care-row .today-care-status {padding-inline:4px}
+}

@@ -1,0 +1,77 @@
+/* A daily notebook first; the food library and longer observations stay close,
+   without competing with the next meal. All selectors are presentation-only. */
+.inpaw-app [data-testid=feeding-dashboard]{--feeding-ink:#493d33;--feeding-muted:#746557;--feeding-line:#d9cbb93d;color:var(--feeding-ink)}
+.inpaw-app .feeding-dashboard-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:8px 0 18px}
+.inpaw-app .feeding-dashboard-heading h1{margin:0;font-size:29px;line-height:1.25;letter-spacing:.02em}
+.inpaw-app .feeding-dashboard-heading .feeding-count{display:flex;align-items:baseline;gap:5px;margin:0;color:var(--feeding-muted);font-size:14px;white-space:nowrap}
+.inpaw-app .feeding-dashboard-heading .feeding-count small{font-size:12px;margin:0 5px 0 0;color:var(--feeding-muted)}
+.inpaw-app .feeding-dashboard-heading .feeding-count strong{font-size:26px;font-weight:650;color:var(--feeding-ink);font-variant-numeric:tabular-nums}
+.inpaw-app .feeding-record-action{min-height:54px;margin:0 0 16px;border-radius:18px;font-size:17px;box-shadow:0 5px 14px #a6683220}
+.inpaw-app [data-testid=feeding-dashboard]>.feeding-today{margin:0 0 18px;padding:16px 18px;border:1px solid #ffffffbf;border-radius:22px;background:#fffdf6b8;box-shadow:0 4px 18px #72513808}
+.inpaw-app [data-testid=feeding-dashboard] .section-title h2{font-size:18px;font-weight:650;letter-spacing:.02em}
+.inpaw-app [data-testid=feeding-dashboard] .feeding-empty{margin:14px 0 6px;font-size:14px;line-height:1.8;color:var(--feeding-muted)}
+.inpaw-app [data-testid=feeding-dashboard] .food-recent-home{margin:0 0 20px;padding:0;border:0;background:transparent;box-shadow:none}
+.inpaw-app [data-testid=feeding-dashboard] .food-recent-home h2{font-size:16px;margin:0 0 10px;font-weight:650}
+.inpaw-app [data-testid=feeding-dashboard] .food-recent-shortcut{min-height:64px;background:#fffdf69c;border-color:#fffdf7c7;border-radius:16px}
+.inpaw-app [data-testid=feeding-dashboard] .food-recent-shortcut strong{font-size:15px}
+.inpaw-app [data-testid=feeding-dashboard] .food-recent-shortcut small{font-size:12px;color:var(--feeding-muted)}
+.inpaw-app [data-testid=feeding-dashboard]>.cj-card{margin:14px 0;border-radius:18px}
+.inpaw-app [data-testid=feeding-dashboard]>.diet-observations{margin:12px 0 16px;border-radius:18px}
+
+/* Keep every draft and its existing Continue / More / Delete controls. Only the
+   repetitive instructional paragraphs are suppressed on this dashboard. */
+.inpaw-app [data-testid=feeding-dashboard]>.ux-saved-drafts{margin:0 0 18px;padding:10px 12px;border:1px solid #ded0bb8c;border-radius:18px;background:#faf1df70;box-shadow:none}
+.inpaw-app [data-testid=feeding-dashboard]>.ux-saved-drafts>h2{font-size:13px;line-height:1.5;margin:0 0 5px;color:#71563f}
+.inpaw-app [data-testid=feeding-dashboard]>.ux-saved-drafts>p{display:none}
+.inpaw-app [data-testid=feeding-dashboard]>.ux-saved-drafts .draft-card{margin:5px 0 0}
+.inpaw-app [data-testid=feeding-dashboard]>.ux-saved-drafts .draft-swipe-surface{min-height:58px;border-color:#e8dccb;border-radius:13px;background:#fffdf6}
+.inpaw-app [data-testid=feeding-dashboard]>.ux-saved-drafts .draft-swipe{border-radius:13px}
+.inpaw-app [data-testid=feeding-dashboard]>.ux-saved-drafts .draft-continue{gap:2px;padding:8px 10px}
+.inpaw-app [data-testid=feeding-dashboard]>.ux-saved-drafts .draft-continue>span{font-size:12px;color:#76563c}
+.inpaw-app [data-testid=feeding-dashboard]>.ux-saved-drafts .draft-continue>strong{font-size:12px;font-weight:500;color:#6c6055;line-height:1.5}
+
+/* Native details removes collapsed controls from keyboard and screen-reader
+   navigation while retaining the category filter and original food callbacks. */
+.inpaw-app details.h-feeding-food-list{margin:16px 0 0;padding:0 14px;border:1px solid #d9cbb970;border-radius:18px;background:#fffaf16b}
+.inpaw-app .feeding-food-library-summary{display:flex;align-items:center;gap:10px;min-height:54px;cursor:pointer;list-style:none;color:#5d4b3e}
+.feeding-food-library-summary::-webkit-details-marker{display:none}
+.feeding-food-library-summary::after{content:'›';font-size:24px;line-height:1;margin-left:2px;transform:rotate(90deg)}
+.h-feeding-food-list[open]>.feeding-food-library-summary::after{transform:rotate(-90deg)}
+.feeding-food-library-summary strong{font-size:15px;font-weight:600;flex:1}
+.feeding-food-library-summary>span{font-size:13px;color:#77685a}
+.inpaw-app details.h-feeding-food-list[open]{padding-bottom:14px}
+.inpaw-app .feeding-library-actions{display:flex;gap:8px;margin:8px 0 18px}
+.inpaw-app .feeding-library-actions>button{flex:1;min-width:0;width:auto;min-height:44px;margin:0!important;padding:10px 8px!important;border:0!important;border-radius:12px;background:transparent!important;box-shadow:none!important;justify-content:center;font-size:13px;color:#715a45}
+.inpaw-app .feeding-library-actions>button>svg{display:none}
+
+/* A multi-food meal is one container, with separate original-record actions.
+   No combined amounts are invented, and the unknown label stays explicit. */
+.inpaw-app .feeding-meal-group{margin:7px 0 10px;padding:0 12px;border:1px solid #dfd2c380;border-radius:17px;background:#faf5eb65;min-width:0}
+.inpaw-app .feeding-meal-group-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0 9px;border-bottom:1px solid #dfd2c36b;font-size:13px;color:#74604c}
+.feeding-meal-group-heading strong{font-weight:600}
+.feeding-meal-group-heading>span{font-size:12px;color:#7c6c5e}
+.inpaw-app .feeding-meal-group .feeding-meal-row{grid-template-columns:28px minmax(0,1fr) 10px;gap:8px;min-height:76px;padding:12px 0}
+.feeding-meal-group .feeding-meal-icon{width:28px;height:28px;background:#f0e5d394}
+.feeding-meal-group .feeding-meal-icon img{width:19px;height:19px}
+.feeding-meal-group .feeding-meal-head strong{font-size:16px}
+.feeding-meal-group .feeding-meal-head time{font-size:12px}
+.feeding-meal-group .feeding-meal-amounts{gap:3px 10px;font-size:12px;margin-top:5px}
+.feeding-meal-group .feeding-meal-amounts b{font-size:14px}
+.inpaw-app .feeding-meal-summary{margin:16px 0 22px;padding:16px;border:1px solid #e4d5c3;border-radius:20px;background:#fffaf2b8}
+.feeding-meal-summary h2{font-size:18px;line-height:1.5;margin:0 0 5px;color:#514333}
+.feeding-meal-summary-note{font-size:12px;line-height:1.7;color:#766553;margin:0 0 8px}
+.feeding-meal-summary .feeding-meal-head strong{font-size:16px}
+.feeding-meal-summary .feeding-meal-row[aria-current=true]{background:#f3e9d849;border-radius:12px}
+.feeding-food-library-summary:focus-visible{outline:3px solid #9b623b;outline-offset:2px;border-radius:12px}
+@media(max-width:360px){.inpaw-app [data-testid=feeding-dashboard]>.feeding-today{padding:14px}.inpaw-app .feeding-meal-group{padding:0 9px}.feeding-meal-group .feeding-meal-head{flex-wrap:wrap;gap:1px 8px}.feeding-meal-group .feeding-meal-amounts>span{white-space:normal}.inpaw-app .feeding-dashboard-heading{gap:10px}}
+
+/* Primary daily actions stay together. Flex basis uses text-size units so
+   narrow screens and enlarged text wrap without clipping either action. */
+.inpaw-app .feeding-top-actions{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.inpaw-app .feeding-top-actions>button{flex:1 1 8.5em;min-width:0;width:auto;min-height:54px;margin:0!important;padding:12px 10px!important;border-radius:17px;white-space:normal;line-height:1.5;font-size:16px;justify-content:center}
+.inpaw-app .feeding-top-actions>.feeding-record-action{background:#875e43;color:#fffaf3;border:1px solid #875e43;font-weight:650}
+.inpaw-app .feeding-top-actions>.food-entry-direct{border:1px solid #c9b69e;background:#fffaf2;color:#70533e;box-shadow:none}
+.inpaw-app .feeding-top-actions>button:focus-visible{outline:3px solid #67989c;outline-offset:3px}
+.inpaw-app [data-testid=feeding-dashboard]>.ux-saved-drafts>h2{font-size:14px}
+.inpaw-app .feeding-supplement{display:block;width:100%;min-height:44px;margin:0 0 9px;padding:8px 12px;border:1px solid #c9b69e;border-radius:12px;background:#fffaf2;color:#70533e;font-size:14px;font-weight:650}
+.inpaw-app .feeding-supplement:focus-visible{outline:3px solid #67989c;outline-offset:2px}

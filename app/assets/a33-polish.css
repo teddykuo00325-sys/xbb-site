@@ -1,0 +1,864 @@
+/* A33 real-device polish (2026-11-10): faster logging, no layout jumps.
+   1) Save/delete confirmations float over the page instead of pushing content.
+   2) Water observation uses two tap targets instead of a dropdown.
+   3) Records page spends less of the first screen on the search label. */
+
+/* 1. Floating confirmations: content below must not move when they appear or disappear. */
+/* ij-design-v35.css sets `.inpaw-app .app-content>.toast{position:static}`; match its specificity and load later. */
+.inpaw-app .toast,
+.health-app .toast,
+.inpaw-app .app-content>.toast{
+  position:fixed;
+  inset:calc(env(safe-area-inset-top,0px) + 10px) 12px auto 12px;
+  /* health-summary-v31.css has `.health-app .toast{bottom:120px!important}`, which would stretch it top-to-bottom. */
+  bottom:auto!important;
+  height:auto;
+  width:auto;
+  margin:0;
+  z-index:60;
+  box-shadow:0 8px 24px rgba(90,50,10,.18);
+}
+.o-record-browser .care-success{
+  position:fixed;
+  top:calc(env(safe-area-inset-top,0px) + 10px);
+  left:12px;
+  right:12px;
+  margin:0;
+  z-index:60;
+  box-shadow:0 8px 24px rgba(90,50,10,.18);
+}
+
+.o-record-browser .care-success{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.o-record-browser .care-success .toast-undo{margin-left:auto}
+
+/* Changing record type swaps one sheet for another (meal / care / observation each own a sheet).
+   The new sheet replayed its slide-up and scrim animation, so the whole screen jumped.
+   Any sheet that shows the six-type switcher is a form sheet: show it without the entrance animation. */
+.task-sheet-overlay:has(.entry-kind-tabs),
+.task-sheet-overlay:has(.entry-kind-tabs) .task-sheet-panel{animation:none!important}
+
+/* 2. Water choice chips. Minimum 52px tall for a comfortable thumb target. */
+.water-choice{border:0;margin:0;padding:0;min-width:0}
+.water-choice>legend{padding:0;margin:0 0 8px;font-weight:700}
+.water-choice-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.water-choice-row>button{
+  min-height:52px;
+  padding:8px 12px;
+  border-radius:14px;
+  border:1.5px solid #d9c9b3;
+  background:#fffaf2;
+  color:#4a3b30;
+  font:inherit;
+  font-weight:700;
+}
+.water-choice-row>button[aria-pressed="true"]{
+  background:#f3dcc0;
+  border-color:#b6652f;
+  color:#7a3b12;
+}
+:where(html[data-theme="dark"]) .water-choice-row>button{background:#2a2825;border-color:#6c6359;color:#f3ece3}
+:where(html[data-theme="dark"]) .water-choice-row>button[aria-pressed="true"]{background:#4a3524;border-color:#d99a5f;color:#ffe9d2}
+
+/* 3. The input already has an aria-label and a placeholder; hide the duplicate visual label. */
+.o-record-browser .o-search>span{
+  position:absolute;
+  width:1px;height:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+}
+
+/* 4. 返回鍵（Ian 2026-11-13：有些頁面的返回鍵太小）：原本只是 15px（聲音探索 12px）的「‹ 返回」文字、沒有底色與框線，
+   看起來像小連結。統一成 44px 高的膠囊按鈕：字放大、加淡底色與框線，各頁一致；只改外觀，不改位置與行為。 */
+.inpaw-app .h-back,
+.ai-route-app>.ai-route-header .h-back,
+.inpaw-app .fish-back,
+button.cj-back{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  min-height:44px!important;
+  min-width:72px!important;
+  padding:0 16px 0 12px!important;
+  border-radius:999px!important;
+  font-size:17px!important;
+  font-weight:650!important;
+  line-height:1!important;
+  color:#754c33!important;
+  background:rgba(117,76,51,.08)!important;
+  border:1px solid rgba(117,76,51,.22)!important;
+  text-decoration:none!important;
+}
+.inpaw-app .h-back:active,
+.ai-route-app>.ai-route-header .h-back:active,
+.inpaw-app .fish-back:active,
+button.cj-back:active{background:rgba(117,76,51,.16)!important}
+:where(html[data-theme="dark"]) .inpaw-app .h-back,
+:where(html[data-theme="dark"]) .ai-route-app>.ai-route-header .h-back,
+:where(html[data-theme="dark"]) .inpaw-app .fish-back,
+:where(html[data-theme="dark"]) button.cj-back{
+  color:#f3ece3!important;
+  background:rgba(243,236,227,.10)!important;
+  border-color:rgba(243,236,227,.24)!important;
+}
+@media (prefers-color-scheme:dark){
+  :where(html:not([data-theme="light"])) .inpaw-app .h-back,
+  :where(html:not([data-theme="light"])) .ai-route-app>.ai-route-header .h-back,
+  :where(html:not([data-theme="light"])) .inpaw-app .fish-back,
+  :where(html:not([data-theme="light"])) button.cj-back{
+    color:#f3ece3!important;
+    background:rgba(243,236,227,.10)!important;
+    border-color:rgba(243,236,227,.24)!important;
+  }
+}
+
+/* 5. 選中狀態的框線（Ian 2026-11-13：很多框框顏色沒做好，不只下框，有些是左右）。
+   原因：各版樣式疊在一起——淺色設定分頁是 1px 框＋2px 下方內陰影（下緣變粗、顏色不同），
+   毛孩切換是近黑色 2px 框，「未填」是藍框，深色模式多數是 1px 框＋2px 同色內圈（變成粗細不一的 3px）。
+   統一成一種：四邊同粗 1.5px 品牌色框、淡暖色底、不疊內陰影。只改顏色與框線，不改大小與位置。
+   不套用：底部導覽（自己的選中樣式）、方案頁的月訂／年訂切換（分段切換）。看診摘要的「近 7／14 天」2026-11-13 起也改用這組選中樣式。 */
+.inpaw-app :is([aria-pressed=true],[aria-current=page],[aria-current=true],[aria-selected=true],button.chosen,button.active,button.is-active,.mc-cat-card.active):not(.shell-tab):not(.bottom-tab):not(.glass-tab):not(.h-back):not([role=switch]):not(.plan-cycle>button){
+  border:1.5px solid #b6652f!important;
+  box-shadow:none!important;
+  background:#f8e9d8!important;
+  color:#6b3d1f!important;
+  outline:none;
+}
+:where(html[data-theme="dark"]) .inpaw-app :is([aria-pressed=true],[aria-current=page],[aria-current=true],[aria-selected=true],button.chosen,button.active,button.is-active,.mc-cat-card.active):not(.shell-tab):not(.bottom-tab):not(.glass-tab):not(.h-back):not([role=switch]):not(.plan-cycle>button){
+  border-color:#d99a5f!important;
+  background:#4a3524!important;
+  color:#ffe9d2!important;
+}
+@media (prefers-color-scheme:dark){
+  :where(html:not([data-theme="light"])) .inpaw-app :is([aria-pressed=true],[aria-current=page],[aria-current=true],[aria-selected=true],button.chosen,button.active,button.is-active,.mc-cat-card.active):not(.shell-tab):not(.bottom-tab):not(.glass-tab):not(.h-back):not([role=switch]):not(.plan-cycle>button){
+    border-color:#d99a5f!important;
+    background:#4a3524!important;
+    color:#ffe9d2!important;
+  }
+}
+/* 毛孩卡片（.mc-cat-card.active）有時不在 .inpaw-app 裡，單獨套同一組顏色；只改框與底，卡片內文字顏色不動。 */
+.mc-cat-card.active{border:1.5px solid #b6652f!important;box-shadow:none!important;background:#f8e9d8!important}
+:where(html[data-theme="dark"]) .mc-cat-card.active{border-color:#d99a5f!important;background:#4a3524!important}
+@media (prefers-color-scheme:dark){:where(html:not([data-theme="light"])) .mc-cat-card.active{border-color:#d99a5f!important;background:#4a3524!important}}
+/* 設定 → 一般「外觀」選中的那張（跟隨系統／淺色／深色）：原本 2px 框＋2px 下方內陰影，下緣變粗，改成同一組選中樣式。 */
+.appearance-option:has(input:checked){border:1.5px solid #b6652f!important;box-shadow:none!important;background:#f8e9d8!important}
+:where(html[data-theme="dark"]) .appearance-option:has(input:checked){border-color:#d99a5f!important;background:#4a3524!important}
+@media (prefers-color-scheme:dark){:where(html:not([data-theme="light"])) .appearance-option:has(input:checked){border-color:#d99a5f!important;background:#4a3524!important}}
+/* 「文字與語音快記」入口：上框顏色和其他三邊不同，統一成同一色。 */
+.cj-entry-options>.cj-ai-entry{border-color:#d9c8b7!important}
+:where(html[data-theme="dark"]) .cj-entry-options>.cj-ai-entry{border-color:#a99b8d!important}
+@media (prefers-color-scheme:dark){:where(html:not([data-theme="light"])) .cj-entry-options>.cj-ai-entry{border-color:#a99b8d!important}}
+/* 6. 首頁「照顧時間表」（2026-11-13）：疫苗、驅蟲、回診放首頁最上面。 */
+.care-timeline{margin:14px 0;padding:16px 16px 12px;border-radius:20px;border:1px solid #e3d3c1;background:#fffaf3}
+.care-timeline-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+.care-timeline-head h2{margin:0;font-size:18px}
+.care-timeline-head .text-btn{min-height:44px;font-size:15px}
+.care-timeline-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.care-timeline-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:#f6ece0;border:1.5px solid transparent}
+/* Ian 2026-11-13：不要只有左邊一條色框；用四邊一樣粗的框表示狀態 */
+.care-timeline-row.is-overdue{background:#fbe1d6;border-color:#b8442b}
+.care-timeline-row.is-due,.care-timeline-row.is-soon{background:#f8e9d8;border-color:#b6652f}
+.care-timeline-text{flex:1 1 140px;display:flex;flex-direction:column;min-width:0}
+.care-timeline-text strong{font-size:16px}
+.care-timeline-text span{font-size:14px;color:#6f6458}
+.care-timeline-row.is-overdue .care-timeline-text span{color:#9b3420;font-weight:700}
+.care-timeline-row .m-dose-trigger,.care-timeline-row>.secondary-btn{min-height:44px;padding:0 16px;border-radius:999px}
+.care-next-date{flex:1 1 100%;display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px}
+.care-next-date label{flex:1 1 160px;display:flex;flex-direction:column;font-size:14px}
+.care-next-date input{min-height:44px}
+.care-next-date .primary{min-height:44px}
+.care-timeline-empty p,.care-timeline-more,.care-timeline-notice,.care-timeline-warn{font-size:14px;margin:8px 0}
+.care-timeline-warn{color:#9b3420}
+:where(html[data-theme="dark"]) .care-timeline{background:#2a2825;border-color:#5a5047}
+:where(html[data-theme="dark"]) .care-timeline-row{background:#33302c}
+:where(html[data-theme="dark"]) .care-timeline-row.is-overdue{background:#4a2a22;border-color:#e07a5f}
+:where(html[data-theme="dark"]) .care-timeline-row:is(.is-due,.is-soon){background:#3d2f23;border-color:#d99a5f}
+:where(html[data-theme="dark"]) .care-timeline-text span{color:#cdbfae}
+:where(html[data-theme="dark"]) .care-timeline-row.is-overdue .care-timeline-text span,:where(html[data-theme="dark"]) .care-timeline-warn{color:#f4a58a}
+@media (prefers-color-scheme:dark){
+  :where(html:not([data-theme="light"])) .care-timeline{background:#2a2825;border-color:#5a5047}
+  :where(html:not([data-theme="light"])) .care-timeline-row{background:#33302c}
+  :where(html:not([data-theme="light"])) .care-timeline-row.is-overdue{background:#4a2a22;border-color:#e07a5f}
+  :where(html:not([data-theme="light"])) .care-timeline-row:is(.is-due,.is-soon){background:#3d2f23;border-color:#d99a5f}
+  :where(html:not([data-theme="light"])) .care-timeline-text span{color:#cdbfae}
+  :where(html:not([data-theme="light"])) .care-timeline-row.is-overdue .care-timeline-text span,:where(html:not([data-theme="light"])) .care-timeline-warn{color:#f4a58a}
+}
+/* 7. 看診紀錄與吃藥（2026-11-13） */
+.care-timeline-meds:empty{display:none}
+.care-timeline-meds{margin-top:8px}
+.care-timeline-row.is-med{background:#eaf1ec;border:1.5px solid #8fb59a!important;border-radius:14px;margin:4px 0;padding:12px}
+.vv-slots{display:flex;flex-wrap:wrap;gap:6px}
+.vv-slot:not([aria-pressed=true]){min-height:44px;padding:0 14px;border-radius:999px!important;border:1.5px solid #49664f!important;background:#fff!important;color:#2f4a36!important;font-weight:650}
+.vv-slot[aria-pressed=true]{min-height:44px;padding:0 14px;border-radius:999px!important;font-weight:650}
+.care-visit-add{width:100%;min-height:48px;margin-top:10px;border-radius:999px}
+.vv-form{margin-top:12px;padding:14px;border-radius:16px;border:1px solid #e3d3c1;background:#fff}
+.vv-form h3{margin:0 0 4px;font-size:18px}.vv-form h4{margin:14px 0 6px;font-size:16px}
+.vv-note{font-size:14px;color:#6f6458;margin:0 0 10px}
+.vv-field{display:flex;flex-direction:column;gap:4px;margin:8px 0;font-size:14px}
+.vv-field input,.vv-field textarea{min-height:44px;font-size:16px}
+.vv-med{margin:10px 0;padding:10px 12px;border:1px solid #e3d3c1;border-radius:14px}
+.vv-times{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0;font-size:14px}
+.vv-time{display:inline-flex;align-items:center;gap:4px}.vv-time input{min-height:44px}
+.vv-range{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vv-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}.vv-actions .primary{flex:1 1 180px;min-height:48px}
+:where(html[data-theme="dark"]) .care-timeline-row.is-med{background:#25332a;border-color:#8fb59a}
+:where(html[data-theme="dark"]) .vv-slot:not([aria-pressed=true]){background:#25332a!important;border-color:#8fb59a!important;color:#d7eadc!important}
+:where(html[data-theme="dark"]) :is(.vv-form,.vv-med){background:#2a2825;border-color:#5a5047;color:#f3ece3}
+:where(html[data-theme="dark"]) .vv-note{color:#cdbfae}
+@media (prefers-color-scheme:dark){
+  :where(html:not([data-theme="light"])) .care-timeline-row.is-med{background:#25332a;border-color:#8fb59a}
+  :where(html:not([data-theme="light"])) .vv-slot:not([aria-pressed=true]){background:#25332a!important;border-color:#8fb59a!important;color:#d7eadc!important}
+  :where(html:not([data-theme="light"])) :is(.vv-form,.vv-med){background:#2a2825;border-color:#5a5047;color:#f3ece3}
+  :where(html:not([data-theme="light"])) .vv-note{color:#cdbfae}
+}
+/* 8. 以照護為主體（2026-11-13 Ian 定案）：快記縮成一列小按鈕；照護分頁；看診紀錄 */
+.inpaw-app .today-quick-actions.is-compact{display:flex!important;flex-wrap:wrap;align-items:center;gap:6px;margin:4px 0 12px}
+.today-quick-actions.is-compact .today-quick-label{flex:0 0 100%;font-size:13px;color:#6f6256;margin-bottom:2px}
+html[data-theme="dark"] .today-quick-actions.is-compact .today-quick-label{color:#cdbfae}
+@media (prefers-color-scheme:dark){html:not([data-theme="light"]) .today-quick-actions.is-compact .today-quick-label{color:#cdbfae}}
+.inpaw-app .today-quick-actions.is-compact button{flex:1 1 0;min-width:0;min-height:44px!important;padding:4px 6px!important;display:flex!important;flex-direction:row!important;align-items:center;justify-content:center;gap:4px;border-radius:999px!important;font-size:14px!important}
+.today-quick-actions.is-compact img{width:16px!important;height:16px!important}
+.care-page{padding-bottom:120px}
+.care-page-head h1{margin:6px 0 4px;font-size:26px}
+.care-page-head p{margin:0 0 6px;font-size:14px;color:#6f6458}
+.care-page-actions{display:grid;gap:8px;margin:4px 0 16px}
+.care-page-actions button{min-height:48px;border-radius:999px}
+.vv-history h2{font-size:18px;margin:8px 0}
+.vv-history-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.vv-visit{border:1.5px solid #e3d3c1;border-radius:14px;background:#fffaf3;overflow:hidden}
+.inpaw-app .vv-visit-head{width:100%;min-height:52px;display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:2px;padding:10px 14px!important;background:transparent!important;border:0!important;text-align:left;border-radius:0!important}
+.vv-visit-head span{font-size:14px;color:#6f6458}
+.vv-visit-body{padding:0 14px 12px;font-size:15px}
+.vv-visit-body p{margin:6px 0}
+.vv-med-line{padding:6px 0;border-top:1px solid #eadccc}
+:where(html[data-theme="dark"]) .vv-visit{background:#2a2825;border-color:#5a5047;color:#f3ece3}
+:where(html[data-theme="dark"]) :is(.vv-visit-head span,.care-page-head p,.today-quick-label){color:#cdbfae}
+@media (prefers-color-scheme:dark){
+  :where(html:not([data-theme="light"])) .vv-visit{background:#2a2825;border-color:#5a5047;color:#f3ece3}
+  :where(html:not([data-theme="light"])) :is(.vv-visit-head span,.care-page-head p,.today-quick-label){color:#cdbfae}
+}
+/* 9. 審查 P1（2026-11-13）：時間表每列可點開、已排幾則提醒、看診摘要的「看診與照護」、全家總覽的照護、主按鈕一色 */
+.inpaw-app .care-timeline-row .care-timeline-text{display:flex!important;flex-direction:column!important;align-items:flex-start!important;flex:1 1 auto;min-width:0;min-height:44px;padding:0!important;margin:0;background:transparent!important;border:0!important;box-shadow:none!important;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.care-timeline-row.is-open{flex-wrap:wrap}
+.care-timeline-detail{flex:0 0 100%;font-size:14px;color:#6f6458}
+.care-timeline-detail p{margin:4px 0}
+.care-timeline-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.care-timeline-actions>button{flex:1 1 120px;min-height:44px}
+.care-timeline-status{margin:8px 2px 0;font-size:14px;color:#4f6b55}
+.ss157-care-brief{border:1.5px solid #e3d3c1;border-radius:14px;background:#fffaf3;padding:12px 14px;margin:8px 0 12px}
+.ss157-care-brief h3{margin:0 0 6px;font-size:16px}
+.ss157-care-brief ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:15px}
+.family-care-next{list-style:none;margin:8px 0;padding:0;display:grid;gap:6px}
+.family-care-next li{display:flex;justify-content:space-between;gap:8px;padding:8px 10px;border:1.5px solid #e3d3c1;border-radius:12px;background:#fffaf3;font-size:14px}
+.family-care-next li span{color:#6f6458;text-align:right}
+.family-care-next li.is-urgent{border-color:#d99a5f;background:#fdf0e2}
+.family-care-next li.family-care-meds{border-color:#bcd2c1;background:#f3f8f3}
+.family-care-next li.family-care-none span{color:#8a7d70;text-align:left}
+.inpaw-app .family-card-stats{opacity:.85}
+/* 主按鈕統一一色（品牌磚橙，白字）。不含：刪除類（.danger）、停用中、遊戲內按鈕、方案頁月訂／年訂切換。 */
+html :is(.inpaw-app,dialog) :is(.primary,.ss157-primary,.fu157-primary,.cj-primary,.mc-create,.ocr-primary,.today-summary-cta):not(.danger):not(:disabled){background:#a85b32!important;color:#fff!important;border-color:#a85b32!important}
+html[data-theme="dark"] :is(.inpaw-app,dialog) :is(.primary,.ss157-primary,.fu157-primary,.cj-primary,.mc-create,.ocr-primary,.today-summary-cta):not(.danger):not(:disabled){background:#d99a5f!important;color:#2a1a0e!important;border-color:#d99a5f!important}
+@media (prefers-color-scheme:dark){
+  html:not([data-theme="light"]) :is(.inpaw-app,dialog) :is(.primary,.ss157-primary,.fu157-primary,.cj-primary,.mc-create,.ocr-primary,.today-summary-cta):not(.danger):not(:disabled){background:#d99a5f!important;color:#2a1a0e!important;border-color:#d99a5f!important}
+}
+/* 建立毛孩的疫苗與驅蟲日期：和其他卡片一樣的暖色框 */
+.first-pet-care{border:1.5px solid #e3d3c1;border-radius:14px;padding:10px 14px 12px;margin:12px 0}
+.first-pet-care legend{padding:0 6px;font-weight:600}
+:where(html[data-theme="dark"]) .first-pet-care{border-color:#5a5047}
+@media (prefers-color-scheme:dark){:where(html:not([data-theme="light"])) .first-pet-care{border-color:#5a5047}}
+/* 公／母選項：原本藍框藍字，改成和其他選項一樣的暖色；選中沿用第 5 段的選中樣式。 */
+.profile-sex-chips button{border-color:#d9c8b7;color:#4a3a2c}
+.profile-sex-chips button[aria-pressed=true]{border:1.5px solid #b6652f!important;background:#f8e9d8!important;color:#6b3d1f!important;box-shadow:none!important}
+.profile-sex-chips button:focus-visible{outline-color:#597e7b}
+:where(html[data-theme="dark"]) :is(.ss157-care-brief,.family-care-next li){background:#2a2825;border-color:#5a5047;color:#f3ece3}
+:where(html[data-theme="dark"]) :is(.care-timeline-detail,.family-care-next li span){color:#cdbfae}
+:where(html[data-theme="dark"]) .family-care-next li.is-urgent{background:#3d2f23;border-color:#d99a5f}
+:where(html[data-theme="dark"]) .care-timeline-status{color:#9fc7a8}
+:where(html[data-theme="dark"]) .profile-sex-chips button[aria-pressed=true]{border-color:#d99a5f!important;background:#4a3524!important;color:#ffe9d2!important}
+@media (prefers-color-scheme:dark){
+  :where(html:not([data-theme="light"])) :is(.ss157-care-brief,.family-care-next li){background:#2a2825;border-color:#5a5047;color:#f3ece3}
+  :where(html:not([data-theme="light"])) :is(.care-timeline-detail,.family-care-next li span){color:#cdbfae}
+  :where(html:not([data-theme="light"])) .family-care-next li.is-urgent{background:#3d2f23;border-color:#d99a5f}
+  :where(html:not([data-theme="light"])) .care-timeline-status{color:#9fc7a8}
+  :where(html:not([data-theme="light"])) .profile-sex-chips button[aria-pressed=true]{border-color:#d99a5f!important;background:#4a3524!important;color:#ffe9d2!important}
+}
+/* 10. 審查 P2（2026-11-13）：通知說明卡、昨天的藥、療程結束、紀錄卡的「刪除」和「查看詳情」分開 */
+.care-timeline-permission{margin:10px 0 0;padding:12px 14px;border:1.5px solid #d99a5f;border-radius:14px;background:#fdf0e2;font-size:14px}
+.care-timeline-permission p{margin:0 0 8px}
+.care-timeline-permission strong{display:block;font-size:15px;margin-bottom:2px}
+.care-timeline-permission button{width:100%;min-height:44px}
+.care-timeline-more .text-btn{margin-left:6px;min-height:32px}
+.care-timeline-row.is-med.is-missed{border-style:dashed}
+.care-timeline-row.is-med.is-done{background:#f6f3ee;border-color:#d8cfc4}
+.inpaw-app .o-record-browser .o-record-delete{top:6px;bottom:auto}
+.inpaw-app .o-record-browser .o-record-item .o-record-result>:first-child{padding-right:64px}
+.inpaw-app .o-record-browser .o-record-item .o-result-link{padding-right:0}
+:where(html[data-theme="dark"]) .care-timeline-permission{background:#3d2f23;border-color:#d99a5f;color:#f3ece3}
+:where(html[data-theme="dark"]) .care-timeline-row.is-med.is-done{background:#2a2825;border-color:#5a5047}
+@media (prefers-color-scheme:dark){
+  :where(html:not([data-theme="light"])) .care-timeline-permission{background:#3d2f23;border-color:#d99a5f;color:#f3ece3}
+  :where(html:not([data-theme="light"])) .care-timeline-row.is-med.is-done{background:#2a2825;border-color:#5a5047}
+}
+/* 11. 記下這次看診改成獨立一頁（2026-11-13）：全螢幕、頁首返回、時間快選、吃幾天、補充收合；首頁兩顆並排 */
+/* 其他對話框樣式會把 dialog 縮成留邊的卡片（inset 12px），這頁要蓋滿，所以用 !important。 */
+html dialog.vv-page{position:fixed!important;inset:0!important;width:100%!important;max-width:100%!important;height:100%!important;max-height:100%!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;transform:none!important;background:#faf6f0;color:#3a2f27;overflow-y:auto;overscroll-behavior:contain}
+dialog.vv-page::backdrop{background:#faf6f0}
+.inpaw-app .vv-page .vv-presets{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px;margin:6px 0 8px}
+.inpaw-app .vv-page .vv-presets button{width:100%;min-width:0;margin:0;padding:0 4px}
+.inpaw-app .vv-page .vv-times{display:grid!important;grid-template-columns:1fr!important;gap:6px;align-items:stretch}
+.vv-page .vv-times>*{width:100%;min-width:0;margin:0}
+.vv-page .vv-time-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.vv-page .vv-time{display:grid;grid-template-columns:52px 1fr 44px;align-items:center;gap:8px;padding:4px 4px 4px 14px;border:1.5px solid #e3d3c1;border-radius:14px;background:#fff}
+.vv-page .vv-time-label{font-size:15px;color:#7a6a5c}
+.vv-page .vv-time input[type=time]{width:100%;min-width:0;min-height:44px;padding:0 4px;border:0!important;background:transparent!important;box-shadow:none!important;color:inherit;font:inherit;font-size:18px;font-weight:600}
+.inpaw-app .vv-page .vv-time-remove{width:44px;height:44px;min-height:44px;padding:0;border:0;border-radius:12px;background:transparent;color:#9d453b;font-size:22px;line-height:1}
+.inpaw-app .vv-page .vv-time-add{width:100%;min-height:44px;margin-top:6px;border:1.5px dashed #d9c8b7;border-radius:14px;background:transparent;color:#8a4a24;font:inherit;font-size:15px}
+:where(html[data-theme="dark"]) .vv-page .vv-time{background:#2a2825;border-color:#5a5047}
+:where(html[data-theme="dark"]) .vv-page .vv-time-label{color:#cdbfae}
+:where(html[data-theme="dark"]) .inpaw-app .vv-page :is(.vv-time-add,.vv-time-remove){color:#f0a99c;border-color:#5a5047}
+:where(html[data-theme="dark"]) dialog.vv-page::backdrop{background:#1f1d1b}
+.vv-page-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px;background:#faf6f0;border-bottom:1px solid #eadccc}
+.vv-page-head h2{margin:0;font-size:19px;line-height:1.3}
+.vv-page .vv-form{margin:0;padding:14px 16px calc(40px + env(safe-area-inset-bottom,0px));border:0;border-radius:0;background:transparent;display:grid;gap:12px}
+.vv-page .vv-form .field{margin:0}
+.vv-page .vv-form h3{margin:6px 0 4px;font-size:17px}
+.vv-intro{margin:0;padding:10px 12px;border:1.5px solid #d99a5f;border-radius:12px;background:#fdf0e2;font-size:15px}
+.vv-presets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:6px 0}
+.vv-presets button{min-height:44px;border-radius:999px;border:1.5px solid #d9c8b7;background:#fffaf3;color:#4a3a2c;font:inherit;font-size:15px}
+.vv-time-list{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.vv-end{margin:4px 0 0;font-size:14px;color:#4f6b55;font-weight:600}
+.vv-extra{border:1.5px solid #e3d3c1;border-radius:14px;padding:10px 14px;background:#fffaf3}
+.vv-extra summary{min-height:32px;line-height:32px;cursor:pointer;font-weight:600}
+.vv-extra[open] summary{margin-bottom:8px}
+.vv-leave{padding:12px;border:1.5px solid #d99a5f;border-radius:12px;background:#fdf0e2;display:grid;gap:8px}
+.vv-leave p{margin:0}
+.care-visit-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.care-visit-buttons>button{min-height:48px;margin:0!important;width:100%}
+.vv-follow-quick{margin-top:10px}
+html[data-theme="dark"] dialog.vv-page,html[data-theme="dark"] .vv-page-head{background:#1f1d1b;color:#f3ece3;border-color:#3d3833}
+:where(html[data-theme="dark"]) :is(.vv-extra,.vv-presets button){background:#2a2825;border-color:#5a5047;color:#f3ece3}
+:where(html[data-theme="dark"]) :is(.vv-intro,.vv-leave){background:#3d2f23;border-color:#d99a5f;color:#f3ece3}
+:where(html[data-theme="dark"]) .vv-end{color:#9fc7a8}
+@media (prefers-color-scheme:dark){
+  html:not([data-theme="light"]) dialog.vv-page,html:not([data-theme="light"]) .vv-page-head{background:#1f1d1b;color:#f3ece3;border-color:#3d3833}
+  :where(html:not([data-theme="light"])) :is(.vv-extra,.vv-presets button){background:#2a2825;border-color:#5a5047;color:#f3ece3}
+  :where(html:not([data-theme="light"])) :is(.vv-intro,.vv-leave){background:#3d2f23;border-color:#d99a5f;color:#f3ece3}
+  :where(html:not([data-theme="light"])) .vv-end{color:#9fc7a8}
+}
+/* 12. 拍藥袋給雲端解讀（2026-11-13） */
+.vv-bag{display:grid;gap:6px}
+.inpaw-app .vv-bag-card{display:grid!important;gap:4px;justify-items:start;width:100%;padding:14px 16px!important;border:1.5px solid #d99a5f!important;border-radius:16px!important;background:#fdf0e2!important;color:#4a2f1c!important;text-align:left;font:inherit}
+.vv-bag-card strong{font-size:17px}
+.vv-bag-card span{font-size:14px;color:#7a5a3f}
+.vv-bag-gallery,.vv-add-manual{justify-self:start;min-height:40px}
+.vv-bag-panel{padding:12px;border:1.5px solid #e3d3c1;border-radius:16px;background:#fff}
+.vv-bag-panel p{margin:0}
+.vv-bag-photos{list-style:none;margin:4px 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.vv-bag-photos li{position:relative;aspect-ratio:3/4;border:1px solid #e3d3c1;border-radius:12px;overflow:hidden;background:#f6f1ea}
+.vv-bag-photos img{width:100%;height:100%;object-fit:cover;display:block}
+.vv-bag-photos.is-small li{aspect-ratio:1}
+.inpaw-app .vv-bag-photos .vv-time-remove{position:absolute;top:2px;right:2px;width:36px;height:36px;min-height:36px;background:#fffd;border-radius:999px}
+.vv-bag-more{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.vv-bag-wait{display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:center;padding:12px;border:1.5px dashed #d99a5f;border-radius:16px;background:#fdf0e2}
+.vv-bag-wait img{width:72px;height:72px;object-fit:cover;border-radius:10px}
+.vv-bag-wait p{margin:0}
+.vv-bag-wait strong{display:block}
+.vv-bag-wait button{grid-column:1/-1;justify-self:start}
+.vv-bag-compare{border:1.5px solid #e3d3c1;border-radius:14px;padding:8px 12px;background:#fff}
+.vv-bag-compare summary{min-height:32px;line-height:32px;font-weight:600}
+.vv-bag-compare img{width:100%;border-radius:10px;margin-top:6px}
+.vv-med.is-bag{border-color:#d99a5f!important}
+.vv-med.is-bag.is-reviewed{border-color:#8fb59a!important}
+.vv-bag-badge{margin-left:8px;padding:2px 8px;border-radius:999px;background:#fdf0e2;color:#8a4a24;font-size:13px;font-weight:600}
+.vv-med.is-reviewed .vv-bag-badge{background:#e6f1e8;color:#3f6b4a}
+.vv-bag-check{display:flex;gap:10px;align-items:center;min-height:48px;padding:6px 10px;margin:6px 0;border:1.5px solid #e3d3c1;border-radius:12px;background:#fffaf3;font-weight:600}
+.vv-bag-check input{width:22px;height:22px}
+.inpaw-app .vv-bag-resume{display:grid!important;gap:2px;width:100%;margin-top:10px;padding:12px 14px!important;border:1.5px solid #d99a5f!important;border-radius:14px!important;background:#fdf0e2!important;text-align:left;font:inherit;color:#4a2f1c!important}
+:where(html[data-theme="dark"]) :is(.vv-bag-panel,.vv-bag-compare,.vv-bag-check){background:#2a2825;border-color:#5a5047;color:#f3ece3}
+:where(html[data-theme="dark"]) .inpaw-app :is(.vv-bag-card,.vv-bag-resume){background:#3d2f23!important;color:#f3ece3!important}
+:where(html[data-theme="dark"]) .vv-bag-wait{background:#3d2f23;color:#f3ece3}
+html[data-theme="dark"] .vv-bag-card span{color:#e0bf9c}
+@media (prefers-color-scheme:dark){
+  :where(html:not([data-theme="light"])) :is(.vv-bag-panel,.vv-bag-compare,.vv-bag-check){background:#2a2825;border-color:#5a5047;color:#f3ece3}
+  :where(html:not([data-theme="light"])) .inpaw-app :is(.vv-bag-card,.vv-bag-resume){background:#3d2f23!important;color:#f3ece3!important}
+  :where(html:not([data-theme="light"])) .vv-bag-wait{background:#3d2f23;color:#f3ece3}
+  html:not([data-theme="light"]) .vv-bag-card span{color:#e0bf9c}
+}
+/* 13. 看懂報告移到照護分頁（2026-11-13）：次要入口，和其他卡片同一種框 */
+.care-report-link{display:grid;gap:2px;padding:12px 16px;border:1.5px solid #e3d3c1;border-radius:16px;background:#fffaf3;color:inherit;text-decoration:none}
+.care-report-link span{font-size:14px;color:#6f6458}
+:where(html[data-theme="dark"]) .care-report-link{background:#2a2825;border-color:#5a5047;color:#f3ece3}
+:where(html[data-theme="dark"]) .care-report-link span{color:#cdbfae}
+@media (prefers-color-scheme:dark){:where(html:not([data-theme="light"])) .care-report-link{background:#2a2825;border-color:#5a5047;color:#f3ece3}:where(html:not([data-theme="light"])) .care-report-link span{color:#cdbfae}}
+/* 14. 全部提醒的篩選（Ian 2026-11-13：回診那顆沒排好）：四顆等寬、每顆都有框，選中沿用第 5 段樣式 */
+.inpaw-app .care-filters{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:0!important;margin:16px 0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+.inpaw-app .care-filters button{min-width:0;min-height:44px;padding:0 4px!important;border:1.5px solid #e3d3c1!important;border-radius:999px!important;background:#fffaf3!important;color:#4a3a2c!important;white-space:nowrap;font-size:15px}
+:where(html[data-theme="dark"]) .inpaw-app .care-filters button:not(.chosen){background:#2a2825!important;border-color:#5a5047!important;color:#f3ece3!important}
+@media (prefers-color-scheme:dark){:where(html:not([data-theme="light"])) .inpaw-app .care-filters button:not(.chosen){background:#2a2825!important;border-color:#5a5047!important;color:#f3ece3!important}}
+/* 15. 首頁改版（Ian 2026-11-13「首頁好看嗎 → 一起改」）
+   ① 毛孩當主角：大照片＋名字＋今天最要緊的一件照護；② 時間表攤平：一張卡裡用細線分隔，只有快到期／今天／過期的那列有底色和框；
+   ③ 快記圖示同一個顏色；④ 「更多照護」做成和其他卡片一樣的列。 */
+.today-pet-hero{display:grid;grid-template-columns:72px minmax(0,1fr);align-items:center;gap:14px;margin:6px 0 14px}
+.inpaw-app .today-pet-photo{width:72px;height:72px;min-height:72px;padding:0!important;border:2.5px solid #e9cfae!important;border-radius:50%!important;overflow:hidden;background:#f6ece0!important;box-shadow:0 4px 12px #8c4d2114!important}
+.today-pet-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.today-pet-avatar{position:relative;width:72px;height:72px}
+.inpaw-app .today-pet-camera{position:absolute;right:-8px;bottom:-8px;width:44px;height:44px;min-width:44px;min-height:44px;padding:0!important;display:grid!important;place-items:center;border:2px solid #fffaf3!important;border-radius:50%!important;background:#a85b32!important;color:#fff!important;box-shadow:0 2px 6px #00000026!important}
+:where(html[data-theme="dark"]) .inpaw-app .today-pet-camera{background:#d99a5f!important;color:#2a1a0e!important;border-color:#1f1d1b!important}
+.today-pet-color{display:block;width:100%;height:100%}
+.today-pet-text{min-width:0}
+.inpaw-app .today-pet-name{display:inline-flex!important;align-items:baseline;gap:6px;min-height:40px;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;color:#3a2f27!important;font:inherit}
+.today-pet-name strong{display:block;font-size:28px;line-height:1.15;letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.inpaw-app .today-pet-name{max-width:100%;min-width:0}
+.today-pet-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.today-pet-name{align-items:center!important;gap:10px!important}
+.inpaw-app .today-pet-switch{display:inline-flex!important;align-items:center;gap:2px;flex:none;min-height:40px;padding:0 12px 0 14px!important;border:1.5px solid #e3d3c1!important;border-radius:999px!important;background:#fffaf3!important;color:#8a4a24!important;font-size:14px;font-weight:600;box-shadow:none!important}
+:where(html[data-theme="dark"]) .inpaw-app .today-pet-switch{background:#2a2825!important;border-color:#5a5047!important;color:#e0bf9c!important}
+@media (prefers-color-scheme:dark){:where(html:not([data-theme="light"])) .inpaw-app .today-pet-switch{background:#2a2825!important;border-color:#5a5047!important;color:#e0bf9c!important}}
+.today-pet-status{margin:2px 0 0;font-size:15px;line-height:1.45;color:#6f6458}
+.today-pet-hero.is-urgent .today-pet-status{color:#9b3e1f;font-weight:700}
+.inpaw-app .today-pet-hero .today-family-link{min-height:40px;padding:0 14px!important;border:1.5px solid #e3d3c1!important;border-radius:999px!important;background:#fffaf3!important;color:#6b3d1f!important;font-size:14px}
+.care-timeline-list:not(.care-timeline-meds){gap:0!important}
+.care-timeline-row{background:transparent;border-radius:0;border:0;border-bottom:1px solid #eadccc;padding:12px 4px}
+/* Only neutral separator rows may omit their last divider; due cards keep all four edges. */
+.care-timeline-list:not(.care-timeline-meds)>.care-timeline-row:last-child:not(.is-overdue):not(.is-due):not(.is-soon){border-bottom:0}
+.care-timeline-row:is(.is-overdue,.is-due,.is-soon){border-radius:14px;border:1.5px solid;margin:4px 0;padding:12px}
+.care-timeline-row.is-overdue{border-color:#b8442b}
+.care-timeline-row:is(.is-due,.is-soon){border-color:#b6652f}
+:where(html[data-theme="dark"]) .care-timeline-row:not(.is-overdue):not(.is-due):not(.is-soon):not(.is-med){background:transparent;border-bottom-color:#3d3833}
+@media (prefers-color-scheme:dark){:where(html:not([data-theme="light"])) .care-timeline-row:not(.is-overdue):not(.is-due):not(.is-soon):not(.is-med){background:transparent;border-bottom-color:#3d3833}}
+.inpaw-app .today-quick-actions img{filter:brightness(0) saturate(100%) invert(30%) sepia(36%) saturate(900%) hue-rotate(345deg) brightness(90%)!important}
+html[data-theme="dark"] body .inpaw-app .today-quick-actions img{filter:brightness(0) saturate(100%) invert(78%) sepia(26%) saturate(560%) hue-rotate(335deg) brightness(98%)!important}
+@media (prefers-color-scheme:dark){html:not([data-theme="light"]) body .inpaw-app .today-quick-actions img{filter:brightness(0) saturate(100%) invert(78%) sepia(26%) saturate(560%) hue-rotate(335deg) brightness(98%)!important}}
+.inpaw-app .today-more{margin:14px 0;border:1.5px solid #e3d3c1;border-radius:18px;background:#fffaf3;overflow:hidden}
+.inpaw-app .today-more>summary{display:flex;align-items:center;justify-content:space-between;min-height:56px;padding:0 18px!important;list-style:none;font-size:16px;font-weight:600;color:#4a3a2c}
+.today-more>summary::-webkit-details-marker{display:none}
+.today-more>summary::after{content:'›';font-size:22px;color:#8a7d70;transition:transform .15s}
+.today-more[open]>summary::after{transform:rotate(90deg)}
+.today-more[open]>:not(summary){margin-left:12px;margin-right:12px}
+.today-more .health-disclaimer{margin:8px 12px 14px}
+:where(html[data-theme="dark"]) .inpaw-app .today-more{background:#2a2825;border-color:#5a5047}
+:where(html[data-theme="dark"]) .inpaw-app .today-more>summary{color:#f3ece3}
+:where(html[data-theme="dark"]) .today-pet-status{color:#cdbfae}
+:where(html[data-theme="dark"]) .inpaw-app .today-pet-name{color:#f3ece3!important}
+:where(html[data-theme="dark"]) .inpaw-app .today-pet-hero .today-family-link{background:#2a2825!important;border-color:#5a5047!important;color:#f3ece3!important}
+@media (prefers-color-scheme:dark){
+  :where(html:not([data-theme="light"])) .inpaw-app .today-more{background:#2a2825;border-color:#5a5047}
+  :where(html:not([data-theme="light"])) .inpaw-app .today-more>summary{color:#f3ece3}
+  :where(html:not([data-theme="light"])) .today-pet-status{color:#cdbfae}
+  :where(html:not([data-theme="light"])) .inpaw-app .today-pet-name{color:#f3ece3!important}
+}
+/* 16. 第二輪審查（2026-11-13）：看診摘要的急症警示原本是左邊粗色條 → 四邊一樣粗的框。 */
+.inpaw-app .ss158-safety{border:1.5px solid #d9b08c!important;border-left-width:1.5px!important;border-radius:12px}
+:where(html[data-theme="dark"]) .inpaw-app .ss158-safety{border-color:#a7907b!important}
+dialog.vv-page .vv-leave{position:sticky;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:3;box-shadow:0 6px 20px #0000002e}
+.care-timeline-status span{display:block;margin-top:2px;font-size:13px;color:#6f6458}
+:where(html[data-theme="dark"]) .care-timeline-status span{color:#cdbfae}
+/* 17. 第二輪審查介面（2026-11-13） */
+/* 時間表：只有今天與過期加框；快到期的用字色提示，不加框 */
+.care-timeline-row.is-soon{border:0!important;border-bottom:1px solid #eadccc!important;border-radius:0!important;background:transparent!important;margin:0!important;padding:12px 4px!important}
+.care-timeline-row.is-soon .care-timeline-text span{color:#9a5426;font-weight:600}
+:where(html[data-theme="dark"]) .care-timeline-row.is-soon{border-bottom-color:#3d3833!important}
+:where(html[data-theme="dark"]) .care-timeline-row.is-soon .care-timeline-text span{color:#e0bf9c}
+/* 記一筆、照護觀察裡的主按鈕也用主色 */
+html :is(.cj-workspace,.cj-dialog) .cj-primary:not(:disabled){background:#a85b32!important;color:#fff!important;border-color:#a85b32!important}
+html .fish-game .fish-primary:not(:disabled){background:#a85b32!important;color:#fff!important;border-color:#a85b32!important}
+html[data-theme="dark"] :is(.cj-workspace,.cj-dialog) .cj-primary:not(:disabled),html[data-theme="dark"] .fish-game .fish-primary:not(:disabled){background:#d99a5f!important;color:#2a1a0e!important;border-color:#d99a5f!important}
+/* 摘要整合：AI 整理是主要動作，免費與訂閱共用同一個入口。 */
+.inpaw-app .ss157-cloud{background:#a85b32!important;color:#fff!important;border:1.5px solid #a85b32!important;box-shadow:none!important;font-weight:700}
+.inpaw-app .ss157-cloud:disabled{opacity:.55}
+html[data-theme="dark"] .inpaw-app .ss157-cloud{background:#d99a5f!important;color:#2a1a0e!important;border-color:#d99a5f!important}
+/* 毛孩頁清單與箭頭：深藍改成棕色 */
+.inpaw-app .menu-row img,.inpaw-app .health-list img{filter:brightness(0) saturate(100%) invert(30%) sepia(36%) saturate(900%) hue-rotate(345deg) brightness(90%)}
+.inpaw-app .menu-row svg{color:#8a4a24}
+html[data-theme="dark"] .inpaw-app .menu-row img{filter:brightness(0) saturate(100%) invert(78%) sepia(26%) saturate(560%) hue-rotate(335deg) brightness(98%)!important}
+html[data-theme="dark"] .inpaw-app .menu-row svg{color:#e0bf9c}
+/* 排回診日、填下次日期的日期欄：和看診頁一樣的圓角框 */
+.inpaw-app .care-next-date input[type=date]{min-height:48px;padding:0 12px;border:1.5px solid #d9c8b7!important;border-radius:12px!important;background:#fff;color:inherit;font:inherit;width:100%}
+:where(html[data-theme="dark"]) .inpaw-app .care-next-date input[type=date]{background:#2a2825;border-color:#5a5047!important}
+.vv-follow-quick{scroll-margin-bottom:140px}
+/* 深色：近 7／14 天的選中、看診摘要卡底色 */
+html[data-theme="dark"] .inpaw-app .ss179-presets button[aria-pressed=true]{border:1.5px solid #d99a5f!important;background:#4a3524!important;color:#ffe9d2!important;font-weight:600}
+html[data-theme="dark"] .inpaw-app .today-summary-card{background:#2a2825!important;border-color:#5a5047!important}
+/* 18. 做完了一按就記（Ian 2026-11-13 決定）與全家總覽可直接操作 */
+.care-done-toast{flex:0 0 100%;display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:6px;padding:8px 12px;border:1.5px solid #8fb59a;border-radius:12px;background:#f1f7f2;font-size:14px}
+.care-done-toast span{flex:1 1 auto;color:#3f6b4a;font-weight:600}
+.care-done-toast label{flex:0 0 100%;display:grid;gap:4px}
+.care-done-toast input[type=date]{min-height:44px;padding:0 10px;border:1.5px solid #d9c8b7;border-radius:12px;background:#fff;font:inherit}
+:where(html[data-theme="dark"]) .care-done-toast{background:#25332a;border-color:#8fb59a}
+:where(html[data-theme="dark"]) .care-done-toast span{color:#d7eadc}
+.family-care-next li{flex-wrap:wrap;align-items:center}
+.inpaw-app .family-care-done{min-height:40px;padding:0 14px!important;border:1.5px solid #d99a5f!important;border-radius:999px!important;background:#fffaf3!important;color:#8a4a24!important;font-size:14px;font-weight:600}
+.family-med-slots{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.family-med-slots .vv-slot{min-height:40px;padding:0 12px}
+/* 19. 「記一筆」統一（Ian 2026-11-13）：記一筆對話框的類別格、語音快記連結，和記一餐表單上方那組同樣子 */
+.cj-workspace .cj-entry-pick{display:grid;gap:4px;margin:12px 0 4px}
+.cj-workspace .cj-entry-pick .entry-kind-tabs{margin:0}
+.cj-workspace .cj-entry-pick .entry-kind-tabs button{display:flex;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:52px;padding:6px 2px!important;border:1px solid transparent!important;border-radius:12px!important;background:transparent!important;box-shadow:none!important;color:#625348!important;font:inherit;font-size:15px;font-weight:600;white-space:normal}
+.cj-workspace .cj-entry-pick .entry-kind-tabs button:active{background:#fffaf2!important;border-color:#b98158!important}
+.cj-workspace .cj-entry-pick .entry-kind-tabs button>span{min-width:0;line-height:1.35;overflow-wrap:anywhere}
+.cj-workspace .cj-entry-pick .entry-voice-shortcut{justify-self:end;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 6px!important;border:0!important;background:transparent!important;box-shadow:none!important;color:#a85b32!important;font:inherit;font-size:16px;font-weight:700}
+:where(html[data-theme="dark"]) .cj-workspace .cj-entry-pick .entry-kind-tabs button{color:#f3ece3!important}
+:where(html[data-theme="dark"]) .cj-workspace .cj-entry-pick .entry-voice-shortcut{color:#d99a5f!important}
+:where(html[data-theme="dark"]) .cj-workspace .cj-entry-pick .entry-voice-shortcut img{filter:invert(.85)}
+/* 20. 切換毛孩統一：各分頁頂部和首頁同一組按鈕 */
+.pet-switch-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin:2px 0 14px}
+.pet-switch-row .pet-switch-who{display:flex;align-items:center;gap:10px;min-width:0;flex:1 1 140px}
+.pet-switch-row .pet-switch-avatar{flex:none;width:40px;height:40px;border-radius:50%;object-fit:cover;border:1.5px solid #e3d3c1;background:#fffaf3}
+.pet-switch-row .pet-switch-avatar.is-all{display:grid;place-items:center;color:#8a4a24}
+.pet-switch-row .pet-switch-avatar.is-all svg{width:22px;height:22px}
+.pet-switch-row strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:18px;color:#3f2a1d}
+.pet-switch-row .today-pet-actions{margin-top:0;flex:none}
+.inpaw-app .pet-switch-row .today-family-link{min-height:40px;padding:0 14px!important;border:1.5px solid #e3d3c1!important;border-radius:999px!important;background:#fffaf3!important;color:#6b3d1f!important;font-size:14px;box-shadow:none!important}
+:where(html[data-theme="dark"]) .pet-switch-row strong{color:#f3ece3}
+:where(html[data-theme="dark"]) .pet-switch-row .pet-switch-avatar{border-color:#5a5047;background:#2a2825;color:#e0bf9c}
+:where(html[data-theme="dark"]) .inpaw-app .pet-switch-row .today-family-link{background:#2a2825!important;border-color:#5a5047!important;color:#f3ece3!important}
+/* 21. 第二輪 P2 收尾：切換毛孩清單的卡片排版、封存字色；全家總覽卡片按鈕框線、照護觀察標題間距；看診頁相機圖示 */
+.mc-cat-manage-row .mc-cat-card{display:grid!important;grid-template-columns:56px minmax(0,1fr);grid-template-rows:auto auto;column-gap:12px;row-gap:6px;align-items:center;text-align:left;padding:12px 14px!important}
+.mc-cat-manage-row .mc-cat-card .mc-avatar{position:static!important;grid-row:1/span 2;width:56px!important;height:56px!important;margin:0!important;border-radius:50%;object-fit:cover}
+.mc-cat-manage-row .mc-cat-card .mc-cat-info{grid-column:2;display:grid;gap:2px;min-width:0;margin:0!important;padding:0!important;position:static!important}
+.mc-cat-manage-row .mc-cat-card .mc-cat-info strong{display:flex;align-items:center;gap:6px}
+.mc-cat-manage-row .mc-cat-card .mc-color-dot{position:static!important;flex:none;display:inline-block;width:10px!important;height:10px!important;margin:0!important;border-radius:50%}
+.mc-cat-manage-row .mc-cat-card .mc-selected{grid-column:2;justify-self:start;position:static!important;margin:0!important}
+.mc-dialog .mc-archive-action,.inpaw-app .mc-archive-action{color:#8a4a24!important}
+.mc-dialog .mc-archive-action:disabled,.inpaw-app .mc-archive-action:disabled{color:#a8998a!important;opacity:1}
+:where(html[data-theme="dark"]) .mc-archive-action{color:#d99a5f!important}
+:where(html[data-theme="dark"]) .mc-archive-action:disabled{color:#8f857b!important}
+.inpaw-app .family-card-add{border:1.5px solid #d99a5f!important;background:#fffaf3!important;color:#8a4a24!important;box-shadow:none!important}
+:where(html[data-theme="dark"]) .inpaw-app .family-card-add{border-color:#a8774f!important;background:#2a2825!important;color:#e0bf9c!important}
+.care-family-journeys{margin-top:22px}
+.care-family-journeys>h2{margin:0 0 10px}
+.vv-bag-card strong{display:flex;align-items:center;gap:8px}
+.vv-bag-card .vv-icon{flex:none;color:#a85b32}
+:where(html[data-theme="dark"]) .vv-bag-card .vv-icon{color:#d99a5f}
+.vv-bag-compare.is-inline{margin:4px 0 8px}
+.vv-bag-compare.is-inline img{max-height:240px;object-fit:contain}
+/* 22. 深色模式 Logo 用淺字版（不再襯米色方底）；摘要「用手機 AI 潤飾」看得出可以點開；食品分類篩選有框、不露捲軸；陪玩收回品牌色 */
+html[data-theme=dark] img[src^="/xbb-site/app/assets/brand/logo.svg"],html[data-theme=dark] .today-original-brand{content:url(/xbb-site/app/assets/brand/logo-dark.svg);background:none!important;padding:0!important;border-radius:0!important}
+@media (prefers-color-scheme:dark){html:not([data-theme="light"]) img[src^="/xbb-site/app/assets/brand/logo.svg"],html:not([data-theme="light"]) .today-original-brand{content:url(/xbb-site/app/assets/brand/logo-dark.svg);background:none!important;padding:0!important;border-radius:0!important}}
+.ss179-phone>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px;padding:0 14px;border:1.5px solid #e3d3c1;border-radius:14px;background:#fffaf3;cursor:pointer;font-weight:700}
+.ss179-phone>summary::-webkit-details-marker{display:none}
+.ss179-phone>summary::after{content:'展開 ▾';flex:none;font-size:13px;font-weight:600;color:#8a4a24}
+.ss179-phone[open]>summary::after{content:'收起 ▴'}
+.ss179-phone[open]>summary{margin-bottom:8px}
+:where(html[data-theme="dark"]) .ss179-phone>summary{background:#2a2825;border-color:#5a5047}
+:where(html[data-theme="dark"]) .ss179-phone>summary::after{color:#d99a5f}
+/* 陪玩：「幫牠設計玩法」綠卡、聲音探索紫色圖示 → 品牌米棕 */
+html body .inpaw-app .ih-lab-card{background:#fffaf3!important;border:1.5px solid #e3d3c1!important;color:#3f2a1d!important;box-shadow:none!important}
+html body .inpaw-app .ih-lab-card *{color:inherit}
+html body .inpaw-app .ih-lab-card small,html body .inpaw-app .ih-lab-card span:not(.ih-feature-art){color:#6b5546!important}
+/* 2026-11-17 Ian「設計玩法圖示有點醜」：拿掉咖啡實心圓（像甜甜圈包小方塊），直接放大顯示彩色可愛圖示；設計玩法用專屬「路線＋小魚」圖示（火花已用於設定AI／Pro預覽、逗貓棒用於小魚卡與陪玩分頁，不重複） */
+html body .inpaw-app .ih-hub .ih-lab-card{--play-action-icon:url('./cute-actions/play-design.svg')}
+html body .inpaw-app .ih-hub :is(.ih-lab-card,.ih-sound-card) .ih-feature-art{background:transparent!important;border:0!important;box-shadow:none!important;width:52px!important;height:52px!important;flex:0 0 52px}
+html body .inpaw-app .ih-hub :is(.ih-lab-card,.ih-sound-card) .ih-feature-art::after{width:52px!important;height:52px!important;filter:drop-shadow(0 2px 3px #7a503826)}
+html body .inpaw-app .ih-hub .ih-hub-cards .ih-feature-art,html body .inpaw-app .ih-hub .ih-hub-cards .ih-feature-art::after{width:34px!important;height:34px!important;flex-basis:34px}
+html body .inpaw-app .ih-lab-card .ih-feature-art img{filter:none}
+html body .inpaw-app .ih-sound-card .ih-feature-body small,html body .inpaw-app .ih-sound-card .ih-feature-body b{color:#8a4a24!important}
+html body .inpaw-app .ih-sound-card .ih-feature-body b{background:#fffaf3!important}
+html[data-theme=dark] body .inpaw-app .ih-lab-card{background:#2a2825!important;border-color:#5a5047!important;color:#f3ece3!important}
+html[data-theme=dark] body .inpaw-app .ih-lab-card small,html[data-theme=dark] body .inpaw-app .ih-lab-card span:not(.ih-feature-art){color:#cfc3b6!important}
+html[data-theme=dark] body .inpaw-app :is(.ih-lab-card,.ih-sound-card) .ih-feature-art{background:transparent!important}
+html[data-theme=dark] body .inpaw-app .ih-sound-card .ih-feature-body small,html[data-theme=dark] body .inpaw-app .ih-sound-card .ih-feature-body b{color:#e0bf9c!important}
+html[data-theme=dark] body .inpaw-app .ih-sound-card .ih-feature-body b{background:#2a2825!important}
+/* 食品分類篩選：沒選中的也有框、不露灰色捲軸 */
+.inpaw-app .h-food-category-track{scrollbar-width:none}
+.inpaw-app .h-food-category-track::-webkit-scrollbar{display:none}
+.inpaw-app .h-food-category-track .chip:not(.active){border:1.5px solid #e3d3c1!important;background:#fffaf3!important;color:#6b3d1f!important}
+:where(html[data-theme="dark"]) .inpaw-app .h-food-category-track .chip:not(.active){border-color:#5a5047!important;background:#2a2825!important;color:#e0d4c6!important}
+/* 23. 照顧時間表「＋ 新增提醒」：整列虛線框，和看診兩顆分開；狀態列說明一項響兩次 */
+.inpaw-app .care-reminder-add{display:block;width:100%;min-height:46px;margin-top:8px;border:1.5px dashed #d9b48f!important;border-radius:14px!important;background:transparent!important;color:#8a4a24!important;font:inherit;font-weight:600;box-shadow:none!important}
+:where(html[data-theme="dark"]) .inpaw-app .care-reminder-add{border-color:#8a6a4f!important;color:#e0bf9c!important}
+.care-timeline-status span{display:block;font-weight:400}
+/* 24. 新增提醒：先選要提醒什麼（四顆等寬），提醒時間也是看得到的按鈕 */
+.reminder-quick-fields.is-new{display:grid;gap:20px;margin-bottom:20px}
+.reminder-quick-fields.is-new .field{margin:0;display:grid;gap:8px}
+.reminder-quick-fields.is-new .field>span{font-weight:700}
+.reminder-quick-fields.is-new .reminder-help{margin:0;font-size:13px;line-height:1.6;color:#6b5546}
+.reminder-quick-fields.is-new details{padding:12px 14px;border:1.5px solid #e3d3c1;border-radius:14px}
+.reminder-quick-fields.is-new summary{cursor:pointer;min-height:28px;line-height:28px}
+.reminder-quick-fields.is-new .reminder-more{display:grid;gap:16px;padding-top:14px}
+.rq-chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(64px,1fr));gap:8px}
+.inpaw-app .rq-chips button{min-height:48px;padding:0 6px!important;border:1.5px solid #e3d3c1!important;border-radius:14px!important;background:#fffaf3!important;color:#5a3a24!important;font:inherit;font-size:16px;font-weight:600;box-shadow:none!important}
+.inpaw-app .rq-chips button[aria-pressed=true]{border-color:#b6652f!important;background:#f8e9d8!important;color:#8a4a24!important;font-weight:800}
+:where(html[data-theme="dark"]) .reminder-quick-fields.is-new details{border-color:#5a5047}
+:where(html[data-theme="dark"]) .reminder-quick-fields.is-new .reminder-help{color:#cfc3b6}
+:where(html[data-theme="dark"]) .inpaw-app .rq-chips button{border-color:#5a5047!important;background:#2a2825!important;color:#f3ece3!important}
+:where(html[data-theme="dark"]) .inpaw-app .rq-chips button[aria-pressed=true]{border-color:#d99a5f!important;background:#4a3524!important;color:#ffe4c7!important}
+/* 鍵盤操作時的焦點框維持清楚，但不和選中框疊成雙框 */
+.inpaw-app :is([aria-pressed=true],[aria-current=page],[aria-selected=true]):focus-visible{outline:2px solid #597e7b;outline-offset:3px}
+/* 設定首頁的帳號列（Ian 2026-11-13）：和下面「開啟時先看」卡片隔開 */
+.inpaw-app .pet-settings .ps-account-shortcut{margin:0 0 16px}
+/* 帳號名稱（常是 Email）：只在 @ 後的 <wbr> 換行，真的放不下才斷字 */
+.inpaw-app .pet-settings :is(.ps-account,.ps-account-shortcut) strong{overflow-wrap:break-word;word-break:normal;line-break:auto}
+
+/* ── 底部導覽：液態玻璃（Ian 2026-11-13）──────────────────────────────
+   底色調到半透明，讓後面的內容透過來。用較強的模糊和飽和度做出折射感，
+   邊緣補一圈反光、上緣補一道高光，選中框改成透亮的鏡片。
+   只改外觀（顏色、陰影、模糊），不動位置、大小、拖曳與動畫。
+   系統開「減少透明度」時，退回不透明底色（見最後的 media 區塊）。 */
+html body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs{
+ background-color:rgba(255,251,245,.5)!important;
+ background-image:radial-gradient(140% 130% at 50% -35%,rgba(255,255,255,.6),rgba(255,255,255,0) 62%)!important;
+ border:1px solid rgba(255,255,255,.72)!important;
+ box-shadow:inset 0 1px .5px rgba(255,255,255,.95),inset 0 -1px 1px rgba(255,255,255,.4),inset 1px 0 1px rgba(255,255,255,.28),inset -1px 0 1px rgba(255,255,255,.28),0 10px 30px rgba(73,52,32,.18),0 2px 6px rgba(73,52,32,.08)!important;
+ -webkit-backdrop-filter:blur(14px) saturate(1.9) brightness(1.04)!important;
+ backdrop-filter:blur(14px) saturate(1.9) brightness(1.04)!important;
+}
+html body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs.has-indicator::before{
+ background:linear-gradient(160deg,rgba(255,255,255,.88),rgba(255,255,255,.46) 55%,rgba(255,234,214,.58))!important;
+ border:1px solid rgba(255,255,255,.92)!important;
+ box-shadow:inset 0 1px 1px #fff,inset 0 -1.5px 3px rgba(168,91,50,.13),0 3px 10px rgba(73,52,32,.16)!important;
+ -webkit-backdrop-filter:blur(4px) saturate(1.8)!important;
+ backdrop-filter:blur(4px) saturate(1.8)!important;
+}
+html body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs.is-sliding::before{   /* 拖曳中：鏡片更亮、浮起來一點 */
+ background:radial-gradient(ellipse at 30% 12%,rgba(255,255,255,.95),rgba(255,255,255,0) 68%),linear-gradient(160deg,rgba(255,255,255,.6),rgba(255,240,226,.42))!important;
+ box-shadow:inset 0 1px 1px #fff,inset 0 -2px 4px rgba(168,91,50,.16),0 6px 16px rgba(73,52,32,.22)!important;
+}
+html[data-theme="dark"] body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs{
+ background-color:rgba(44,39,35,.52)!important;
+ background-image:radial-gradient(140% 130% at 50% -35%,rgba(255,255,255,.12),rgba(255,255,255,0) 62%)!important;
+ border:1px solid rgba(255,255,255,.18)!important;
+ box-shadow:inset 0 1px .5px rgba(255,255,255,.3),inset 0 -1px 1px rgba(255,255,255,.07),inset 1px 0 1px rgba(255,255,255,.08),inset -1px 0 1px rgba(255,255,255,.08),0 10px 30px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.3)!important;
+ -webkit-backdrop-filter:blur(14px) saturate(1.6) brightness(.9)!important;
+ backdrop-filter:blur(14px) saturate(1.6) brightness(.9)!important;
+}
+html[data-theme="dark"] body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs.has-indicator::before{
+ background:linear-gradient(160deg,rgba(255,255,255,.26),rgba(255,255,255,.09) 58%,rgba(217,154,95,.18))!important;
+ border:1px solid rgba(255,255,255,.3)!important;
+ box-shadow:inset 0 1px 1px rgba(255,255,255,.38),inset 0 -1.5px 3px rgba(0,0,0,.2),0 3px 10px rgba(0,0,0,.4)!important;
+}
+html[data-theme="dark"] body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs.is-sliding::before{
+ background:radial-gradient(ellipse at 30% 12%,rgba(255,255,255,.34),rgba(255,255,255,0) 68%),linear-gradient(160deg,rgba(255,255,255,.18),rgba(217,154,95,.16))!important;
+ box-shadow:inset 0 1px 1px rgba(255,255,255,.42),0 6px 16px rgba(0,0,0,.5)!important;
+}
+/* 玻璃後面可能是鮮豔內容：分頁文字加一層很淡的光暈，保持可讀 */
+html body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs .shell-tab{text-shadow:0 0 6px rgba(255,251,245,.9),0 1px 1px rgba(255,255,255,.7)}
+html[data-theme="dark"] body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs .shell-tab{text-shadow:0 0 6px rgba(20,17,15,.85),0 1px 1px rgba(0,0,0,.6)}
+/* 退回不透明：減少透明度、高對比、或不支援模糊時（沿用原本的無障礙行為） */
+@media (prefers-contrast:more){
+ html body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs{background:#fff8ec!important;border-color:#6d6054!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+ html[data-theme="dark"] body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs{background:#322f2c!important;border-color:#8b7e71!important}
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ html body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs{background:#fff8ee!important}
+ html[data-theme="dark"] body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs{background:#322f2c!important}
+}
+@media (prefers-reduced-transparency:reduce){
+ html body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs{background:#fffaf4!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+ html body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs.has-indicator::before{background:#f1e6da!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+ html[data-theme="dark"] body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs{background:#302a25!important}
+ html[data-theme="dark"] body .inpaw-app .shell-nav-dock .shell-bottom-tabs.shell-bottom-tabs.has-indicator::before{background:#4a3f36!important}
+}
+
+/* 紀錄分頁標題列：「＋ 新增食品卡」補回（原本在已移除的餵食分頁，Ian 2026-11-13），和「＋ 記一筆」並排；窄螢幕自動換行 */
+.inpaw-app .records-heading{flex-wrap:wrap;row-gap:8px}
+.inpaw-app .records-heading-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-left:auto}
+.inpaw-app .records-heading-actions .compact-action{width:auto;margin:0;white-space:nowrap}
+
+/* 全 App 驗收第二輪：窄版快記留白、食品主動作避開導覽、毛孩資料縮成身分卡。 */
+@media(max-width:360px){
+ .inpaw-app .today-quick-actions.is-compact button{flex:1 1 calc(50% - 6px);white-space:nowrap}
+}
+.inpaw-app .food-entry-save{position:sticky;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:3;box-shadow:0 0 0 8px var(--theme-canvas,#faf6f0),0 8px 18px #3a2f2720!important}
+/* 鍵盤縮小可用高度時回到文件流，讓欄位能完整捲到視窗內。 */
+@media(max-height:600px){.inpaw-app .food-entry-save{position:static}}
+.inpaw-app.ij-page-profile .profile{display:grid!important;grid-template-columns:88px minmax(0,1fr)!important;column-gap:16px;row-gap:4px;text-align:left!important;align-items:center;padding:16px!important;margin:12px 0 20px!important}
+.inpaw-app.ij-page-profile .profile .native-profile-photo-button{grid-column:1;grid-row:1/5;width:88px!important;min-width:0;padding:0!important;margin:0!important;align-self:center}
+.inpaw-app.ij-page-profile .profile .native-profile-photo-button img{width:80px!important;height:80px!important;margin:4px!important}
+.inpaw-app.ij-page-profile .profile .native-profile-photo-button span{font-size:12px}
+.inpaw-app.ij-page-profile .profile :is(h2,p){grid-column:2;margin:0!important;min-width:0;overflow-wrap:anywhere}
+.inpaw-app.ij-page-profile .profile h2{font-size:24px!important;line-height:1.3}
+.inpaw-app.ij-page-profile .profile p{font-size:13px!important;line-height:1.6}
+.inpaw-app.ij-page-profile .profile p:empty{display:none}
+
+/* 不可有焦點框（Ian 2026-11-13）：程式設焦點的非控制項——設定內容區、紀錄結果列、標題、提示卡、
+   對話框容器——淺色（藍框）與深色（杏色框）都不畫框。按鈕、連結、輸入框、分頁的焦點提示不受影響。 */
+html:root [tabindex]:not(:is(button,a[href],input,select,textarea,summary,[role=button],[role=tab],[role=link],[role=menuitem],[role=menuitemradio],[role=option],[role=switch],[role=checkbox],[role=radio],[role=slider],[role=spinbutton],[contenteditable=true])):is(:focus,:focus-visible){outline:none!important}
+
+/* Ian 2026-11-13 截圖回報（深色）：
+   1. 編輯毛孩資料「公／母」未選時是淺色模式的深咖啡字（#4a3a2c）蓋在深底上，對比 1.5 → 深色改淺字＋卡片底＋看得見的邊框。 */
+html[data-theme="dark"] .inpaw-app .profile-sex-chips button:not([aria-pressed=true]){background:#2d2926!important;border:1px solid #8b7969!important;color:#f3ece3!important}
+/* 2. 公仔「準備照片」的照片框是 <label>，沒給 display 就是 inline，裡面放區塊內容時底色與虛線框只畫出零碎幾段 → 改成區塊。 */
+.partner-print-app .figurine-photo-field .photo-slot,.figurine-photo-field label.photo-slot{display:block}
+/* 3. 底部留白：照護頁自己又加 120px，疊在外層已預留的導覽列空間上；公仔頁沒套到共用預留，退回 170px 預設值
+      → 都改成跟其他分頁一樣的導覽列預留。 */
+.inpaw-app.shell-with-tabs .care-page{padding-bottom:0!important}
+/* 5. 底部確認框（離開未儲存、刪除紀錄、清除資料…共用同一個 bottom-sheet，Ian 2026-11-13「樣式很醜」）：
+      ①離底 48px 是原型模擬機的安全區，真機原生層已處理，露出底下的「儲存紀錄」→ 貼齊底部、安全區改成內距；
+      ②內容多包一層 .sheet-content，內距算兩次，標題跟內文對不齊 → 內層歸零；③固定最小高 260px 留一大片空 → 依內容；
+      ④深色遮罩太淡、把手看不到；淺色底色變數沒定義變透明 → 實色；⑤兩個動作都做成整排按鈕，間距一致。 */
+.inpaw-app .bottom-sheet,.device-screen .bottom-sheet{bottom:0!important;min-height:0!important;border-radius:24px 24px 0 0}
+.bottom-sheet>.sheet-content{padding:2px 20px calc(20px + env(safe-area-inset-bottom,0px))!important;display:grid;gap:12px}
+.bottom-sheet .sheet-header{padding:0 20px 12px!important}
+.bottom-sheet .sheet-title{font-size:19px;line-height:1.4;margin:0}
+.bottom-sheet .sheet-content .sheet-content{padding:0!important;display:grid;gap:12px;overflow:visible}
+.bottom-sheet .sheet-content :is(p,.microcopy){margin:0!important;line-height:1.7}
+.bottom-sheet .sheet-content :is(.primary,.text-btn.centered,.secondary-btn){width:100%!important;min-height:48px;margin:0!important;border-radius:14px;font-size:16px}
+.bottom-sheet .sheet-content .sheet-content>p+:is(.primary,button){margin-top:4px!important}
+.bottom-sheet .sheet-content .text-btn.centered{border:1px solid currentColor!important;background:transparent!important;font-weight:700}
+.sheet-handle{width:40px;height:5px}
+html:not([data-theme="dark"]) .bottom-sheet{background:#fffaf4!important;color:#3d2f24}
+:where(html:not([data-theme="dark"])) .sheet-overlay{background:rgba(40,28,18,.4)!important}
+:where(html[data-theme="dark"]) .sheet-overlay{background:rgba(8,6,4,.58)!important}
+:where(html[data-theme="dark"]) .sheet-handle{background:#7a6858!important}
+:where(html[data-theme="dark"]) .bottom-sheet{box-shadow:0 -1px 0 rgba(255,255,255,.08),0 -18px 48px rgba(0,0,0,.55)!important}
+/* 4. 照片框露出來後淺色同頁也查到：步驟「2 選偏好／3 到萌點3D 訂製」灰字 2.7–2.9、檔案格式小字 3.8 → 加深到可讀。 */
+html:not([data-theme="dark"]) .print-content .print-steps li:not(.active):not([aria-current]),html:not([data-theme="dark"]) .print-content .print-steps li:not(.active):not([aria-current]) span{color:#5c6270}
+html:not([data-theme="dark"]) .print-content .print-card small{color:#565d6b}
+.inpaw-app.shell-with-tabs>.app-scroll .app-content.print-content{padding-bottom:var(--shell-tabs-inset,var(--shell-tabs-fallback,calc(75px + env(safe-area-inset-bottom,0px))))!important}
+/* 6. 記一筆六格一致（Ian 2026-11-13「有的會跳到其他頁面」）：疫苗／驅蟲是另一個表單，原本內文多一個大標題、沒有卡片框，
+      看起來像換了一頁 → 在記一筆分頁裡藏掉重複標題（分頁標題已是「記一筆」），表單套成跟喝水、排泄同款卡片。 */
+.task-sheet-panel .care-quick-fields>h1{display:none}
+.task-sheet-panel .care-quick-fields{margin:6px 0 16px!important;padding:12px 14px 14px;border:1px solid rgba(191,167,140,.4);border-radius:18px;background-image:linear-gradient(135deg,rgba(255,255,255,.66),rgba(255,250,243,.32) 48%,rgba(255,255,255,.5));box-shadow:0 6px 18px rgba(121,84,58,.07);gap:14px}
+html[data-theme="dark"] .task-sheet-panel .care-quick-fields{border-color:#7c6b5e;background-image:linear-gradient(135deg,rgba(51,46,41,.96),rgba(41,38,35,.95));box-shadow:0 5px 18px rgba(0,0,0,.14)}
+.task-sheet-panel .care-quick-fields h2{font-size:15px!important;margin:0 0 8px!important}
+
+/* 原生捲動（Ian 2026-11-14）：觸控／觸控筆交給系統捲動與慣性，跟螢幕更新率（60/90/120Hz）走，
+   iPhone ProMotion 也能 120Hz；打包檔的 JS 拖曳只保留給滑鼠。遊戲區、抽屜把手等自設 touch-action:none 的元素不受影響。 */
+.mobile-scroll{touch-action:pan-y}
+.mobile-carousel{touch-action:pan-x pan-y}
+
+/* A percentage min-height on the content of an auto-height wrapper can retain
+   the previous, taller page in WebKit. Let the definite scroll viewport own
+   the minimum instead, so tabs and collapsed sections can shrink again. */
+.mobile-scroll>.mobile-scroll-content{min-height:100%}
+.mobile-scroll-content>.app-content{min-height:0!important}
+
+/* English labels wrap at spaces, not inside words; keep all five tabs readable. */
+html[lang="en"] .shell-tab-label{white-space:nowrap;overflow-wrap:normal;word-break:normal}
+@media(max-width:600px){
+ html[lang="en"] .inpaw-app .today-quick-actions.is-compact{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+ html[lang="en"] .today-quick-actions.is-compact .today-quick-label{grid-column:1/-1}
+ html[lang="en"] .inpaw-app .today-quick-actions.is-compact button{white-space:normal;min-height:48px!important;padding:8px!important;line-height:1.35}
+ html[lang="en"] .today-quick-actions.is-compact button>span{min-width:0;max-width:100%;white-space:normal;overflow-wrap:normal;word-break:normal}
+ html[lang="en"] .today-quick-actions.is-compact button>img{flex:0 0 16px}
+}
+html[lang="en"] .first-pet-optional-care{margin:14px 0;border:1px solid var(--paw-rim,#b5a58f);border-radius:14px;padding:0 12px}
+html[lang="en"] .first-pet-optional-care>summary{min-height:44px;display:list-item;align-content:center;padding:10px 0;cursor:pointer;line-height:1.5}
+html[lang="en"] .first-pet-optional-care>summary:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+html[lang="en"] .first-pet-optional-care fieldset{margin-top:4px}
+html[lang="en"] .vq-save>button{width:100%;min-height:48px;margin:6px 0}
+html[lang="en"] .inpaw-app .entry-kind-tabs button,
+html[lang="en"] .cj-workspace .cj-entry-pick .entry-kind-tabs button>span{overflow-wrap:normal;word-break:normal;hyphens:none}
+@media(max-width:380px){
+ html[lang="en"] .entry-kind-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ html[lang="en"] .shell-bottom-tabs,
+ html[lang="en"] .shell-nav-dock.is-compact .shell-bottom-tabs{width:100%;max-width:324px}
+ html[lang="en"] .inpaw-app .shell-tab{font-size:12px}
+}
+/* 食品卡簡化（2026-11-16）：清單「⋯」、詳情上方修改／刪除、照片逐張移除、更多收合。 */
+.food-app .food-card-item{display:flex;align-items:stretch;gap:6px}
+.food-app .food-card-item>.food-card-row{flex:1;min-width:0}
+.food-app .food-card-more{flex:0 0 48px;min-height:48px;border:1px solid #e3d3c1;border-radius:14px;background:transparent;color:inherit;font-size:22px;line-height:1}
+.food-card-menu .food-card-menu-actions{display:grid;gap:10px;margin-top:12px}
+.food-card-menu .food-card-menu-actions button{min-height:48px;width:100%}
+.food-card-menu .danger-text{color:#a33a2c}
+.food-app .food-detail-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:10px;align-items:center;margin:10px 0 4px}
+.food-app .food-detail-actions>button{flex:1;min-height:48px}
+.food-app .food-detail-actions .ij-food-delete-section{flex:1;margin:0;padding:0;border:0}
+.food-app .food-detail-actions>button,.food-app .food-detail-actions .danger-link{box-sizing:border-box;height:48px;min-height:48px;font-size:15px;margin:0!important}
+.food-app .food-detail-actions>button,.food-app .food-detail-actions .ij-food-delete-section{flex:1 1 0!important;width:auto!important;max-width:none!important;min-width:0;display:flex}
+.food-app .food-detail-actions .danger-link{font-size:15px!important;justify-content:center;align-items:center}
+.food-app .food-detail-actions>button{justify-content:center;align-items:center}
+/* 新增／修改表單的照片用小縮圖，名稱欄位不會被擠到下面；完整照片到詳情頁看。 */
+.food-app .food-entry-photos .food-source{padding:8px 10px}
+.food-app .food-entry-photos .food-photos{display:flex;flex-wrap:wrap;gap:10px}
+.food-app .food-entry-photos .food-photos>div{width:104px}
+.food-app .food-entry-photos .food-photos>div>img{display:block;width:104px;height:104px;object-fit:cover;border-radius:12px}
+.food-app .food-entry-photos .food-photos details{display:none}
+.food-app .food-entry-photos .food-photo-remove{top:4px;right:4px;min-width:32px;min-height:32px}
+.food-app .food-detail-actions .ij-food-delete-section .danger-link{width:100%;min-height:48px;border:1px solid #e3c5bd;border-radius:14px;background:transparent;color:#a33a2c;text-decoration:none}
+.food-app .food-entry-photos{margin:12px 0}
+.food-app .food-entry-photos .food-file-button{display:flex;align-items:center;justify-content:center;min-height:48px}
+.food-app .food-photos>div{position:relative}
+.food-app .food-photo-remove{position:absolute;top:6px;right:6px;z-index:1;min-width:36px;min-height:36px;padding:0 10px;border:0;border-radius:18px;background:#1f1d1bcc;color:#fff;font-size:18px;line-height:1}
+.food-app .food-photo-remove.is-armed{background:#a33a2c;font-size:13px}
+.food-app .food-more{margin:14px 0}
+.food-app .food-more>summary{min-height:44px;display:flex;align-items:center;cursor:pointer}
+:where(html[data-theme="dark"]) .food-app :is(.food-card-more,.food-detail-actions .danger-link){border-color:#5a5047}
+:where(html[data-theme="dark"]) .food-app .food-detail-actions .danger-link,:where(html[data-theme="dark"]) .food-card-menu .danger-text{color:#f0a493}
+@media(prefers-color-scheme:dark){
+ :where(html:not([data-theme="light"])) .food-app :is(.food-card-more,.food-detail-actions .danger-link){border-color:#5a5047}
+ :where(html:not([data-theme="light"])) .food-app .food-detail-actions .danger-link,:where(html:not([data-theme="light"])) .food-card-menu .danger-text{color:#f0a493}
+}
+/* 食品卡入口整合（2026-11-16）：包裝照片一區兩個選項、毛孩頁張數、記一餐管理連結。 */
+.inpaw-app .food-photo-choices{margin:16px 0 20px;padding:14px 16px;border:1px solid #d8e0d3;border-radius:22px;background:linear-gradient(145deg,#f5f8ee,#fdfcf8)}
+.inpaw-app .food-photo-choices .food-photo-choices-title{margin:0 0 10px;font-size:16px;font-weight:700;color:#35483a}
+.inpaw-app .food-photo-choices .food-ocr{margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+/* 兩個選項做成同樣的一列：左邊 40px 圖示、中間兩行字、右邊 ›，中間一條分隔線（不另外包白框） */
+.inpaw-app .food-photo-choices .food-entry-photos{margin:12px 0 0!important;padding:12px 0 0!important;border:0!important;border-top:1px solid #dfe5d8!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+.inpaw-app .food-photo-choices .food-photo-only{position:relative;display:flex!important;align-items:center;justify-content:flex-start!important;gap:12px;width:100%;min-height:46px;padding:0!important;margin:0;border:0!important;background:transparent!important;color:#35483a;text-align:left;cursor:pointer;box-shadow:none!important}
+.inpaw-app .food-photo-choices .food-photo-only::before{content:"＋";display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;border-radius:13px;background:#efe7da;color:#8a5a32;font-size:20px}
+.inpaw-app .food-photo-choices .food-photo-only::after{content:"›";margin-left:auto;font-size:18px;color:#8a7d70}
+.inpaw-app .food-photo-choices .food-photo-only-copy{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.inpaw-app .food-photo-choices .food-photo-only-copy strong{font-size:14px}
+.inpaw-app .food-photo-choices .food-photo-only-copy small{font-size:12px;color:#69795c}
+.inpaw-app .food-photo-choices .food-photo-only input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.inpaw-app .food-photo-choices .food-entry-photos>.microcopy{margin:8px 0 0}
+.inpaw-app .food-cards-entry .care-entry-copy{flex:1;display:flex;flex-direction:column;gap:4px;text-align:left}
+.inpaw-app .food-cards-entry .care-entry-copy strong{font-size:16px}
+.inpaw-app .food-cards-entry .care-entry-copy small{font-size:12px;font-weight:400;color:#637568}
+/* 首頁「日常快記」五顆（加了食品卡）：兩排，上排三顆、下排兩顆，左右對齊（Ian 2026-11-16：一排五顆太擠） */
+.inpaw-app .today-quick-actions.is-compact.has-five{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.inpaw-app .today-quick-actions.is-compact.has-five .today-quick-label{grid-column:1/-1}
+.inpaw-app .today-quick-actions.is-compact.has-five>button{grid-column:span 2;width:auto!important;min-width:0}
+.inpaw-app .today-quick-actions.is-compact.has-five>button:nth-of-type(n+4){grid-column:span 3}
+.unified-meal-form .meal-manage-foods{display:block;margin:-2px 0 10px auto;min-height:40px;padding:6px 4px;border:0;background:transparent;color:#a85b32;font-size:14px;text-decoration:underline;text-underline-offset:3px}
+:where(html[data-theme="dark"]) .inpaw-app .food-photo-choices{border-color:#a8a194;background:#322f2c}
+:where(html[data-theme="dark"]) .inpaw-app .food-photo-choices :is(.food-photo-choices-title,.food-photo-only){color:#f3ece3}
+:where(html[data-theme="dark"]) .inpaw-app .food-photo-choices .food-entry-photos{border-top-color:#5a5047}
+:where(html[data-theme="dark"]) .inpaw-app .food-photo-choices .food-photo-only::before{background:#3d3832;color:#e8b98d}
+:where(html[data-theme="dark"]) .inpaw-app :is(.food-photo-choices .food-photo-only-copy small,.food-cards-entry .care-entry-copy small){color:#cfc3b6}
+:where(html[data-theme="dark"]) .unified-meal-form .meal-manage-foods{color:#e8b98d}
+@media(prefers-color-scheme:dark){
+ :where(html:not([data-theme="light"])) .inpaw-app .food-photo-choices{border-color:#a8a194;background:#322f2c}
+ :where(html:not([data-theme="light"])) .inpaw-app .food-photo-choices :is(.food-photo-choices-title,.food-photo-only){color:#f3ece3}
+ :where(html:not([data-theme="light"])) .inpaw-app .food-photo-choices .food-entry-photos{border-top-color:#5a5047}
+ :where(html:not([data-theme="light"])) .inpaw-app .food-photo-choices .food-photo-only::before{background:#3d3832;color:#e8b98d}
+ :where(html:not([data-theme="light"])) .inpaw-app :is(.food-photo-choices .food-photo-only-copy small,.food-cards-entry .care-entry-copy small){color:#cfc3b6}
+ :where(html:not([data-theme="light"])) .unified-meal-form .meal-manage-foods{color:#e8b98d}
+}
+/* 一般設定先顯示目前值；既有選項與保存/錯誤處理在展開後完整保留。 */
+.inpaw-app .ps-preference{margin:12px 0;border:1.5px solid var(--paw-rim,#dbc7b6);border-radius:18px;background:var(--paw-paper,#fffaf3);overflow:hidden}
+.inpaw-app .ps-preference>summary{display:flex;align-items:center;gap:10px;min-height:64px;padding:14px 16px;cursor:pointer;list-style:none;color:inherit}
+.inpaw-app .ps-preference>summary::-webkit-details-marker{display:none}
+.inpaw-app .ps-preference>summary strong{flex:1;min-width:0;font-size:16px;line-height:1.4}
+.inpaw-app .ps-preference-value{min-width:0;max-width:55%;font-size:14px;line-height:1.45;text-align:right;color:inherit;opacity:.78;overflow-wrap:normal;word-break:normal}
+.inpaw-app .ps-preference-chevron{font-size:24px;transition:transform .15s}
+.inpaw-app .ps-preference[open] .ps-preference-chevron{transform:rotate(90deg)}
+.inpaw-app .ps-preference-content>.ps-card{margin:0!important;padding:12px 16px 16px!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important}
+.inpaw-app .ps-preference-content>.ps-card>h2{display:none}
+.mc-dialog .mc-manage-details{margin:12px 0;border-top:1px solid var(--paw-rim,#dbc7b6);border-bottom:1px solid var(--paw-rim,#dbc7b6)}
+.mc-dialog .mc-manage-details>summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;padding:10px 0;cursor:pointer;list-style:none;font-weight:600;color:inherit}
+.mc-dialog .mc-manage-details>summary::-webkit-details-marker{display:none}
+.mc-dialog .mc-manage-details>summary::after{content:'›';font-size:24px}
+.mc-dialog .mc-manage-details[open]>summary::after{transform:rotate(90deg)}
+.mc-dialog .mc-manage-actions{display:grid;gap:8px;padding-bottom:12px}
+.mc-dialog .mc-manage-actions button{min-height:44px!important;overflow-wrap:anywhere}
+.mc-dialog .mc-cat-list .mc-cat-manage-row{grid-template-columns:minmax(0,1fr)}
+.inpaw-app .today-quick-actions.is-compact.has-four{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px}
+.inpaw-app .today-quick-actions.is-compact.has-four .today-quick-label{grid-column:1/-1}
+.inpaw-app .today-quick-actions.is-compact.has-four>button{grid-column:auto!important;width:100%!important;min-width:0!important;min-height:44px!important;font-size:14px!important;white-space:normal!important;word-break:normal!important;overflow-wrap:normal!important;line-height:1.4!important}
+.inpaw-app .today-food-management{display:flex!important;align-items:center;justify-content:flex-end;gap:6px;min-height:44px!important;margin:0 0 8px!important;padding:4px 2px!important;border:0!important;background:transparent!important;box-shadow:none!important;color:inherit!important;text-decoration:underline;text-underline-offset:3px;font-size:14px!important}
+:where(html[data-theme="dark"]) .inpaw-app .ps-preference{background:#2a2825;border-color:#5a5047}
+@media(prefers-color-scheme:dark){:where(html:not([data-theme="light"])) .inpaw-app .ps-preference{background:#2a2825;border-color:#5a5047}}
+/* 照顧時間表「＋ 新增」（2026-11-16）：三顆合一顆，點開是三列選項（標題＋一行說明）；狀態縮成一行。 */
+.care-timeline .care-add{margin-top:10px}
+.care-timeline .care-add-toggle{display:block;width:100%;min-height:48px;margin:0!important;font-weight:700}
+.care-timeline .care-add-menu{display:grid;margin-top:8px;border:1.5px solid #e3d3c1;border-radius:14px;overflow:hidden;background:#fffaf3}
+.care-timeline .care-add-item{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;min-height:56px;margin:0!important;padding:10px 14px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#5a3a24;text-align:left;font:inherit}
+.care-timeline .care-add-item+.care-add-item{border-top:1px solid #eadccb!important}
+.care-timeline .care-add-item strong{font-size:16px}
+.care-timeline .care-add-item span{font-size:13px;color:#7a6a5c;font-weight:400}
+.care-timeline .care-timeline-status.is-compact{margin-top:8px;font-size:13px}
+:where(html[data-theme="dark"]) .care-timeline .care-add-menu{border-color:#5a5047;background:#2a2825}
+:where(html[data-theme="dark"]) .care-timeline .care-add-item{color:#f3ece3}
+:where(html[data-theme="dark"]) .care-timeline .care-add-item+.care-add-item{border-top-color:#4a423b!important}
+:where(html[data-theme="dark"]) .care-timeline .care-add-item span{color:#cfc3b6}
+@media(prefers-color-scheme:dark){
+ :where(html:not([data-theme="light"])) .care-timeline .care-add-menu{border-color:#5a5047;background:#2a2825}
+ :where(html:not([data-theme="light"])) .care-timeline .care-add-item{color:#f3ece3}
+ :where(html:not([data-theme="light"])) .care-timeline .care-add-item+.care-add-item{border-top-color:#4a423b!important}
+ :where(html:not([data-theme="light"])) .care-timeline .care-add-item span{color:#cfc3b6}
+}

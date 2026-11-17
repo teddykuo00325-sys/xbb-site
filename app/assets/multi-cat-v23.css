@@ -1,0 +1,51 @@
+.mc-family{background:#fafaf6;border:1px solid #e0e5ed;border-radius:20px;padding:18px;margin:16px 0 24px;color:#293b70}.mc-section-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}.mc-section-heading h2{font-size:19px;margin:0}.mc-note{font-size:13px;line-height:1.7;color:#697084;margin:10px 0}.mc-cat-list{display:flex;flex-direction:column;gap:10px;margin:15px 0}.mc-cat-card{width:100%;display:flex;align-items:center;gap:12px;text-align:left;background:white;border:1px solid #dce3ed;border-radius:16px;padding:14px;color:#293b70;cursor:pointer;min-width:0}.mc-cat-card.active{border:2px solid #8eacd4;background:#eef3fa;padding:13px}.mc-avatar{font-size:24px;display:grid;place-items:center;background:#fce8d7;border-radius:50%;width:43px;height:43px;flex-shrink:0}.mc-cat-info{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1}.mc-cat-info strong{font-size:16px;overflow-wrap:anywhere}.mc-cat-info small{font-size:12px;color:#697084}.mc-cat-info .mc-draft{color:#9c692d}.mc-selected{font-size:12px;font-weight:700;color:#486997;flex-shrink:0}.mc-button{font:inherit;display:block;width:100%;min-height:46px;padding:11px 16px;border:0;border-radius:13px;background:#293b70;color:white;font-weight:700;margin:12px 0;cursor:pointer;line-height:1.4}.mc-button.secondary{background:#edf1f7;color:#293b70}.mc-button:disabled{opacity:.6;cursor:default}.mc-add{background:white;color:#293b70;border:1px dashed #92a8c6}.mc-household-link{background:transparent;display:block;width:100%;border:0;border-top:1px solid #dce3ed;padding:17px 0 0;text-align:left;font:inherit;font-size:14px;font-weight:600;color:#486997;cursor:pointer}.mc-current-owner{font-size:12px;color:#697084;margin:0 0 8px;line-height:1.6;overflow-wrap:anywhere}.mc-current-owner strong{color:#293b70}.mc-dialog{box-sizing:border-box;width:min(440px,calc(100vw - 28px));max-height:85dvh;padding:24px;border:0;border-radius:24px;background:#fafaf6;color:#293b70;box-shadow:0 24px 90px #172e3350;overflow-y:auto}.mc-dialog::backdrop{background:#122d365c}.mc-dialog h2{font-size:22px;margin:0 0 16px;line-height:1.4}.mc-dialog .mc-family{padding:0;border:0;background:transparent;margin:0}.mc-dialog .mc-family .mc-section-heading{display:none}.mc-field{display:flex;flex-direction:column;gap:8px;font-size:14px;margin:18px 0;color:#293b70}.mc-field input,.mc-field textarea,.mc-field select{font:inherit;font-size:16px;box-sizing:border-box;width:100%;border:1px solid #c9d4e5;border-radius:10px;padding:12px;min-height:46px;background:white;color:#293b70}.mc-field textarea{min-height:115px;resize:vertical}.mc-field input:focus,.mc-field textarea:focus,.mc-field select:focus{outline:2px solid #3566c1;outline-offset:2px}.mc-owner-label{font-size:12px;display:inline-block;padding:7px 10px;background:#efe9db;border-radius:8px;color:#786447}.mc-error{color:#9e3a32;font-size:14px;line-height:1.7;border-radius:12px;padding:12px;background:#fff0eb}.mc-actions{display:flex;gap:18px}.mc-text{border:0;background:none;font:inherit;font-size:14px;padding:8px 0;cursor:pointer;color:#293b70}.mc-text.danger{color:#9b473c}.mc-household-list article{padding:16px 0;border-top:1px solid #dfe4da;margin-top:14px}.mc-household-list small{font-size:12px;color:#75816f}.mc-household-list p{line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}.mc-empty{background:#f1f4fa;border-radius:14px;padding:22px 16px;margin-top:18px}.mc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.mc-dialog button:focus-visible,.mc-cat-card:focus-visible,.mc-household-link:focus-visible{outline:3px solid #3566c1;outline-offset:3px}@media(max-width:360px){.mc-family{padding:13px}.mc-cat-card{gap:8px;padding:12px}.mc-cat-card.active{padding:11px}.mc-dialog{padding:19px}.mc-avatar{width:36px;height:36px;font-size:21px}.mc-selected{font-size:11px}}
+
+.inpaw-app .mc-cat-card{background:white;border:1px solid #dce3ed;color:#293b70}.inpaw-app .mc-cat-card.active{background:#eef3fa;border:2px solid #8eacd4}.inpaw-app .mc-add{color:#293b70;background:white;border:1px dashed #92a8c6}.inpaw-app .mc-household-link{border-top:1px solid #dce3ed;color:#486997}.mc-dialog{font-family:Microsoft JhengHei,Noto Sans TC,sans-serif}.mc-dialog h2{font-family:InPawRounded,Microsoft JhengHei,sans-serif}
+
+/* H7: cat identity stays readable in single- and multi-cat households. */
+.mc-color-picker{border:0;padding:0;margin:18px 0;min-width:0}.mc-color-picker legend{font-weight:750;font-size:14px}.mc-color-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.mc-color-option{min-height:44px;border:2px solid transparent;border-radius:12px;padding:8px 5px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px}.mc-color-option:focus-visible{outline:3px solid #111827;outline-offset:3px}.mc-color-dot{display:inline-block;width:11px;height:11px;min-width:11px;border-radius:50%;margin-right:6px;vertical-align:middle}.mc-color-option .mc-color-dot{margin:0}.mc-record-owner{display:flex;align-items:center;gap:5px;border:1px solid;border-left-width:1px;border-radius:12px;padding:12px 14px;margin:0 0 16px;font-size:15px;font-weight:750;overflow-wrap:anywhere}.mc-cat-info strong{overflow-wrap:anywhere}
+.mc-color-dot,.pet-switch-color{box-shadow:inset 0 0 0 1px #76685866}
+.inpaw-app .mc-color-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mc-color-picker .mc-color-dot{width:24px;height:24px;min-width:24px;flex:0 0 24px}
+.mc-color-picker .mc-color-option{gap:8px;min-height:48px}
+
+/* Reversible pet archive: separate controls, never nested buttons. */
+.mc-cat-manage-row{display:flex;align-items:center;gap:8px;min-width:0}.mc-cat-manage-row>.mc-cat-card{flex:1;min-width:0}.mc-archive-action{flex:none;min-height:44px;padding:10px 8px}.mc-archive-action:disabled{opacity:.5;cursor:not-allowed}.mc-archived-list{display:grid;gap:12px}.mc-archived-card{display:grid;gap:8px;padding:14px;border:1px solid #e6ddd4;border-radius:14px}.mc-archived-card strong{overflow-wrap:anywhere}.mc-archived-card small{color:#695d56}
+/* Keep the name column readable beside the separate archive action on phones. */
+@media(max-width:480px){
+ .mc-family .mc-cat-manage-row>.mc-cat-card{display:grid;grid-template-columns:32px minmax(0,1fr);gap:6px 9px}
+ .mc-cat-manage-row .mc-avatar{grid-column:1;grid-row:1;width:32px;height:32px;align-self:start}
+ .mc-cat-manage-row .mc-cat-info{grid-column:2;grid-row:1}
+ .mc-family .mc-cat-manage-row .mc-selected{grid-column:2;grid-row:2;justify-self:start;padding:4px 7px}
+ .mc-cat-manage-row .mc-archive-action{padding:10px 4px;min-width:44px}
+}
+/* r4: add-pet form = name + 建立; optional details collapsed. */
+.mc-more{margin:4px 0 6px;border:1px solid #dce3ed;border-radius:14px;background:#fff;padding:0 14px}
+.mc-more>summary{cursor:pointer;min-height:46px;display:flex;align-items:center;font-size:14px;font-weight:600;color:#486997;list-style:none}
+.mc-more>summary::-webkit-details-marker{display:none}
+.mc-more>summary::after{content:'＋';margin-left:auto;font-weight:400}
+.mc-more[open]>summary::after{content:'－'}
+.mc-more>summary:focus-visible{outline:3px solid #3566c1;outline-offset:3px;border-radius:10px}
+.mc-more-body{padding:0 0 8px}
+.mc-more-body .mc-field:first-child{margin-top:4px}
+.mc-dialog .mc-create{margin-top:16px}
+/* After creating a pet: one line pointing to 陪玩 › 聲音探索. */
+.mc-created{position:fixed;left:16px;right:16px;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:60;max-width:520px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:6px 4px 6px 14px;border-radius:16px;background:#fffdf8;color:#3b3328;border:1px solid #e3d9c8;box-shadow:0 10px 30px #3b332824;font-size:14px;line-height:1.5}
+.mc-created>span{flex:1 1 auto;min-width:0}
+.mc-created .mc-created-link{font:inherit;font-weight:700;white-space:nowrap;flex-shrink:0;color:#7a4f1d;background:transparent;border:0;min-height:44px;padding:0 6px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.mc-created .mc-created-close{font:inherit;font-size:18px;flex-shrink:0;color:#6d6252;background:transparent;border:0;min-width:44px;min-height:44px;cursor:pointer}
+.mc-created button:focus-visible{outline:3px solid #3566c1;outline-offset:2px;border-radius:10px}
+/* 性別 chips (shared by add + edit through ProfileExtras). */
+.profile-sex-chips{border:0;padding:0;min-width:0}
+.profile-sex-chips legend{padding:0;margin-bottom:8px}
+.profile-sex-chips>div{display:flex;gap:8px}
+.profile-sex-chips button{font:inherit;font-size:15px;flex:1;min-height:44px;border-radius:12px;border:1px solid #c9d4e5;background:#fff;color:#293b70;cursor:pointer}
+.profile-sex-chips button[aria-pressed=true]{background:#e6edf8;border-color:#486997;font-weight:700;box-shadow:inset 0 0 0 1px #486997}
+.profile-sex-chips button:focus-visible{outline:3px solid #3566c1;outline-offset:2px}
+:where(html[data-theme="dark"]) .mc-more{background:#2b2926;border-color:#5a5550}
+:where(html[data-theme="dark"]) .mc-more>summary{color:#d4cfc6}
+:where(html[data-theme="dark"]) .mc-created{background:#2f2c29;color:#f1e9dd;border-color:#5a5550;box-shadow:0 10px 30px #00000066}
+:where(html[data-theme="dark"]) .mc-created .mc-created-link{color:#efc98f}
+:where(html[data-theme="dark"]) .mc-created .mc-created-close{color:#d4cfc6}
+:where(html[data-theme="dark"]) .profile-sex-chips button{background:#32302d;border-color:#a49e99;color:#d4cfc6}
+:where(html[data-theme="dark"]) .profile-sex-chips button[aria-pressed=true]{background:#45413b;border-color:#e2d6c3;color:#f6efe4;box-shadow:inset 0 0 0 1px #e2d6c3}

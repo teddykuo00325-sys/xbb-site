@@ -1,0 +1,33 @@
+/* Primary tabs have one quiet brand mark; identity lives in the avatar rail. */
+.inpaw-app>.app-header.is-brand-header{height:50px;padding:0 clamp(12px,4vw,20px);justify-content:flex-start;box-shadow:0 1px 0 var(--paw-rim);background:var(--paw-canvas)}
+.inpaw-app>.app-header.is-brand-header .brand{width:120px;height:42px;object-fit:contain;object-position:left center}
+.inpaw-app:not(.native-play-page)>.app-header.is-brand-header+.app-scroll{top:110px!important}
+@media(max-width:600px),(max-width:960px) and (max-height:500px){
+ .inpaw-app>.app-header.is-brand-header{top:env(safe-area-inset-top,0px)}
+ .inpaw-app:not(.native-play-page)>.app-header.is-brand-header+.app-scroll{top:calc(50px + env(safe-area-inset-top,0px))!important}
+}
+/* Cycle buttons already have their own rounded surface. No rectangular backing. */
+.inpaw-app :is(.pro-cycle,.ps-cycle){background:transparent;border:0;box-shadow:none}
+.inpaw-app .pro-cycle .ps-button[aria-pressed=true]{background:#efe0c9;border-color:#a47a50;color:#68462b;box-shadow:none}
+/* The colour dot already identifies the cat; use one continuous rounded border. */
+.inpaw-app .mc-record-owner{border-left-width:1px;background-clip:padding-box}
+/* Keep the home avatar rail close to its counts and everyday actions. */
+.inpaw-app.health-home .health-summary>.health-header{margin-bottom:0!important}
+.inpaw-app.health-home .health-header .family-switcher{margin:8px 0 0}
+.inpaw-app.health-home .health-header .family-rail{padding-bottom:4px}
+.inpaw-app.health-home .health-header .family-avatar-tab{min-height:85px}
+.inpaw-app.health-home .health-summary>.t-record-count-scope>.microcopy{margin:0;line-height:1.6}
+.inpaw-app.health-home .health-summary>.t-record-count-scope>.health-data-note{margin:0}
+.inpaw-app.health-home .health-summary>.ux-home-reminder{margin-bottom:0}
+.inpaw-app.health-home .health-summary>section[aria-label="常用紀錄"]>.health-section-title{margin-top:4px}
+
+/* Text-size changes may grow secondary headings. The dock observer measures the
+   header separately, so content starts below it instead of behind wrapped text. */
+.inpaw-app.ij-secondary.shell-with-tabs>.app-header{height:auto;min-height:112px}
+.inpaw-app.ij-secondary.shell-with-tabs>.app-scroll{top:var(--shell-header-inset,172px)!important}
+.ai-route-app>.ai-route-header{height:auto;min-height:58px}
+.ai-route-app>.app-scroll.ai-route-scroll{top:var(--shell-header-inset,118px)!important}
+@media(max-width:600px),(max-width:960px) and (max-height:500px){
+ .inpaw-app.ij-secondary.shell-with-tabs>.app-scroll{top:var(--shell-header-inset,calc(116px + env(safe-area-inset-top,0px)))!important}
+ .ai-route-app>.app-scroll.ai-route-scroll{top:var(--shell-header-inset,calc(62px + env(safe-area-inset-top,0px)))!important}
+}

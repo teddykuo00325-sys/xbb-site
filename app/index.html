@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta name="robots" content="noindex">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#fbf7ef">
+    <script id="appearance-boot">/* Run before styles and app modules: no first-paint white flash or data migration. */
+(()=>{
+ const root=document.documentElement,key='inpaw-appearance-v1';
+ const valid=value=>value==='dark'||value==='light'?value:'system';
+ let choice='system';try{choice=valid(localStorage.getItem(key))}catch{}
+ const media=typeof matchMedia==='function'?matchMedia('(prefers-color-scheme: dark)'):null;
+ const apply=()=>{choice=valid(root.dataset.appearance||choice);const theme=choice==='system'?(media?.matches?'dark':'light'):choice;root.dataset.appearance=choice;root.dataset.theme=theme;root.style.colorScheme='only '+theme;document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='dark'?'#211f1d':'#fbf7ef');};
+ apply();if(media?.addEventListener)media.addEventListener('change',apply);else media?.addListener?.(apply);
+ window.addEventListener('storage',event=>{if(event.key!==key&&event.key!==null)return;choice=valid(event.newValue);root.dataset.appearance=choice;apply();window.dispatchEvent(new Event('inpaw-appearance-change'));});
+})();
+</script>
+    <style id="appearance-first-paint">@media screen{html[data-theme="dark"],html[data-theme="dark"] body,html[data-theme="dark"] #root{background:#211f1d;color:#f3ece3}html[data-theme="light"]{color-scheme:only light}html[data-theme="dark"]{color-scheme:only dark}@media(prefers-color-scheme:dark){html:not([data-theme]){background:#211f1d;color:#f3ece3}}}</style>
+    <title>毛孩小本本 In Paw AI｜互動原型</title>
+    <script src="/xbb-site/app/assets/ios-cloud-bridge.js?v=quota-feedback1"></script>
+    <script type="module" src="/xbb-site/app/assets/delete-safety.js?v=audit1117b"></script>
+    <script type="module" crossorigin src="/xbb-site/app/assets/index-experience-v26.js?v=photo-simplify1"></script>
+
+      <link rel="stylesheet" crossorigin href="/xbb-site/app/assets/index-aac2e137c99f.css?v=aac2e137c99f">
+    <link rel="stylesheet" href="/xbb-site/app/assets/settings-v22.css?v=db8a01060f16">
+    <link rel="stylesheet" href="/xbb-site/app/assets/multi-cat-v23.css?v=r4">
+    <link rel="stylesheet" href="/xbb-site/app/assets/experience-v26.css?v=r3">
+    <link rel="stylesheet" href="/xbb-site/app/assets/health-summary-v31.css?v=ac57daeb36e0">
+    <link rel="stylesheet" href="/xbb-site/app/assets/h-experience-v34.css?v=r4">
+    <link rel="stylesheet" href="/xbb-site/app/assets/ij-design-v35.css?v=f9b10bee1a85">
+    <link rel="stylesheet" href="/xbb-site/app/assets/sound-onboarding-v38.css?v=856b2157b90b">
+    <link rel="stylesheet" href="/xbb-site/app/assets/interaction-hub-v39.css?v=r3">
+    <link rel="stylesheet" href="/xbb-site/app/assets/m-ui-v42.css?v=43656a27f087">
+    <link rel="stylesheet" href="/xbb-site/app/assets/ux-review.css?v=1a657a4378a8">
+    <link rel="stylesheet" href="/xbb-site/app/assets/pro-experience-v46.css?v=r3">
+    <link rel="stylesheet" href="/xbb-site/app/assets/play-scenes-v47.css?v=r4">
+    <link rel="stylesheet" href="/xbb-site/app/assets/usability-v49.css?v=fc9b38d0219e">
+    <link rel="stylesheet" href="/xbb-site/app/assets/glass-theme-v52.css?v=cb8224cc58da">
+    <link rel="stylesheet" href="/xbb-site/app/assets/photo-play-v57.css?v=ee795286f453">
+    <link rel="stylesheet" href="/xbb-site/app/assets/entry-food-v58.css?v=188">
+    <link rel="stylesheet" href="/xbb-site/app/assets/o-review-v59.css?v=r4">
+    <link rel="stylesheet" href="/xbb-site/app/assets/navigation.css?v=98145e8b7f56">
+    <link rel="stylesheet" href="/xbb-site/app/assets/navigation-shell.css?v=d37d60729a55">
+    <link rel="stylesheet" href="/xbb-site/app/assets/pet-switcher.css?v=c988542cacfb">
+    <link rel="stylesheet" href="/xbb-site/app/assets/care-history.css?v=r3">
+    <link rel="stylesheet" href="/xbb-site/app/assets/cute-play.css?v=c38e9ba4275a">
+    <link rel="stylesheet" href="/xbb-site/app/assets/card-actions.css?v=fcd381e59a01">
+    <link rel="stylesheet" href="/xbb-site/app/assets/family-overview.css?v=68be9b4393e2">
+    <link rel="stylesheet" href="/xbb-site/app/assets/sound-game.css?v=23feee57bbcf">
+    <link rel="stylesheet" href="/xbb-site/app/assets/fish-game.css?v=uxfull1">
+    <link rel="stylesheet" href="/xbb-site/app/assets/family-sharing.css?v=623024fadf7a">
+    <link rel="stylesheet" href="/xbb-site/app/assets/advanced-vet.css?v=7aa48326f25c">
+    <link rel="stylesheet" href="/xbb-site/app/assets/diet-observations.css?v=60950d945af1">
+    <link rel="stylesheet" href="/xbb-site/app/assets/clear-presentation.css?v=f10780e040b9">
+    <link rel="stylesheet" href="/xbb-site/app/assets/care-journey.css?v=174">
+    <link rel="stylesheet" href="/xbb-site/app/assets/care-plan.css?v=audit1117">
+    <link rel="stylesheet" href="/xbb-site/app/assets/local-voice.css?v=37a3e87dabf7">
+    <link rel="stylesheet" href="/xbb-site/app/assets/ai-page-entries.css?v=82c323ba23fb">
+    <link rel="stylesheet" href="/xbb-site/app/assets/ai-app-navigation.css?v=58dd287004d6">
+    <link rel="stylesheet" href="/xbb-site/app/assets/food-ocr-prototype.css?v=178">
+    <link rel="stylesheet" href="/xbb-site/app/assets/cloud-care.css?v=r3">
+    <link rel="stylesheet" href="/xbb-site/app/assets/feeding-dashboard.css?v=8efb78871401">
+    <link rel="stylesheet" href="/xbb-site/app/assets/care-insights.css?v=c73cfc766307">
+    <link rel="stylesheet" href="/xbb-site/app/assets/vaccine-access.css?v=67552cc4052d">
+    <link rel="stylesheet" href="/xbb-site/app/assets/record-icons.css?v=bb4d475d8355">
+    <link rel="stylesheet" href="/xbb-site/app/assets/cat-experience.css?v=5698ef7cddfe">
+    <link rel="stylesheet" href="/xbb-site/app/assets/care-flower.css?v=audit1117">
+    <link rel="stylesheet" href="/xbb-site/app/assets/care-flower-play.css?v=audit1117">
+    <link rel="stylesheet" href="/xbb-site/app/assets/app-disclosures.css?v=r3">
+    <link rel="stylesheet" href="/xbb-site/app/assets/figurine-partner.css?v=250">
+    <link rel="stylesheet" href="/xbb-site/app/assets/sound-invitation.css?v=f21673adb5cf">
+    <link rel="stylesheet" href="/xbb-site/app/assets/voice-quick.css?v=179">
+    <link rel="stylesheet" href="/xbb-site/app/assets/summary-studio157.css?v=summary-simple1">
+    <link rel="stylesheet" href="/xbb-site/app/assets/first-use157.css?v=97c59e54ec90">
+    <link rel="stylesheet" href="/xbb-site/app/assets/ai-mode158.css?v=64b9b062efc5">
+    <link rel="stylesheet" href="/xbb-site/app/assets/home-compact158.css?v=r4">
+    <link rel="stylesheet" href="/xbb-site/app/assets/settings-style.css?v=audit1117">
+    <link rel="stylesheet" href="/xbb-site/app/assets/clean-header.css?v=405b67fff82e">
+    <link rel="stylesheet" href="/xbb-site/app/assets/appearance.css?v=audit1117">
+    <link rel="stylesheet" href="/xbb-site/app/assets/a33-polish.css?v=audit1117">
+    <link rel="stylesheet" href="/xbb-site/app/assets/cute-action-icons.css?v=cute1">
+    <link rel="stylesheet" href="/xbb-site/app/assets/play-lab.css?v=2026111601">
+    <link rel="stylesheet" href="/xbb-site/app/assets/apricot-theme.css?v=audit1117">
+    <link rel="stylesheet" href="/xbb-site/app/assets/cute-icons-expanded.css?v=expanded1">
+    <link rel="stylesheet" href="/xbb-site/app/assets/audit-fix-20261117.css?v=simplify1">
+  <meta name="app-version" content="V161">
+</head>
+  <body>
+    <div id="root"></div>
+
+  </body>
+</html>

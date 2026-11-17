@@ -1,0 +1,76 @@
+.care-plans{font-size:16px;line-height:1.65;color:#443e37;overflow-wrap:anywhere}.care-plans h2{font-size:26px;line-height:1.4;margin:14px 0}.care-plans h3{font-size:18px;margin:0 0 8px}.care-plans p{font-size:16px}.care-plans button{font:inherit;min-height:46px;white-space:normal}.care-service-status{padding:14px;border:1px solid #c6d3cf;background:#edf3efc9;border-radius:16px}.care-plan-prices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}.care-plan-prices>article{padding:20px 16px;border-radius:22px;border:1px solid #d8c7b5;background:#fffaf3a8;min-width:0}.care-plan-prices strong{display:block;font-size:24px;color:#784a30;line-height:1.4}.care-plan-cycle,.care-plan-actions{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}.care-plan-cycle button,.care-plan-actions button{flex:1;min-width:125px}.care-plan-cycle button[aria-pressed=true]{border-color:#805539;background:#eee0cf;color:#56351f}.care-plan-compare article{padding:16px 0;border-bottom:1px solid #d8cbbf}.care-plan-compare p{margin:5px 0}.care-plan-footnote{color:#5f5a50;font-size:15px!important}.care-plans details{margin-top:22px}.care-plans summary{padding:12px 0;min-height:46px;cursor:pointer}.care-plans :is(button,summary):focus-visible{outline:3px solid #597e7b;outline-offset:3px}.care-family-journeys>h2{font-size:22px}.care-family-journeys .cj-card h2{font-size:20px}@media(max-width:360px){.care-plan-prices{grid-template-columns:1fr}.care-plans h2{font-size:23px}}@media(prefers-reduced-motion:reduce){.care-plans *{scroll-behavior:auto}}
+
+/* Function first, processing label second. Labels never imply availability. */
+.ai-feature-name{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px 8px;max-width:100%;vertical-align:middle;text-align:left}.ai-feature-title{min-width:0;overflow-wrap:anywhere}.ai-feature-badge,.ai-feature-planned{display:inline-block;font-size:12px!important;font-weight:600!important;line-height:1.5;white-space:nowrap;border-radius:999px;padding:3px 8px}.ai-feature-badge.is-phone{background:#e5eee6;color:#355d48;border:1px solid #c3d5c9}.ai-feature-badge.is-cloud{background:#e4edf4;color:#365c77;border:1px solid #c2d3e1}.ai-feature-badge.is-pending,.ai-feature-planned{background:#f1ebe3;color:#6b5844;border:1px solid #dfd2c3}.cj-workspace summary .ai-feature-name{display:inline-flex}.entry-method-voice .ai-feature-name{justify-content:center}.ai-feature-title{font-size:inherit}.cj-workspace .cj-quota-note span{line-height:1.7}
+
+/* Keep one full-width Pro plan; credit add-ons are a separate, non-purchasing section. */
+.care-pro-card{padding:22px 18px;border:1px solid #d8c7b5;border-radius:24px;background:linear-gradient(150deg,#fffaf3ed,#f2e6d8a6);min-width:0;margin:8px 0 20px}
+.care-pro-card h2{margin:12px 0 6px;font-size:28px}.care-pro-intro{margin:0 0 18px}.care-pro-card .care-plan-cycle{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:18px 0}.care-pro-card .care-plan-cycle button{min-width:0;padding:11px 8px;border-radius:14px;line-height:1.5}.care-pro-billing{margin:16px 0 10px}.care-pro-price{display:block;font-size:28px;line-height:1.4;color:#784a30;font-weight:750}.care-pro-billing p{margin:6px 0}.care-pro-benefits{padding-left:22px;margin:8px 0 12px}.care-pro-benefits li{margin:8px 0}.care-pro-card>h3{margin-top:24px}.care-pro-future{border-top:1px solid #dacbbc;padding-top:18px;margin-top:20px}.care-pro-future h3{font-size:17px}.care-pro-future p{margin:6px 0}.care-plan-unavailable{padding:12px;text-align:center;border-radius:14px;background:#e9dfd3;color:#60554a;font-weight:650}.care-plans .care-preview-details{margin-top:8px;border-top:1px solid #dacbbc}.care-preview-details button{width:100%;margin:5px 0}.care-points-section{padding:4px 2px 18px;border-bottom:1px solid #d8cbbf}.care-points-title{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.care-points-title h3{margin:0}.care-points-title .pro-tag{font-size:13px}.care-points-section>p{margin:9px 0}.care-plans .care-points-details{margin-top:6px}.care-points-details summary{color:#654630;font-weight:650}.care-plans .care-basics-details{margin-top:6px}.care-basics-details summary{font-weight:650}.care-pro-card details p,.care-points-details p,.care-basics-details p{font-size:15px}.care-plans details>summary{line-height:1.6}.care-pro-card .care-plan-cycle button[aria-pressed=true]{box-shadow:inset 0 0 0 1px #805539;font-weight:700}.care-plans>details,.care-plans section,.care-pro-billing{min-width:0}@media(max-width:360px){.care-pro-card{padding:18px 12px;border-radius:20px}.care-pro-card h2,.care-pro-price{font-size:25px}.care-pro-card .care-plan-cycle{gap:6px}.care-pro-card .care-plan-cycle button{font-size:15px}}
+
+/* Availability stays visible without opening subscription or points details. */
+.care-entitlements{padding:16px;border:1px solid #c8d5ce;border-radius:16px;background:#f3f7f3;margin:16px 0}.care-entitlements h3,.care-summary-comparison h3{font-size:18px}.care-entitlements dl,.care-summary-comparison dl{margin:10px 0}.care-entitlements dt,.care-summary-comparison dt{font-weight:700;color:#355747;margin-top:12px}.care-entitlements dd,.care-summary-comparison dd{margin:5px 0 14px;line-height:1.7}.care-entitlements p{margin-bottom:0}.care-summary-comparison{padding:18px 2px;margin-bottom:20px;border-bottom:1px solid #d8cbbf}.care-summary-comparison button{width:100%}
+
+/* Native radios supply mutual exclusion and standard arrow-key navigation. */
+.care-pro-card .care-cycle-option{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:46px;box-sizing:border-box;padding:11px 8px;border:1px solid #c8b8a6;border-radius:14px;background:#fffaf3;line-height:1.5;cursor:pointer}.care-cycle-option input{flex:0 0 auto;width:16px;height:16px;margin:0;accent-color:#805539}.care-cycle-option span{min-width:0}.care-pro-card .care-cycle-option.is-selected{border-color:#805539;background:#eee0cf;color:#56351f;box-shadow:inset 0 0 0 1px #805539;font-weight:700}.care-cycle-option:has(input:focus-visible){outline:3px solid #597e7b;outline-offset:3px}@media(max-width:360px){.care-pro-card .care-cycle-option{font-size:15px;padding:11px 6px;gap:5px}}
+
+/* V156: cloud-first flow, readable in narrow app windows. */
+.cloud-summary-demo,.care-data-separation,.care-quota-proposal{padding:18px 16px;border:1px solid #c8b8a6;border-radius:18px;margin:20px 0;background:#fffaf3;min-width:0}.cloud-summary-heading{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.cloud-summary-heading h3{margin:0}.cloud-summary-body{margin-top:16px}.cloud-first-hub .ps-button{display:block;width:100%;box-sizing:border-box;text-align:center;text-decoration:none;margin:10px 0;line-height:1.6;overflow-wrap:anywhere}.cloud-summary-demo :is(textarea,select){width:100%;box-sizing:border-box;max-width:100%;font:inherit;border:1px solid #9b8975;border-radius:10px;padding:10px;background:#fffaf3;color:#443e37}.cloud-summary-demo textarea{min-height:200px;resize:vertical}.cloud-sample-check{display:flex;align-items:flex-start;gap:10px;margin:14px 0;cursor:pointer}.cloud-sample-check input{flex:0 0 auto;width:20px;height:20px;accent-color:#597e7b;margin-top:3px}.cloud-summary-sources{padding:10px 12px;border-left:3px solid #65867b;background:#edf3ef}.cloud-summary-demo pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}.cloud-summary-demo h4{margin:20px 0 10px}.care-data-separation dt,.care-quota-proposal dt{font-weight:700;margin-top:14px}.care-data-separation dd,.care-quota-proposal dd{margin:4px 0 12px}.care-optional-model{border-top:1px solid #b9aa99;padding-top:8px}.cloud-first-hub button:disabled{opacity:.5;cursor:not-allowed}
+@media screen{html[data-theme="dark"] :is(.cloud-summary-demo,.care-data-separation,.care-quota-proposal){background:#2d2925;border-color:#6c5e50;color:#f3ece3}html[data-theme="dark"] .cloud-summary-sources{background:#293a33;color:#edf5ef}html[data-theme="dark"] .cloud-summary-demo :is(textarea,select){background:#211f1d;color:#f3ece3;border-color:#9c8b79}}
+
+/* V157: a single compact card at the existing summary entry, not nested panels. */
+.summary-cloud-entry{margin:16px 0;min-width:0}.summary-cloud-entry .cloud-summary-demo{margin:0;padding:14px}.summary-cloud-entry>.av-cloud-link{display:block;margin:4px 0 0;padding:8px 4px;min-height:36px;font-size:12px}.summary-cloud-entry .cloud-summary-demo>.ps-button{width:100%;min-height:44px;text-align:center}.summary-cloud-entry .cloud-summary-demo>p{font-size:13px;line-height:1.65;margin:8px 0 12px}
+
+/* Management first: status cards stay visible, commercial proposals are secondary. */
+.care-settings-heading{margin:4px 0 20px}.care-settings-heading h2{margin:10px 0 6px}.care-settings-heading p{margin:0}.care-balance-grid,.care-model-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}.care-balance-grid>article,.care-model-card{padding:16px;border:1px solid #c8d5ce;border-radius:18px;background:#f3f7f3;min-width:0}.care-balance-grid h3{font-size:14px}.care-balance-grid strong{display:block;font-size:20px;color:#355747;margin:10px 0}.care-balance-grid small{display:block;font-size:13px;line-height:1.6}.care-model-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.care-model-card h3{margin-top:16px}.care-model-card dt{font-weight:700}.care-model-card dd{margin:5px 0}.care-storage-status{padding:18px;border:1px solid #c8d5ce;border-radius:18px;background:#f3f7f3;display:grid;grid-template-columns:minmax(95px,.7fr) 1.3fr;gap:16px}.care-storage-status dt{font-weight:700}.care-storage-status dd{margin:0}.care-account-status{border-bottom:1px solid #d8cbbf;padding-bottom:12px}.care-pro-card>summary{font-weight:700}.care-plans .care-quota-proposal{border:0;border-left:3px solid #c8b8a6;border-radius:0;padding:8px 16px;background:transparent}.care-quota-proposal dl{display:grid;grid-template-columns:1fr 2fr;gap:10px}.care-quota-proposal :is(dt,dd){margin:0}.care-plans .care-pro-card{margin-top:18px}.care-plans a:focus-visible{outline:3px solid #597e7b;outline-offset:3px}
+@media(max-width:520px){.care-model-grid{grid-template-columns:1fr}.care-balance-grid{gap:6px}.care-balance-grid>article{padding:12px 8px}.care-balance-grid strong{font-size:17px}.care-quota-proposal dl{grid-template-columns:1fr}.care-quota-proposal dd{margin-bottom:8px}}
+@media screen{html[data-theme="dark"] :is(.care-balance-grid>article,.care-model-card,.care-storage-status){background:#293a33;border-color:#6c7c70;color:#f3ece3}html[data-theme="dark"] .care-balance-grid strong{color:#c3dfcd}}
+/* 方案與額度頁（2026-11-13 改版）：訂閱卡在上、全寬；大價格＋小單位；勾選清單；月訂／年訂分段切換；額度包用清單。 */
+.care-plans [data-plan-quota-left] strong{font-size:22px;color:#784a30}
+.care-plans button:disabled{opacity:.5!important;filter:grayscale(.6);cursor:not-allowed;box-shadow:none!important}
+.care-plans .plan-section{margin:22px 0}
+.care-plans .plan-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.care-plans .plan-head h2{margin:0}
+.care-plans .plan-cycle{display:inline-flex;padding:4px;border-radius:999px;background:#efe4d6;border:1px solid #dccab6}
+.care-plans .plan-cycle button{min-height:40px!important;min-width:64px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:#6b5847;font-weight:650}
+.care-plans .plan-cycle button[aria-pressed=true]{background:#fffaf3;color:#56351f;box-shadow:0 1px 4px rgba(86,53,31,.18)}
+.care-plans .plan-card{position:relative;padding:20px 20px 18px;border-radius:22px;border:1px solid #dccab6;background:#fffaf3;margin-bottom:12px}
+.care-plans .plan-card.is-featured{border:2px solid #b6652f;background:linear-gradient(180deg,#fff4e6,#fffaf3 60%)}
+.care-plans .plan-card-top{display:flex;align-items:center;gap:10px}
+.care-plans .plan-card-top h3{margin:0;font-size:18px}
+.care-plans .plan-tag{display:inline-block;padding:3px 10px;border-radius:999px;background:#b6652f;color:#fff;font-size:13px;font-weight:700;line-height:1.5}
+.care-plans .plan-tag.is-quiet{background:#efe4d6;color:#6b5847}
+.care-plans .plan-price{display:flex;align-items:baseline;gap:2px;margin:10px 0 2px;color:#784a30;white-space:nowrap}
+.care-plans .plan-currency{font-size:18px;font-weight:700}
+.care-plans .plan-amount{font-size:44px;font-weight:800;line-height:1.1;letter-spacing:-.5px}
+.care-plans .plan-unit{font-size:17px;font-weight:600;color:#8a6a52;margin-left:2px}
+.care-plans .plan-price.is-small .plan-amount{font-size:32px}
+.care-plans .plan-sub{margin:0 0 8px;color:#6f6458;font-size:15px!important}
+.care-plans .plan-features{list-style:none;margin:12px 0 14px;padding:0;display:grid;gap:8px}
+.care-plans .plan-features li{position:relative;padding-left:28px;font-size:16px;line-height:1.5}
+.care-plans .plan-features li::before{content:'✓';position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:#e9d6c1;color:#784a30;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.care-plans .plan-cta{width:100%}
+.care-plans .plan-fine{margin:8px 0 0;color:#6f6256;font-size:13px!important;text-align:center}
+.care-plans .plan-packs{list-style:none;margin:10px 0 14px;padding:0;border:1px solid #dccab6;border-radius:18px;background:#fffaf3;overflow:hidden}
+.care-plans .plan-packs li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:14px 18px}
+.care-plans .plan-packs li+li{border-top:1px solid #eadccc}
+.care-plans .plan-pack-count{font-size:18px;font-weight:700}
+.care-plans .plan-pack-each{color:#6f6256;font-size:14px}
+.care-plans .plan-pack-price{font-size:18px;font-weight:800;color:#784a30;white-space:nowrap}
+html[data-theme="dark"] .care-plans [data-plan-quota-left] strong{color:#f3c99f}
+html[data-theme="dark"] .care-plans .plan-cycle{background:#2a2825;border-color:#5a5047}
+html[data-theme="dark"] .care-plans .plan-cycle button{color:#cdbfae}
+html[data-theme="dark"] .care-plans .plan-cycle button[aria-pressed=true]{background:#4a3524;color:#ffe9d2;box-shadow:none}
+html[data-theme="dark"] .care-plans :is(.plan-card,.plan-packs){background:#2a2825;border-color:#5a5047;color:#f3ece3}
+html[data-theme="dark"] .care-plans .plan-card.is-featured{border-color:#d99a5f;background:linear-gradient(180deg,#3a2c20,#2a2825 60%)}
+html[data-theme="dark"] .care-plans :is(.plan-price,.plan-pack-price){color:#f3c99f}
+html[data-theme="dark"] .care-plans :is(.plan-unit,.plan-sub,.plan-fine,.plan-pack-each){color:#bfb1a2}
+html[data-theme="dark"] .care-plans .plan-tag.is-quiet{background:#3a342e;color:#d8c9b8}
+html[data-theme="dark"] .care-plans .plan-features li::before{background:#4a3524;color:#ffe9d2}
+html[data-theme="dark"] .care-plans .plan-packs li+li{border-top-color:#4a4239}
+.care-plans .plan-price{white-space:normal;flex-wrap:wrap}
+.care-plans .plan-price.is-unavailable .plan-amount{font-size:21px;line-height:1.5;letter-spacing:0}
+.care-plans .plan-packs li{grid-template-columns:auto minmax(0,1fr);padding:14px}
+.care-plans .plan-packs .plan-pack-price{grid-column:1/-1;white-space:normal}
+.care-plans .plan-packs button{grid-column:1/-1;width:100%}
+.care-plans [data-billing-status]{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.care-plans [data-billing-status] p{flex-basis:100%;margin:4px 0}

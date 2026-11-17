@@ -1,0 +1,72 @@
+.o-record-browser{margin:12px 0 22px}.o-search{display:grid;gap:7px;font-size:13px;color:#685342}.o-search input{box-sizing:border-box;width:100%;min-height:48px;border:1px solid #c4ad9566;border-radius:15px;padding:12px 14px;background:#fff9;font:inherit;font-size:16px;color:#3e332c}
+.o-filter-track{display:flex;overflow:auto;gap:7px;padding:12px 0;scrollbar-width:none}.o-filter-track button{flex:0 0 auto;min-height:42px;padding:9px 12px;border-radius:22px;border:1px solid var(--paw-rim);background:#fff8;color:#645444;font-size:13px}.o-filter-track button[aria-pressed=true],.o-record-scope button[aria-pressed=true]{background:#e9d3ba;color:#65401f;border-color:#bd9167}
+.o-date-switch,.o-month-nav{display:flex;align-items:center;justify-content:space-between;gap:8px}.o-date-switch>button,.o-month-nav>button{position:relative;z-index:1;min-width:44px;min-height:44px;border:1px solid var(--paw-rim);background:#ffffff96;border-radius:13px;color:#654b38;font:inherit}.o-date-switch>button:nth-child(2){flex:1;font-weight:600}
+.o-calendar{padding:12px;border:1px solid var(--paw-rim);border-radius:20px;background:#fff9;margin:10px 0;box-shadow:0 4px 20px #7557350d}.o-month-nav label{display:grid;gap:4px;font-size:12px;min-width:0}.o-month-nav input{width:100%;min-height:40px;min-width:0;background:transparent;border:0;color:#654b38;font-size:16px}.o-calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;margin-top:10px}.o-calendar-grid button{min-height:42px;border-radius:12px;border:1px solid transparent;background:transparent;color:#594a3f;font-size:15px;position:relative;padding:6px 0 12px}.o-calendar-grid button[aria-pressed=true]{border-color:#c79870;background:#ead3b9}.o-calendar-grid button:disabled{opacity:.3}.o-calendar-grid button i{position:absolute;bottom:5px;left:calc(50% - 2px);width:4px;height:4px;border-radius:50%;background:#a05826}.o-weekday{text-align:center;font-size:11px;color:#8b7967;padding:5px 0}
+.o-record-scope{display:flex;gap:8px;margin:12px 0}.o-record-scope button{flex:1;min-height:44px;padding:8px;border-radius:13px;border:1px solid var(--paw-rim);background:#fff8;color:#65503f;font:inherit;font-size:13px}.o-record-results{display:grid;gap:var(--g-record-gap,12px)}.o-record-result{width:100%;text-align:left;display:grid;gap:6px;padding:15px;border:1px solid var(--paw-rim);border-radius:18px;background:linear-gradient(140deg,#ffffffaa,#fff5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#463b32;box-shadow:0 5px 15px #7055370b}.o-record-result strong{font-size:15px;line-height:1.5;overflow-wrap:anywhere}.o-record-result small,.o-record-result span{font-size:12px;color:#7d6d5b}.o-record-result .o-result-link{color:#97562d}.o-empty{border:1px dashed #bfa88d;border-radius:17px;padding:18px;color:#796653;text-align:center}.o-empty p{font-size:13px}
+.o-care-dialog{max-width:min(370px,calc(100% - 32px));max-height:80%;overflow:auto;border:1px solid var(--paw-rim);border-radius:24px;padding:24px;background:#fbf5ed;color:#463b32}.o-care-dialog::backdrop{background:#392b2455}.o-care-dialog h2{margin-top:0}.o-care-dialog p{line-height:1.7}.o-health-notices{margin:16px 0 20px}.o-health-notices>h2{font-size:19px}.o-health-notices h3{font-size:16px;margin:0 0 8px}.o-health-notices p{line-height:1.7}.o-care-reason{font-size:12px;line-height:1.6;color:#855e38;background:#f3e4cf99;border-radius:12px;padding:9px 12px}.o-owner-dot{display:inline-block;width:9px;height:9px;flex:0 0 9px;border-radius:50%;margin-right:5px}
+.inpaw-app .health-cat-switch,.inpaw-app .switch-cat{border:1px solid #b69c7b66;border-radius:16px;background:#ffffff80;min-height:40px;padding:8px 12px;cursor:pointer}.mc-notice-toast{position:fixed;z-index:1000;bottom:calc(110px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);width:min(340px,calc(100% - 32px));padding:12px 16px;background:#fff3e8ed;border:1px solid var(--paw-rim);border-radius:18px;box-shadow:0 5px 24px #49321d20;font-size:13px;color:#634a37;pointer-events:none;backdrop-filter:blur(18px)}
+.o-deleted-foods{border:1px solid var(--paw-rim);border-radius:17px;padding:12px;background:#fff6;margin:20px 0}.o-deleted-foods>summary{min-height:24px;font-size:14px;font-weight:600;cursor:pointer}.o-deleted-foods article{display:grid;gap:7px;border-top:1px solid #aa8e6833;padding:14px 0}.o-deleted-foods small{font-size:12px;color:#796a5a}.o-deleted-foods button{min-height:44px}.inpaw-app [data-testid=food-list]{display:flex;flex-direction:column}.inpaw-app [data-testid=food-list]>.o-deleted-foods{order:0}.o-day-details{display:block;margin-top:5px!important;min-height:40px}.field-error{display:block;line-height:1.5}.h-food-categories .o-required-note{font-size:12px;color:#a14235;margin:6px 0 0}
+
+.o-swipe-record {
+ --record-swipe-width:76px;
+ position:relative;
+ min-width:0;
+ overflow:hidden;
+ border-radius:18px;
+}
+.o-swipe-record>.o-record-result {
+ touch-action:pan-y pinch-zoom;
+ transition:width .18s ease-out;
+}
+.o-swipe-record[data-revealed=true]>.o-record-result {
+ width:calc(100% - var(--record-swipe-width) - 6px);
+}
+.inpaw-app .o-swipe-record>.o-swipe-delete {
+ position:absolute;
+ inset:0 0 0 auto;
+ width:var(--record-swipe-width);
+ min-height:44px;
+ border:1px solid #893e35;
+ border-radius:14px;
+ background:#9d453b;
+ color:#fffaf5;
+ font:inherit;
+ font-weight:700;
+}
+.inpaw-app .o-swipe-record>button:focus-visible {outline-offset:-3px!important}
+@media (prefers-reduced-motion:reduce){.o-swipe-record>.o-record-result{transition:none}}
+
+/* Full names remain readable in archive, drafts and matching-name cards. */
+.o-deleted-foods>summary{min-height:44px;display:flex;align-items:center}.o-deleted-foods strong,.o-deleted-foods button,.stable-food-actions button,.food-card-row strong,.food-recent button,.t-food-version{white-space:normal;overflow-wrap:anywhere;text-overflow:clip;-webkit-line-clamp:unset}.t-food-version{display:block;line-height:1.5}
+
+/* Records page, round 4: records on the first screen, recent days grouped by date, a visible delete. */
+.inpaw-app.records-app .app-content>.eyebrow{display:none}
+.inpaw-app .o-record-browser{margin-top:4px}
+.o-visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.inpaw-app .o-record-browser .o-record-toolbar{display:flex;align-items:center;gap:8px}
+.inpaw-app .o-record-browser .o-record-toolbar>.o-filter-track{flex:1 1 auto;min-width:0;padding:8px 0}
+.inpaw-app .o-record-browser .o-filter-icon{position:relative;flex:0 0 44px;width:44px;height:44px;min-height:44px;padding:0;display:grid;place-items:center;border:1px solid var(--flower-line,#e5d7c8);border-radius:50%;background:#fffaf4;color:#674a37;cursor:pointer}
+.inpaw-app .o-record-browser .o-filter-icon:focus-visible{outline:2px solid #815336;outline-offset:2px}
+.inpaw-app .o-record-browser .o-filter-count{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 4px;box-sizing:border-box;border-radius:9px;background:#8f4f27;color:#fffaf4;font-size:11px;font-weight:700;line-height:18px;text-align:center}
+.inpaw-app .o-record-browser .o-search{margin-bottom:8px}
+.inpaw-app .o-record-browser .record-result-meta{margin:0 0 6px}
+.inpaw-app .o-record-browser .o-record-results{gap:16px}
+.inpaw-app .o-record-browser .o-record-day{display:grid;gap:var(--g-record-gap,10px);min-width:0}
+.inpaw-app .o-record-browser .o-record-day-title{margin:0;font-size:14px;font-weight:700;line-height:1.5;color:#5d4636}
+.inpaw-app .o-record-browser .o-record-item{position:relative;min-width:0}
+.inpaw-app .o-record-browser .o-record-item .o-result-link{min-height:30px;display:flex;align-items:center;padding-right:64px}
+.inpaw-app .o-record-browser .o-record-delete{position:absolute;right:4px;bottom:8px;z-index:1;min-width:56px;min-height:44px;padding:0 12px;border:0;border-radius:12px;background:transparent;color:#9d453b;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.inpaw-app .o-record-browser .o-record-delete:hover{background:#9d453b14}
+.inpaw-app .o-record-browser .o-record-delete:focus-visible{outline:2px solid #9d453b;outline-offset:-2px}
+.inpaw-app .o-record-browser .record-report-footer{margin:18px 0 4px}
+.inpaw-app .o-record-browser .record-report-link{display:block;width:100%;min-height:44px;padding:8px 0;border:0;background:transparent;color:#97562d;font:inherit;font-size:14px;font-weight:600;text-align:left;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.inpaw-app .o-record-browser .record-report-link[aria-expanded=true]{text-decoration:none}
+.inpaw-app .o-record-browser .record-report-link:focus-visible{outline:2px solid #815336;outline-offset:2px}
+.inpaw-app .o-record-browser .record-report-footer>.record-report-tools{margin-top:8px}
+.o-filter-sheet-body .o-day-pick-label{margin:12px 0 6px}
+:where(html[data-theme="dark"]) .inpaw-app .o-record-browser .o-filter-icon{background:#322f2c;color:#ead8c4;border-color:var(--flower-line,#ac9f91)}
+:where(html[data-theme="dark"]) .inpaw-app .o-record-browser .o-filter-count{background:#e1bda6;color:#2b2622}
+:where(html[data-theme="dark"]) .inpaw-app .o-record-browser .o-record-day-title{color:#ead8c4}
+:where(html[data-theme="dark"]) .inpaw-app .o-record-browser .o-record-delete{color:#f0a99c}
+:where(html[data-theme="dark"]) .inpaw-app .o-record-browser .o-record-delete:hover{background:#f0a99c1f}
+:where(html[data-theme="dark"]) .inpaw-app .o-record-browser .record-report-link{color:#e1bb9d}

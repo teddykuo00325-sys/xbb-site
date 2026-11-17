@@ -1,0 +1,121 @@
+/* 2026-11-17 全面稽核修正（Ian 批准第一＋二批）。最後載入；淺／深色都以 data-theme 明確分開，避免 :where() 權重 0 的深色覆寫失效。 */
+
+/* ── 觸控目標至少 44px ───────────────────────────────────────── */
+html body .inpaw-app .today-pet-switch{min-height:44px}
+html body .care-plans .plan-cycle button{min-height:44px;min-width:64px}
+html body .unified-meal-form :is(.meal-mix-options,.meal-optional-amounts)>summary,
+html body .daily-quick-fields details>summary,
+html body .inpaw-app .pet-settings .care-fold>summary{min-height:44px;display:flex;align-items:center;gap:6px}
+html body .unified-meal-form :is(.meal-mix-options,.meal-optional-amounts)>summary::before,
+html body .daily-quick-fields details>summary::before{content:'▸';font-size:12px;transition:transform .15s}
+html body .unified-meal-form :is(.meal-mix-options,.meal-optional-amounts)[open]>summary::before,
+html body .daily-quick-fields details[open]>summary::before{transform:rotate(90deg)}
+html body .daily-quick-fields .text-btn{min-height:44px}
+html body .inpaw-app .ps-tabs [role=tab]{min-width:44px}
+
+/* ── 小字對比（≥4.5，最小 13px） ───────────────────────────── */
+html[data-theme="light"] body .unified-meal-form :is(.meal-quantity-note,.meal-footer-note),
+html[data-theme="light"] body .unified-meal-form summary small{color:#6f6256}
+html body .unified-meal-form :is(.meal-quantity-note,.meal-footer-note),html body .unified-meal-form summary small{font-size:13px}
+html[data-theme="light"] body .mc-switcher-dialog :is(.mc-note,.mc-cat-info small),html[data-theme="light"] body .mc-note-count{color:#6f5b4b}
+html[data-theme="light"] body .ih-hub>.ih-care-note p{color:#6f6256}
+html body .ih-hub>.ih-care-note p{font-size:13px}
+html[data-theme="dark"] body .unified-meal-form :is(.meal-quantity-note,.meal-footer-note,summary small),
+html[data-theme="dark"] body .mc-switcher-dialog :is(.mc-note,.mc-cat-info small),
+html[data-theme="dark"] body .mc-note-count,
+html[data-theme="dark"] body .ih-hub>.ih-care-note p{color:#d5c5b1}
+
+/* ── 文字色收斂到咖啡系（深藍 #293b70 只留給 Logo） ─────────── */
+html[data-theme="light"] body :is(.mc-family,.inpaw-app .mc-cat-card,.inpaw-app .mc-add,.ld-share,.mc-dialog){color:#4a3a2f}
+html[data-theme="light"] body .inpaw-app .mc-cat-card.active{background:#fff4e6;border-color:#d9ac86}
+html[data-theme="light"] body .inpaw-app .mc-add{border-color:#cebca8}
+html[data-theme="dark"] body .inpaw-app .mc-add{background:var(--action-secondary)!important;color:var(--action-secondary-ink)!important;border:1.5px dashed var(--action-secondary-line)!important}
+
+/* ── 記一筆類型卡：中文不拆詞（疫苗／驅 / 蟲） ─────────────── */
+html body .cj-workspace .cj-entry-pick .entry-kind-tabs button>span{overflow-wrap:normal;word-break:keep-all;line-break:strict}
+
+/* ── 分享窗：動作列固定在底部，不用捲才看到「分享圖片」；勾選框用杏桃色 ── */
+html body .ld-share .ld-share-actions{position:sticky;bottom:-20px;z-index:2;margin:12px -20px -20px;padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));background:inherit;border-top:1px solid #e7d8c6}
+html[data-theme="dark"] body .ld-share .ld-share-actions{border-top-color:#4a423b}
+
+/* ── 新增的提示元件 ─────────────────────────────────────────── */
+/* 日記保存／刪除提示：浮在畫面上方，不在首屏外 */
+html body .life-diary .ld-toast{position:fixed;left:50%;top:calc(18px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:80;width:max-content;max-width:calc(100vw - 32px);margin:0;padding:12px 18px;border-radius:999px;background:#493326;color:#fff8ee;font-weight:700;box-shadow:0 6px 18px #3a281d33;text-align:center}
+html[data-theme="dark"] body .life-diary .ld-toast{background:#F5CDA8;color:#493326}
+/* 分享文字太長時的兩個快捷按鈕 */
+html body .ld-share .ld-share-fixes{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px}
+html body .ld-share .ld-share-fixes button{flex:1 1 140px;min-height:44px}
+/* 紀錄頁：目前只看哪一類，一鍵清除 */
+html body .o-active-filter{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0 4px;padding:6px 6px 6px 14px;border:1px solid #e4c9ad;border-radius:999px;background:#fff4e6;color:#5b4232;font-size:14px}
+html body .o-active-filter .text-btn{min-height:40px;padding:0 12px;font-weight:700;color:#7a4a2c}
+html[data-theme="dark"] body .o-active-filter{background:#3a332c;border-color:#6b5a4b;color:#f3e7d8}
+html[data-theme="dark"] body .o-active-filter .text-btn{color:#F5CDA8}
+/* 記一餐：還有沒存的餵食草稿 */
+html body .unified-meal-form .meal-draft-hint{margin:8px 0 12px;padding:10px 12px;border-radius:12px;background:#fff4dc;color:#5c4320;font-size:14px;line-height:1.6}
+html[data-theme="dark"] body .unified-meal-form .meal-draft-hint{background:#3d3524;color:#f3e7cf}
+
+/* ── Leon 複驗補強（同日第二輪）：原本被更高權重或 !important 蓋掉的項目 ── */
+html body .care-plans .plan-cycle button{min-height:44px!important}
+html body .ij-review-fields .daily-quick-fields details>summary,
+html body .compact-record-fields>details>summary{min-height:44px!important;display:flex!important;align-items:center;gap:6px}
+html body .compact-record-fields>details>summary::-webkit-details-marker{display:none}
+html body .compact-record-fields>details>summary{list-style:none}
+html body .compact-record-fields>details>summary::before{content:'▸';font-size:12px;transition:transform .15s}
+html body .compact-record-fields>details[open]>summary::before{transform:rotate(90deg)}
+html body .inpaw-app .ps-tabs .ps-tab{min-width:44px}
+/* 方案 CTA 停用時維持杏桃色，不要灰階 */
+html body .care-plans :is(.ps-button,.plan-cta):not(.secondary):not(.danger):disabled{opacity:.55!important;filter:none!important}
+/* 日記 AI 執行中：不要再被 disabled 的透明度拉淡（文字 #7a3450 底 #f6d9e3 本身 ≥4.5） */
+html body .ld-form .ldp button.ldp-go:disabled{opacity:1!important}
+html body .ld-form .ldp-note{font-size:13px;opacity:1}
+html[data-theme="light"] body .ld-form :is(.ld-ai-details>summary,.ldp-card strong){color:#4a3a2f}
+/* 記一餐「只在確定目前完全不進食時勾選…」小字 */
+html[data-theme="light"] body .diet-note{color:#6f6256}
+html[data-theme="dark"] body .diet-note{color:#d5c5b1}
+html body .diet-note{font-size:13px}
+/* 切換毛孩卡片副資訊 13px；切換對話框不在 .inpaw-app 裡，選擇器不能加 .inpaw-app */
+html body .mc-cat-info small{font-size:13px}
+html[data-theme="light"] body :is(.mc-cat-card,.mc-add){color:#4a3a2f}
+html[data-theme="light"] body .mc-cat-card.active{background:#fff4e6;border-color:#d9ac86}
+html[data-theme="dark"] body .mc-add.mc-add.mc-add:not(.secondary):not(.danger){background:var(--action-secondary)!important;color:var(--action-secondary-ink)!important;border:1.5px dashed var(--action-secondary-line)!important;box-shadow:none!important}
+
+/* ── 第三批 A：首頁快記放第一屏（今日小結＋五顆快記，3＋2 排） ── */
+html body .inpaw-app .today-quick-actions.is-compact.has-five{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;align-items:stretch;margin:10px 0 16px}
+html body .inpaw-app .today-quick-actions.has-five>.today-quick-head,html body .inpaw-app .today-quick-actions.has-five>.today-record-line{grid-column:1/-1}
+html body .inpaw-app .today-quick-actions.has-five>button{grid-column:span 2;flex:none!important;width:auto;white-space:nowrap}
+html body .inpaw-app .today-quick-actions.has-five>button:nth-of-type(n+4){grid-column:span 3}
+html body .inpaw-app .today-quick-head{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:32px}
+html body .inpaw-app .today-quick-head .today-quick-label{flex:none;margin:0}
+html body .inpaw-app .today-quick-head .today-food-link{min-height:44px;padding:0 4px;font-size:14px;font-weight:700;color:#7a4a2c;text-decoration:none}
+html[data-theme="dark"] body .inpaw-app .today-quick-head .today-food-link{color:#F5CDA8}
+/* 食品卡是標題列右側的小文字連結，不吃快記膠囊按鈕的全域樣式 */
+html:root body .inpaw-app .today-quick-actions .today-quick-head button.today-food-link{flex:none!important;width:auto!important;min-width:0!important;min-height:44px!important;padding:0 4px!important;border:0!important;border-radius:8px!important;background:transparent!important;box-shadow:none!important;color:#7a4a2c!important}
+html:root[data-theme="dark"] body .inpaw-app .today-quick-actions .today-quick-head button.today-food-link{color:#F5CDA8!important}
+html body .inpaw-app .today-record-line{margin:-4px 0 2px;font-size:15px;font-weight:700;color:#4a3a2f;line-height:1.5}
+html[data-theme="dark"] body .inpaw-app .today-record-line{color:#f3e7d8}
+@media(max-width:360px){html[lang="en"] body .inpaw-app .today-quick-actions.has-five{grid-template-columns:repeat(2,minmax(0,1fr))}html[lang="en"] body .inpaw-app .today-quick-actions.has-five>button,html[lang="en"] body .inpaw-app .today-quick-actions.has-five>button:nth-of-type(n+4){grid-column:span 1}html[lang="en"] body .inpaw-app .today-quick-actions.has-five>button:last-of-type{grid-column:1/-1}}
+/* 首頁用藥精簡：上一格＋下一格，其他收合 */
+html body .vv-slots-compact .vv-more-slots{margin-top:6px}
+html body .vv-slots-compact .vv-more-slots>summary{min-height:44px;display:flex;align-items:center;font-size:14px;color:#6f6256;cursor:pointer}
+html[data-theme="dark"] body .vv-slots-compact .vv-more-slots>summary{color:#d5c5b1}
+
+/* ── 第三批 D：陪玩插圖縮成橫幅，功能卡往上 ───────────────── */
+html body .inpaw-app .ih-hub>.ih-play-illustration{height:clamp(120px,36vw,150px);margin:0 auto 4px}
+
+/* ── 表單勾選／單選：淺色也用杏桃系，不出現系統藍 ─────────── */
+html[data-theme="light"] body input:is([type=checkbox],[type=radio]){accent-color:#92532F}
+
+/* ── 簡化重複入口（2026-11-17）：今日頁照顧時間表收成一行、名字旁小箭頭、快速觀察搬到更多照護 ── */
+html body .inpaw-app .today-care-line{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:56px;margin:12px 0;padding:12px 16px;border:1px solid #ead9c6;border-radius:18px;background:#fffaf4;color:#3a2f27;text-align:left;font:inherit;box-shadow:none}
+html body .inpaw-app .today-care-line .care-entry-copy{display:grid;gap:2px;min-width:0}
+html body .inpaw-app .today-care-line small{color:#7a6a5c;font-size:.86em}
+html body .inpaw-app .today-care-line>span[aria-hidden]{font-size:1.3em;color:#92532F}
+html body .inpaw-app .today-pet-chevron{flex:none;align-self:center;opacity:.7}
+html body .inpaw-app .today-quick-observe{margin:12px 0}
+html body .inpaw-app .today-quick-observe .quick-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+:where(html[data-theme="dark"]) body .inpaw-app .today-care-line{background:#2b2724;border-color:#5a4c40;color:#f3ece3}
+:where(html[data-theme="dark"]) body .inpaw-app .today-care-line small{color:#cbbfb3}
+@media (prefers-color-scheme:dark){
+  :where(html:not([data-theme="light"])) body .inpaw-app .today-care-line{background:#2b2724;border-color:#5a4c40;color:#f3ece3}
+  :where(html:not([data-theme="light"])) body .inpaw-app .today-care-line small{color:#cbbfb3}
+}

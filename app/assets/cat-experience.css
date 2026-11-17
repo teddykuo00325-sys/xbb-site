@@ -1,0 +1,171 @@
+/* Compact daily entry, leaving the durable-save status and owner visible. */
+.ij-page-review .subtitle{margin:4px 0 12px;font-size:14px;color:#56626d}
+.ij-page-review .ij-review-fields{margin-top:10px;padding:16px}
+.ij-page-review .cat-ownership-banner{margin:4px 0 8px}
+.ij-page-review .field{margin-bottom:14px}
+.compact-entry-options{margin:14px 0 18px;padding:12px 14px;border:1px solid #d9e1e6;border-radius:14px;background:#fff}
+.compact-entry-options>summary{min-height:24px;font-size:14px;font-weight:600;color:#445965;cursor:pointer}
+.compact-entry-options .entry-kind-tabs{margin-top:12px}
+.elimination-kind{padding:0;border:0;margin:0 0 14px;display:flex;flex-wrap:wrap;gap:8px}
+.elimination-kind legend{font-size:15px;font-weight:600;margin-bottom:8px;color:#3c4b54}
+.elimination-kind label{display:flex;align-items:center;gap:7px;min-height:44px;padding:8px 10px;border:1px solid #ccd8de;border-radius:12px;cursor:pointer;font-size:14px;background:#fff}
+.elimination-kind label:has(input:checked){background:#edf5f5;border-color:#6d949b;color:#294f57}
+.elimination-kind input{accent-color:#4b7b83;width:16px;height:16px;margin:0}
+.observation-household{display:block;min-height:44px;margin:4px 0 8px;text-align:left}
+.recent-care{padding:16px;margin:18px 0;background:#fff;border:1px solid #e1e7eb;border-radius:18px}
+.recent-care .health-section-title{margin:0 0 8px}.recent-care .health-section-title>span{font-size:13px;color:#56626d}
+.recent-care-note{font-size:13px;line-height:1.5;color:#56626d;margin:8px 0}
+.recent-care-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.recent-care-item{min-width:0;background:#f6f8f9;border-radius:12px;padding:10px}
+.recent-care-item>button:first-child{display:flex;flex-direction:column;gap:5px;width:100%;background:none;border:0;text-align:left;padding:0;color:#334650}
+.recent-care-item strong{font-size:15px}.recent-care-item span{font-size:14px;line-height:1.45;overflow-wrap:anywhere}.recent-care-item small{font-size:12px;color:#56626d}
+.recent-care-add{margin-top:7px;padding:8px 4px;min-height:40px;border:0;background:none;color:#37656b;font-size:14px;font-weight:600}
+.recent-care details{margin-top:12px}.recent-care summary{font-size:14px;min-height:32px;color:#445965;cursor:pointer}
+.recent-care-row{display:flex;flex-direction:column;gap:4px;width:100%;text-align:left;border:0;border-top:1px solid #e3e8eb;background:none;padding:12px 0;color:#3e505a;font-size:14px}.recent-care-row small{color:#56626d}
+.health-home .home-drafts{padding:10px 12px;margin:10px 0}.health-home .home-drafts h2{font-size:15px;margin:0 0 6px}.health-home .home-drafts p{font-size:13px;line-height:1.4;margin:5px 0}.health-home .draft-continue{padding:9px 12px;min-height:48px}.health-home .draft-continue strong{font-size:14px}
+
+/* Recent care joins the shared glass surfaces. Inner observation text has a
+   strong, pale backing so status remains readable over the tinted canvas. */
+.inpaw-app .recent-care{
+ background:var(--paw-glass);border:1px solid var(--paw-rim);
+ box-shadow:var(--paw-depth),inset 0 1px 0 #ffffffe0;
+ backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%);
+}
+.inpaw-app .recent-care-item,.inpaw-app .recent-care details{background:#fffaf0e8}
+.inpaw-app .recent-care details{padding:0 12px;border-radius:12px}
+.inpaw-app .recent-care summary{min-height:44px;padding:12px 0;line-height:20px;box-sizing:border-box}
+.inpaw-app .recent-care-item>button:first-child,.inpaw-app .recent-care-row{color:#334650}
+.inpaw-app .recent-care-add{min-height:44px;color:#37656b}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ .inpaw-app .recent-care{background:#fffaf4;backdrop-filter:none;-webkit-backdrop-filter:none}
+ .inpaw-app .recent-care-item,.inpaw-app .recent-care details{background:#fffaf0}
+}
+@media(prefers-reduced-transparency:reduce){
+ .inpaw-app .recent-care{background:#fffaf4;backdrop-filter:none;-webkit-backdrop-filter:none}
+ .inpaw-app .recent-care-item,.inpaw-app .recent-care details{background:#fffaf0}
+}
+.inpaw-app .recent-care-note,.inpaw-app .recent-care .health-section-title>span{color:#46545f}
+.recent-care-litter{width:100%;min-height:44px;margin:4px 0 10px;padding:8px 12px;border:1px solid #a6b9b6;border-radius:12px;background:#fffaf0;color:#294f57;text-align:left;font:inherit;font-weight:650}
+.summary-export{margin:0 0 16px;padding:12px;border:1px solid #d9c8b7;border-radius:16px;background:#fffaf0}
+.summary-export h2{font-size:16px;margin:0 0 8px}
+.summary-export-actions{display:flex;flex-wrap:wrap;gap:8px}
+.summary-export-actions>button{flex:1 1 8em;min-height:44px;margin:0!important;justify-content:center}
+.summary-export-actions>.text-btn{border:1px solid #c9b69e;border-radius:12px;padding:8px;background:#fffdf7;color:#614b39}
+.summary-export .microcopy{margin:8px 0 0;text-align:left}
+
+.inpaw-app .home-vet-entry{
+ display:grid;grid-template-columns:28px minmax(0,1fr) auto;align-items:center;gap:10px;
+ width:100%;min-height:60px;margin:4px 0 8px;padding:8px 12px;
+ border:1px solid #ddc5a9;border-radius:16px;background:#fff8ed;color:#392d26;text-align:left;
+}
+.home-vet-entry img{width:24px;height:24px}
+.home-vet-entry strong,.home-vet-entry small{display:block;line-height:1.45}
+.home-vet-entry strong{font-size:16px}
+.home-vet-entry small{font-size:13px;color:#624f41}
+.home-vet-entry>span:last-child{font-size:24px}
+.inpaw-app .first-pet-start{max-width:480px;margin:auto;padding-top:24px;text-align:left}
+.first-pet-start h1{font-size:clamp(23px,6vw,28px);line-height:1.35;margin:10px 0 6px}
+.first-pet-start .ob-logo{width:156px;margin:0}
+.first-pet-start .vet-example-toggle{width:100%;min-height:44px;margin:12px 0}
+.first-pet-start .first-pet-no-account{margin-top:8px;text-align:center}
+.pet-setup-sound{margin:10px 0 14px;padding:0 10px 0 12px;border:1px solid #d7bda5;border-radius:14px;background:#fff8ef;color:#63432e}
+.pet-setup-sound-toggle,.pet-setup-sound-tracks button{min-height:44px;font:inherit;font-size:14px;color:inherit;cursor:pointer}
+.pet-setup-sound-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;border:0;padding:4px 0;background:none;text-align:start;font-weight:750}
+.pet-setup-sound-toggle span{font-size:18px;line-height:1}
+.pet-setup-sound p{font-size:13px;line-height:1.55;margin:4px 0 10px}
+.pet-setup-sound-tracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,112px),1fr));gap:6px}
+.pet-setup-sound-tracks button{padding:4px 8px;border:1px solid currentColor;border-radius:10px;background:transparent}
+.pet-setup-sound button:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+html[data-theme=dark] .pet-setup-sound{background:#36302b;color:#f5dfc8;border-color:#9a806a}
+.vet-example{padding:12px;border:1px solid #dfcbb5;border-radius:16px;background:#fffaf0;color:#392d26}
+.vet-example h2{font-size:17px;margin:4px 0}
+.vet-example p,.vet-example dl{font-size:14px;line-height:1.55;margin:0}
+.vet-example .vet-example-label,.vet-example .vet-example-note{color:#624f41}
+.vet-example dt{font-weight:700;margin-top:8px}
+.vet-example dd{margin:0 0 6px}
+.summary-example-details{margin-top:10px}
+.summary-example-details>summary{min-height:44px;padding:10px 0;color:#62412a;cursor:pointer}
+.unified-meal-form .meal-reuse-action{
+ display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2px 8px;
+ width:100%;min-height:44px;padding:8px 12px;color:#563d2a;text-align:left;
+}
+.unified-meal-form .meal-reuse-action small{color:#654f40}
+.inpaw-app :is(.home-vet-entry,.vet-example-toggle,.meal-reuse-action):focus-visible{outline:2px solid #815336;outline-offset:3px}
+
+.inpaw-app .today-slim{gap:10px}
+.today-slim .today-compact-header{
+ display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;
+ border-radius:17px;background:linear-gradient(115deg,#f4eee1,#f5decb);
+}
+.today-slim .today-heading{flex:none}
+.today-slim .today-compact-header :is(h1,.health-date){margin:0}
+.today-slim .today-compact-header h1{font-size:22px;line-height:1.2}
+.today-slim .today-compact-header .health-date{font-size:12px;line-height:1.5;color:#67544a}
+.today-family{position:relative;min-width:0}
+.today-family-row{display:flex;align-items:center;gap:4px;min-width:0}
+.today-pet-menu{min-width:0}
+.today-pet-menu summary{
+ list-style:none;display:flex;align-items:center;gap:5px;min-height:44px;padding:3px 5px;
+ color:#51392d;cursor:pointer;font-size:14px;
+}
+.today-pet-menu summary::-webkit-details-marker{display:none}
+.today-pet-menu summary strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.today-family .family-portrait{
+ display:block;flex:none;width:34px;height:34px;padding:2px;border:1px solid var(--pet-coat,#c58147);
+ border-radius:50%;background:#fff8ec;box-shadow:none;box-sizing:border-box;
+}
+.today-family .family-portrait img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.inpaw-app .today-pet-direct{width:44px;min-height:44px;display:grid;justify-items:center;align-content:center;padding:0;flex:none;color:#5c4538}
+.today-pet-direct .family-portrait{width:28px;height:28px}
+.today-pet-short-name{max-width:44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;line-height:14px}
+.today-pet-options{
+ position:absolute;right:0;z-index:15;display:grid;min-width:185px;max-width:min(240px,80vw);padding:4px 8px;
+ border:1px solid #dfcdbb;border-radius:14px;background:#fffaf1;box-shadow:0 5px 16px #57402b24;
+}
+.inpaw-app .today-pet-options button{min-height:44px;padding:6px;text-align:left;color:#553b2d;overflow-wrap:anywhere}
+.inpaw-app .today-pet-options button+button{border-top:1px solid #eee2d6}
+.today-slim .today-care-list{border:1px solid #e8d9c8;border-radius:15px;background:#fffdf8}
+.today-care-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:5px;padding:4px 7px}
+.today-care-row+.today-care-row{border-top:1px solid #f0e4d6}
+.inpaw-app .today-care-status{
+ display:flex;align-items:center;gap:8px;min-height:48px;padding:3px;color:#372e29;text-align:left;
+}
+.today-care-status img{flex:none}
+.today-care-status strong,.today-care-status small{display:block;line-height:1.35}
+.today-care-status small{color:#695a50;font-size:12px}
+.inpaw-app .today-care-action{
+ min-height:44px;padding:0 9px;border:1px solid #dbad8b;border-radius:11px;
+ background:#f9eadc;color:#7d431f;font-weight:700;white-space:nowrap;
+}
+.inpaw-app .today-task{
+ display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:44px;
+ padding:7px 10px;border:1px solid #e4bf96;border-radius:12px;background:#fff2dc;color:#6f421e;text-align:left;
+}
+.today-task span{font-size:13px}
+.today-more>summary,.inpaw-app .today-secondary{min-height:44px;padding:10px;color:#694932;cursor:pointer}
+.today-slim .home-vet-entry{margin:0}
+.today-slim .health-section-title{margin:2px 0 4px}
+.inpaw-app .today-slim>.health-list,.inpaw-app .today-slim>.health-disclaimer{margin:0}
+.today-slim :is(button,summary):focus-visible{outline:2px solid #815336;outline-offset:2px}
+@media(max-width:350px){.today-slim .today-compact-header{gap:4px;padding-inline:8px}.today-family-row{gap:0}}
+
+.inpaw-app .care-reading-card{
+ display:grid;gap:5px;padding:12px 14px;border:1px solid #e4d1bc;border-radius:16px;
+ background:#fffaf2;color:#372b25;text-align:left;
+}
+.inpaw-app .care-reading-card>p{margin:0;color:#655247;font-size:13px;line-height:1.45}
+.inpaw-app .care-reading-card>strong{font-size:clamp(20px,6vw,26px);line-height:1.3;overflow-wrap:anywhere}
+.inpaw-app .feeding-headline{display:grid;gap:8px;align-items:stretch}
+.inpaw-app .care-reading-action{
+ justify-self:start;min-height:44px;margin-top:3px;padding:0 12px;border:1px solid #dbad8b;
+ border-radius:10px;background:#f9eadc;color:#7d431f;font-weight:700;
+}
+.inpaw-app .vet-headline,.inpaw-app .weight-headline{margin:0 0 10px}
+.inpaw-app .record-category-shortcuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,94px),1fr));gap:6px;overflow:visible;padding:3px 0 9px}
+.inpaw-app .record-category-shortcuts button{min-width:0;min-height:44px;padding:6px 4px;white-space:normal;overflow-wrap:normal;line-height:1.35}
+/* RouteSurface freezes the prior page behind a new entry. Its previous receipt
+   belongs to that page and must not float above the active form. */
+.navigation-route-surface.has-task-sheet>.navigation-route-background .toast{display:none!important}
+.inpaw-app .weight-record-link{display:flex;align-items:center;justify-content:space-between;gap:6px;width:100%;min-height:44px;text-align:left;color:#5b3d27}
+.weight-plot-point{cursor:pointer}
+.inpaw-app :is(.weight-record-link,.care-reading-action,.record-category-shortcuts button):focus-visible{outline:2px solid #815336;outline-offset:2px}

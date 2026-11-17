@@ -1,0 +1,40 @@
+.pet-owner-header{display:flex;align-items:center;gap:4px;max-width:100%;margin:8px 0 12px;color:#80634d;font-size:13px}
+.pet-owner-prefix{flex:0 0 auto}
+.inpaw-app .pet-switch-button{display:inline-flex;align-items:center;gap:7px;min-width:0;max-width:100%;min-height:44px;margin:0;padding:8px 12px;border:1px solid #ecddc9;border-radius:24px;background:#fff7e9;color:#674930;box-shadow:0 2px 6px #7252350d;font:inherit;text-align:left;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}
+.pet-switch-button:active{transform:scale(.97)}
+.pet-switch-button:focus-visible{outline:3px solid #995325;outline-offset:3px}
+.pet-switch-name{min-width:0;font-size:14px;font-weight:750;line-height:1.35;overflow-wrap:anywhere}
+.pet-switch-arrow{flex:0 0 auto;color:#8c6a50;font-size:13px}
+.pet-switch-color{flex:0 0 8px;width:8px;height:8px;border-radius:50%}
+.pet-owner-static{margin:8px 0 12px;color:#80634d;font-size:13px;overflow-wrap:anywhere}
+.pet-owner-label{margin:0;line-height:1.6}
+.pet-owner-label strong{color:#674930;font-weight:700}
+.pet-owner-hint{margin:3px 0 0;font-size:11px;line-height:1.5;color:#8c6a50}
+.mc-switcher-dialog{background:#fff8ed;color:#654b36;border-radius:28px;box-shadow:0 18px 60px #4e352c38}
+.mc-switcher-dialog h2{display:flex;align-items:center;gap:9px;color:#654b36}
+.mc-switcher-dialog h2 img{width:28px;height:28px}
+.mc-switcher-dialog .mc-note,.mc-switcher-dialog .mc-cat-info small{color:#806b59}
+.mc-family .mc-cat-card,.inpaw-app .mc-cat-card{gap:12px;border:1px solid #eee0cd;border-radius:22px;background:#fffcf5;color:#654b36;padding:13px}
+.mc-family .mc-cat-card.active,.inpaw-app .mc-cat-card.active{border:2px solid #d4aa7e;background:#fff0db;padding:12px;box-shadow:0 3px 10px #9463300a}
+.mc-family .mc-avatar{width:48px;height:48px;object-fit:cover;background:#f5e2ca;box-shadow:0 0 0 3px #fffaf0}
+.mc-family .mc-selected{color:#8a6344;background:#f6eadb;border-radius:14px;padding:6px 8px;white-space:nowrap;font-size:11px}
+.mc-family .active .mc-selected{background:#edd4b4;color:#694523}
+.mc-family .active .mc-selected:before{content:'✓ ';font-weight:700}
+.mc-family .mc-cat-info strong{color:#654b36}
+.mc-family .mc-add,.inpaw-app .mc-add{background:#fffaf1;border:1px dashed #d8bb96;border-radius:20px;color:#806040}
+.mc-family .mc-household-link,.inpaw-app .mc-household-link{border-color:#e9dcc9;color:#806040}
+.mc-switcher-dialog .mc-button.secondary{border-radius:22px;background:#f1e4d2;color:#755337}
+.mc-switcher-dialog button:focus-visible{outline-color:#995325}
+@media(max-width:360px){.mc-family .mc-cat-card{gap:9px}.mc-family .mc-avatar{width:42px;height:42px}}
+@media(prefers-reduced-motion:reduce){.pet-switch-button{transition:none}.pet-switch-button:active{transform:none}}
+/* 2026-11-14：切換清單頭像蓋住年齡文字。multi-cat-v23.css 窄螢幕把第一欄設成 32px，a33-polish 的頭像卻是 56px，
+   頭像溢出到文字欄。這裡讓第一欄固定等於頭像寬，文字一定從頭像右邊開始。 */
+.mc-family .mc-cat-manage-row>.mc-cat-card{grid-template-columns:56px minmax(0,1fr)!important;column-gap:12px!important}
+.mc-family .mc-cat-manage-row>.mc-cat-card .mc-avatar{width:56px!important;height:56px!important;min-width:56px;align-self:center}
+.mc-family .mc-cat-manage-row>.mc-cat-card .mc-cat-info small{overflow-wrap:anywhere}
+.mc-family .mc-same-name{color:#8a5a2b;font-weight:600}
+.mc-archive-identity{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:10px 12px;border-radius:14px;background:#fff4e3;color:#654b36;font-size:14px;line-height:1.5}
+.mc-same-name-note{padding:10px 12px;border-radius:12px;background:#fff4dc;color:#6b4a1f}
+.mc-note-count{display:block;margin:-6px 0 10px;text-align:right;font-size:12px;color:#806b59}
+html[data-theme=dark] .mc-archive-identity,html[data-theme=dark] .mc-same-name-note{background:#3d3524;color:#f3e7cf}
+html[data-theme=dark] .mc-family .mc-same-name{color:#e8c08f}

@@ -1,0 +1,143 @@
+/* Settings only: warm readable surfaces, compact round icons, unchanged controls. */
+.pet-settings{
+ --settings-ink:#44362d;--settings-muted:#68574a;--settings-accent:#754321;
+ --settings-line:#d4c1ae;--settings-surface:#fffaf4;--settings-soft:#f3e9dd;
+ --ps-line:var(--settings-line);--ps-soft:var(--settings-soft);
+ color:var(--settings-ink);min-width:0;overflow-wrap:anywhere;
+}
+.inpaw-app .pet-settings :is(h1,h2,h3,h4,strong,dt){color:var(--settings-ink)}
+.inpaw-app .pet-settings :is(.ps-heading>p,.ps-kicker,.ps-card p,.ps-card ul,.ps-note,.ps-account small,.ps-shortcut small,.ps-unavailable small,.ps-privacy-row small,.ps-facts dt,.ps-price span,.care-plan-footnote,.pro-intro p,.pro-preview>p,.app-policy-status dd,.app-data-use dd,.app-subscription-disclosure dd){color:var(--settings-muted)}
+.inpaw-app .pet-settings :is(.care-plans,.pro-plans,.pro-preview,.ps-shortcut,.ps-tab){color:var(--settings-ink)}
+.inpaw-app .pet-settings :is(.ps-card,.ps-shortcuts,.care-pro-card,.pro-free,.pro-paid){
+ border:1px solid var(--settings-line);border-radius:20px;
+ background:linear-gradient(135deg,#fffffff0,#fff8eef0);box-shadow:0 4px 14px #79543a0c;
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.inpaw-app .pet-settings .ps-tabs{
+ background:#fbf5ecef;border:1px solid var(--settings-line);border-radius:16px;
+ padding:5px;gap:5px;box-shadow:0 2px 8px #79543a0c;
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.inpaw-app .pet-settings .ps-tab{
+ display:flex;align-items:center;justify-content:center;gap:7px;min-height:48px;
+ padding:9px 7px;border:1px solid transparent;border-radius:11px;line-height:1.5;
+}
+.inpaw-app .pet-settings .ps-tab[aria-current=page]{
+ background:#fffaf4!important;border-color:#a67a57;color:var(--settings-accent);
+ box-shadow:inset 0 -2px 0 #a67a57;
+}
+.inpaw-app .pet-settings .ps-tab>span{min-width:0}
+.inpaw-app .pet-settings .ps-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;position:static!important;scrollbar-width:none}
+.inpaw-app .pet-settings .ps-tabs::-webkit-scrollbar{display:none}
+.inpaw-app .pet-settings .ps-tab{flex:0 0 auto;min-width:84px;white-space:nowrap}
+/* Five tabs fit one row on a 390px phone: icon above a short label; the row still scrolls on narrower screens. */
+.inpaw-app .pet-settings .ps-tabs{gap:2px;padding:4px}
+.inpaw-app .pet-settings .ps-tab{flex:1 0 auto;min-width:0;flex-direction:column;gap:2px;min-height:54px;padding:6px 7px;font-size:13px;line-height:1.3}
+.inpaw-app .pet-settings :is(.ps-avatar,.ps-icon){background:var(--settings-soft);color:var(--settings-accent);border-radius:12px}
+.inpaw-app .pet-settings .ps-avatar{width:42px;height:42px}
+.inpaw-app .pet-settings .ps-model .ps-card-head .ps-icon{width:36px;height:36px}
+.pet-settings .settings-icon{display:inline-block;flex:0 0 auto;vertical-align:middle;width:20px;height:20px;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pet-settings .ps-tab .settings-icon{width:18px;height:18px}
+.inpaw-app .pet-settings .ps-button{background:#754321;color:#fff;border:1px solid #754321;box-shadow:none;min-height:46px;white-space:normal}
+.inpaw-app .pet-settings :is(.ps-button.secondary,.ps-feature-button,.backup-export,.backup-download){background:var(--settings-surface);color:var(--settings-accent);border:1px solid #a98464;box-shadow:none}
+.inpaw-app .pet-settings .ps-button.danger{background:#963f31;border-color:#963f31;color:#fff}
+.inpaw-app .pet-settings .ps-button:disabled{opacity:1;background:#ece4da;border-color:#d4c1ae;color:#68574a;box-shadow:none}
+.inpaw-app .pet-settings .ps-text-button{color:var(--settings-accent)}
+.inpaw-app .pet-settings :is(.ps-badge,.ps-off,.pro-tag,.ps-plan-status,.ps-facts,.pro-demo-note,.pro-free-note,.care-plan-unavailable){background:var(--settings-soft);color:#624a37;border-color:var(--settings-line)}
+.inpaw-app .pet-settings :is(.care-service-status,.care-entitlements,.app-data-use,.app-subscription-disclosure,.app-consent-preview){background:#fffaf4;color:var(--settings-muted);border-color:var(--settings-line);box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.inpaw-app .pet-settings :is(.care-entitlements dt,.care-summary-comparison dt,.app-disclosure-status){color:#654630}
+.inpaw-app .pet-settings :is(.app-disclosure-note,.ps-prototype,.backup-warning){background:#f7edde;color:#624a37;border:1px solid var(--settings-line);border-radius:14px}
+.inpaw-app .pet-settings :is(.app-data-use,.app-subscription-disclosure) summary{min-height:44px;box-sizing:border-box;padding:10px 0;color:var(--settings-ink)}
+.inpaw-app .pet-settings :is(.ps-badge.success,.ps-success,.ps-announcement,.ps-manage-state){background:#edf3e9;color:#35533d;border-color:#a4b59e}
+.inpaw-app .pet-settings :is(input,select,textarea){accent-color:#754321}
+.inpaw-app .pet-settings :is(.pro-field input,.pro-field select,.pro-field textarea){background:#fffdf9;color:var(--settings-ink);border-color:#a98464}
+.inpaw-app .pet-settings .ps-dialog{--ink:#44362d;background:#fffaf4!important;border-color:var(--settings-line);backdrop-filter:none;-webkit-backdrop-filter:none}
+.inpaw-app .pet-settings .ps-dialog p{color:var(--settings-muted)}
+.inpaw-app .pet-settings :is(button,summary,a,input,select,textarea):focus-visible{outline:3px solid #754321!important;outline-offset:3px}
+.inpaw-app .pet-settings .care-cycle-option:has(input:focus-visible){outline:3px solid #754321;outline-offset:3px}
+.inpaw-app .pet-settings .ps-facts>div{flex-wrap:wrap;gap:3px 12px}
+.inpaw-app .pet-settings :is(.ps-body,.ps-card-head>div,.ps-account>div,.family-start-option>span){min-width:0}
+@media(max-width:360px){
+ .inpaw-app .pet-settings .ps-tab{font-size:12px;gap:2px;padding:6px 5px}
+ .inpaw-app .pet-settings .ps-card{padding:16px}
+ .inpaw-app .pet-settings .ps-account{gap:9px}
+ .inpaw-app .pet-settings .ps-card-head{flex-wrap:wrap}
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ .inpaw-app .pet-settings :is(.ps-tabs,.ps-card,.ps-shortcuts,.care-pro-card,.pro-free,.pro-paid){background:#fffaf4}
+}
+@media(prefers-reduced-transparency:reduce){
+ .inpaw-app .pet-settings :is(.ps-tabs,.ps-card,.ps-shortcuts,.care-pro-card,.pro-free,.pro-paid){background:#fffaf4!important;backdrop-filter:none;-webkit-backdrop-filter:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .pet-settings,.pet-settings *,.pet-settings *::before,.pet-settings *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+.pet-settings .care-credit-packs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}
+.pet-settings .care-credit-packs>div{display:grid;gap:4px;min-width:0;padding:15px 12px;border:1px solid #d4c1ae;border-radius:15px;background:#fffaf4}
+.pet-settings .care-credit-packs strong{font-size:19px}.pet-settings .care-credit-packs span{font-size:22px;font-weight:750;color:#754321}.pet-settings .care-credit-packs small{font-size:12px;line-height:1.6;color:#68574a}
+.pet-settings .care-credit-usage dt{font-weight:750;margin-top:14px}.pet-settings .care-credit-usage dd{margin:5px 0 12px;line-height:1.7}
+@media(max-width:340px){.pet-settings .care-credit-packs{grid-template-columns:1fr}}
+
+/* AI and data pages: folded sections, intro line and backup hint. */
+.inpaw-app .pet-settings .care-ai-intro{margin:4px 0 12px;color:var(--settings-muted);line-height:1.7}
+.inpaw-app .pet-settings .care-fold{margin:14px 0;padding:0 14px;border:1px solid var(--settings-line);border-radius:18px;background:#fffaf4}
+.inpaw-app .pet-settings .care-fold>summary{padding:13px 0;min-height:48px;box-sizing:border-box;font-weight:700;color:var(--settings-ink);cursor:pointer}
+.inpaw-app .pet-settings .care-fold[open]{padding-bottom:14px}
+.inpaw-app .pet-settings .care-fold>summary>span{margin-right:8px}
+.inpaw-app .pet-settings .care-phone-ai-state{display:inline-block;padding:2px 9px;border-radius:999px;background:#edf3e9;color:#35533d;font-size:12.5px;font-weight:650}
+.inpaw-app .pet-settings .care-fold .care-model-grid{margin:10px 0}
+.inpaw-app .pet-settings .care-fold :is(.ps-button,button){width:100%}
+.inpaw-app .pet-settings .care-example-actions{display:grid;gap:8px;margin-top:8px}
+.inpaw-app .pet-settings .care-fold dl{display:flex;flex-wrap:wrap;gap:4px 12px;margin:4px 0 10px}
+.inpaw-app .pet-settings .care-fold dd{margin:0;color:var(--settings-muted)}
+.inpaw-app .pet-settings .care-fold>p{margin:6px 0}
+.inpaw-app .pet-settings .care-storage-status{grid-template-columns:minmax(0,40%) minmax(0,1fr);column-gap:14px}
+.inpaw-app .pet-settings .care-storage-status :is(dt,dd){overflow-wrap:normal;word-break:normal;hyphens:manual;min-width:0}
+/* 2026-11-17: English 320px cut words (switchin/g); narrow screens stack label above value. */
+@media(max-width:360px){.inpaw-app .pet-settings .care-storage-status{grid-template-columns:minmax(0,1fr);row-gap:2px}.inpaw-app .pet-settings .care-storage-status dd{margin-bottom:8px}}
+.inpaw-app .pet-settings .backup-hint{margin:6px 0 10px;font-size:13px;line-height:1.6;color:#7a4f2a}
+/* Download confirmation inside settings: the shared .cj-primary paint only exists inside care workspaces. */
+.inpaw-app .pet-settings .dl-actions button{border:1px solid #a98464;background:var(--settings-surface);color:var(--settings-accent);font-weight:650;width:100%}
+.inpaw-app .pet-settings .dl-actions .cj-primary{background:#754321;border-color:#754321;color:#fff}
+.inpaw-app .pet-settings .dl-actions .cj-primary:disabled{background:#ece4da;border-color:#d4c1ae;color:#68574a}
+
+/* Explicit paired paints: settings has legacy light gradients and generated
+   global text rules. Override both sides together, including expanded plans. */
+@media screen {
+ html[data-theme=dark] .inpaw-app .pet-settings .ps-tabs{
+  background:#302a25!important;border-color:#8b7969!important;
+  box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+ }
+ html[data-theme=dark] .inpaw-app .pet-settings .ps-tab:not([aria-current=page]){
+  background:transparent!important;color:#f3ece3!important;border-color:transparent!important;
+ }
+ html[data-theme=dark] .inpaw-app .pet-settings .ps-tab[aria-current=page]{
+  background:#57412f!important;color:#fff3e4!important;border-color:#edbd92!important;
+  box-shadow:inset 0 0 0 2px #edbd92!important;
+ }
+ html[data-theme=dark] .inpaw-app .pet-settings :is(.ps-card,.ps-shortcuts,.care-pro-card,.pro-free,.pro-paid,.care-credit-packs>div,.care-service-status,.care-entitlements,.app-data-use,.app-subscription-disclosure,.app-consent-preview,.care-model-card,.care-balance-grid>article,.care-storage-status,.care-data-separation,.cloud-summary-demo){
+  background:#2d2926!important;color:#f3ece3!important;border-color:#8b7969!important;
+  box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+ }
+ html[data-theme=dark] .inpaw-app .pet-settings :is(.care-pro-card,.care-credit-packs,.care-entitlements,.care-summary-comparison,.care-account-status,.care-quota-proposal,.care-storage-status,.care-model-card,.care-data-separation) :is(p,li,dt,dd,h2,h3,h4,strong,summary){color:#f3ece3!important}
+ html[data-theme=dark] .inpaw-app .pet-settings :is(.care-plan-footnote,.care-credit-packs small,.care-balance-grid small){color:#cfc3b6!important}
+ html[data-theme=dark] .inpaw-app .pet-settings :is(.care-pro-price,.care-credit-packs span){color:#edbd92!important}
+ html[data-theme=dark] .inpaw-app .pet-settings .care-cycle-option{
+  background:#36302b!important;color:#f3ece3!important;border-color:#8b7969!important;
+ }
+ html[data-theme=dark] .inpaw-app .pet-settings .care-cycle-option.is-selected{
+  background:#57412f!important;color:#fff3e4!important;border-color:#edbd92!important;
+  box-shadow:inset 0 0 0 2px #edbd92!important;
+ }
+ html[data-theme=dark] .inpaw-app .pet-settings :is(.ps-badge,.ps-off,.pro-tag,.ps-plan-status,.care-plan-unavailable,.ps-prototype,.app-disclosure-note,.backup-warning){background:#36302b!important;color:#f3ece3!important;border-color:#8b7969!important}
+ html[data-theme=dark] .inpaw-app .pet-settings :is(.ps-button.secondary,.ps-feature-button,.backup-export,.backup-download){background:#2d2926!important;color:#edbd92!important;border-color:#8b7969!important}
+ html[data-theme=dark] .inpaw-app .pet-settings :is(button,summary,a,input,select,textarea):focus-visible{outline-color:#ffd09c!important}
+ html[data-theme=dark] .inpaw-app .pet-settings .care-fold{background:#2d2926!important;border-color:#8b7969!important;color:#f3ece3}
+ html[data-theme=dark] .inpaw-app .pet-settings .care-fold :is(summary,h3,strong,dt){color:#f3ece3!important}
+ html[data-theme=dark] .inpaw-app .pet-settings :is(.care-fold p,.care-fold dd,.care-ai-intro){color:#cfc3b6}
+ html[data-theme=dark] .inpaw-app .pet-settings .care-phone-ai-state{background:#36302b;color:#cfe0c4}
+ html[data-theme=dark] .inpaw-app .pet-settings .backup-hint{color:#edbd92}
+ html[data-theme=dark] .inpaw-app .pet-settings .dl-actions button{background:#2d2926!important;color:#edbd92!important;border-color:#8b7969!important}
+ html[data-theme=dark] .inpaw-app .pet-settings .dl-actions .cj-primary{background:#77543d!important;color:#fff3e4!important;border-color:#edbd92!important}
+}

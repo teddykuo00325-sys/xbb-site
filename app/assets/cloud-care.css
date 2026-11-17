@@ -1,0 +1,193 @@
+/* Cloud care screens: consent, waiting, failure, sign-in gate, 成分解讀 card, report result.
+   Plain colours (no theme variables) so the same file works in the app page and the report shadow root. */
+.cc-sample-tag{display:inline-block;margin:0 0 10px;padding:5px 10px;border-radius:8px;background:#ece8dd;color:#6a5a45;font-size:12px;line-height:1.5}
+.cc-consent,.cc-waiting,.cc-failure,.cc-gate{border:1px solid #d8e0d3;border-radius:18px;background:#fff;padding:16px;margin:12px 0;color:#35483a}
+.cc-consent h3{margin:0 0 10px;font-size:18px;line-height:1.45}
+.cc-facts{margin:0;display:grid;gap:10px}
+.cc-facts div{display:grid;grid-template-columns:5.5em 1fr;gap:8px;align-items:start}
+.cc-facts dt{font-size:12px;font-weight:700;color:#60744d;padding-top:2px}
+.cc-facts dd{margin:0;font-size:14px;line-height:1.7;color:#35483a;overflow-wrap:anywhere}
+.cc-reminder{margin:12px 0 0;padding:10px 12px;border-radius:12px;background:#fbf1dc;color:#7a5410;font-size:13px;line-height:1.7}
+.cc-actions{display:grid;gap:10px;margin-top:16px}
+.cc-actions button,.cc-gate button,.cc-waiting button{min-height:46px;border-radius:13px;font:inherit;cursor:pointer;width:100%}
+.cc-waiting{text-align:center;display:grid;justify-items:center;gap:6px}
+.cc-waiting p{margin:0;font-size:13px;color:#586652}
+.cc-spinner{width:30px;height:30px;border-radius:50%;border:3px solid #dbe6cf;border-top-color:#60744d;animation:cc-spin 1s linear infinite}
+@keyframes cc-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.cc-spinner{animation:none;border-top-color:#dbe6cf;border-left-color:#60744d}}
+.cc-failure{border-color:#e8d2a6;background:#fdf6e6}
+.cc-failure strong,.cc-gate strong{display:block;font-size:15px;margin-bottom:4px}
+.cc-failure p,.cc-gate p{margin:0;font-size:13px;line-height:1.8;color:#6b5a38}
+.cc-gate p{color:#586652}
+.cc-tiny{font-size:12px;color:#7c726b;margin:8px 0 0}
+/* 成分解讀 card */
+.cc-analysis{margin:14px 0;border:1px solid #d8e0d3;border-radius:16px;background:#fbfdf7;padding:4px 14px 14px;color:#35483a}
+.cc-analysis>summary{min-height:44px;display:flex;align-items:center;font-size:16px;font-weight:700;cursor:pointer}
+.cc-note{margin:0 0 10px;font-size:12px;line-height:1.8;color:#586652}
+.cc-hint{margin:8px 0;font-size:12px;color:#906317}
+.cc-line{margin:8px 0;font-size:14px}
+.cc-table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}
+.cc-table caption{text-align:left;font-size:12px;font-weight:700;color:#60744d;padding-bottom:4px}
+.cc-table th,.cc-table td{padding:7px 4px;border-bottom:1px solid #e7ede0;text-align:right}
+.cc-table th[scope=row],.cc-table thead th:first-child{text-align:left;font-weight:600}
+.cc-table thead th{font-size:12px;color:#60744d;font-weight:700}
+.cc-ref{margin:14px 0 0}
+.cc-ref h4,.cc-ingredients h4{margin:0 0 6px;font-size:13px;color:#35483a}
+.cc-ref ul,.cc-ingredients ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.cc-ref li{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:13px;padding:7px 10px;border-radius:10px;background:#f1f6ea;flex-wrap:wrap}
+.cc-ref li em{font-style:normal;font-size:12px;font-weight:700;color:#47705e}
+.cc-ref li.cc-ref-below{background:#fdf1dc}.cc-ref li.cc-ref-below em{color:#906317}
+.cc-ref li.cc-ref-unknown{background:#efede7}.cc-ref li.cc-ref-unknown em{color:#7c726b}
+.cc-ingredients{margin-top:14px}
+.cc-ingredients li{display:grid;grid-template-columns:6em 1fr;gap:8px;font-size:13px;line-height:1.7}
+.cc-ingredients li b{color:#60744d}
+.cc-photo{display:block;margin:0 auto 14px;max-width:100%;max-height:220px;width:auto;object-fit:contain;border-radius:12px}
+/* Report result */
+.cc-report-summary{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.cc-chip{padding:5px 11px;border-radius:999px;font-size:12px;font-weight:700;background:#efede7;color:#6a5a45}
+.cc-chip.high{background:#fbe4dc;color:#8e3b22}.cc-chip.low{background:#e0ebf3;color:#2f5a7a}.cc-chip.pending{background:#fdf1dc;color:#906317}.cc-chip.ok{background:#e4efe6;color:#3f6b50}
+.cc-rows{display:grid;gap:10px;margin:12px 0}
+.cc-row{border:1px solid #e0d7c9;border-radius:14px;background:#fff;padding:12px 14px}
+.cc-row.high{border-color:#efc2b2}.cc-row.low{border-color:#bcd2e2}.cc-row.pending{border-color:#e8d2a6;background:#fffaf0}
+.cc-row-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.cc-row-name{font-weight:700;color:#303859;line-height:1.4}.cc-row-name small{display:block;font-weight:400;color:#7c726b;font-size:12px}
+.cc-row-value{text-align:right;font-size:15px}.cc-row-value small{display:block;color:#7c726b;font-size:12px}
+.cc-status{display:inline-block;margin-top:6px;padding:3px 9px;border-radius:8px;font-size:12px;font-weight:700;background:#efede7;color:#6a5a45}
+.cc-row.high .cc-status{background:#fbe4dc;color:#8e3b22}.cc-row.low .cc-status{background:#e0ebf3;color:#2f5a7a}.cc-row.pending .cc-status{background:#fdf1dc;color:#906317}.cc-row.ok .cc-status{background:#e4efe6;color:#3f6b50}
+.cc-reason{margin:8px 0 0;font-size:12.5px;line-height:1.7;color:#7a5410}
+.cc-raw{margin:8px 0 0;font-size:12px;color:#7c726b;overflow-wrap:anywhere}
+.cc-raw b{font-weight:600;color:#554c46}
+.cc-explain{margin:8px 0 0;font-size:13px;line-height:1.7;color:#554c46}
+.cc-identity{border:1px solid #e8d2a6;background:#fdf6e6;border-radius:14px;padding:12px 14px;margin:12px 0;font-size:13.5px;line-height:1.7;color:#6b5a38}
+.cc-identity b{color:#7a5410}
+.cc-questions{margin:14px 0}
+.cc-questions label{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #eee5d8;font-size:14px;line-height:1.7}
+.cc-questions input{margin-top:5px;width:20px;height:20px;flex:0 0 auto}
+.cc-safety{margin:14px 0;padding:12px 14px;border-radius:14px;background:#f6eee6;color:#6b4a30;font-size:13px;line-height:1.8}
+/* cloud-care dark: app uses html[data-theme=dark]; the report shadow root uses :host([data-theme=dark]). */
+html[data-theme="dark"] .cc-sample-tag,
+:host([data-theme=dark]) .cc-sample-tag{background:#3a352f;color:#d8c7b0}
+html[data-theme="dark"] .cc-consent,
+:host([data-theme=dark]) .cc-consent,
+html[data-theme="dark"] .cc-waiting,
+:host([data-theme=dark]) .cc-waiting,
+html[data-theme="dark"] .cc-gate,
+:host([data-theme=dark]) .cc-gate,
+html[data-theme="dark"] .cc-analysis,
+:host([data-theme=dark]) .cc-analysis,
+html[data-theme="dark"] .cc-row,
+:host([data-theme=dark]) .cc-row{background:#2d2926;border-color:#8b7969;color:#f3ece3}
+html[data-theme="dark"] .cc-row.pending,
+:host([data-theme=dark]) .cc-row.pending{background:#35302a;border-color:#a8987e}
+html[data-theme="dark"] .cc-row.high,
+:host([data-theme=dark]) .cc-row.high{border-color:#c98f7d}
+html[data-theme="dark"] .cc-row.low,
+:host([data-theme=dark]) .cc-row.low{border-color:#7fa1b9}
+html[data-theme="dark"] .cc-consent :is(p,dd,h3,h4,strong,b,li,span,th,td,summary,small,caption,label),
+:host([data-theme=dark]) .cc-consent :is(p,dd,h3,h4,strong,b,li,span,th,td,summary,small,caption,label),
+html[data-theme="dark"] .cc-waiting :is(p,dd,h3,h4,strong,b,li,span,th,td,summary,small,caption,label),
+:host([data-theme=dark]) .cc-waiting :is(p,dd,h3,h4,strong,b,li,span,th,td,summary,small,caption,label),
+html[data-theme="dark"] .cc-gate :is(p,dd,h3,h4,strong,b,li,span,th,td,summary,small,caption,label),
+:host([data-theme=dark]) .cc-gate :is(p,dd,h3,h4,strong,b,li,span,th,td,summary,small,caption,label),
+html[data-theme="dark"] .cc-analysis :is(p,dd,h3,h4,strong,b,li,span,th,td,summary,small,caption,label),
+:host([data-theme=dark]) .cc-analysis :is(p,dd,h3,h4,strong,b,li,span,th,td,summary,small,caption,label),
+html[data-theme="dark"] .cc-row :is(p,dd,h3,h4,strong,b,li,span,th,td,summary,small,caption,label),
+:host([data-theme=dark]) .cc-row :is(p,dd,h3,h4,strong,b,li,span,th,td,summary,small,caption,label){color:inherit}
+html[data-theme="dark"] .cc-facts dt,
+:host([data-theme=dark]) .cc-facts dt,
+html[data-theme="dark"] .cc-table caption,
+:host([data-theme=dark]) .cc-table caption,
+html[data-theme="dark"] .cc-table thead th,
+:host([data-theme=dark]) .cc-table thead th,
+html[data-theme="dark"] .cc-ingredients li b,
+:host([data-theme=dark]) .cc-ingredients li b{color:#b7c9a3}
+html[data-theme="dark"] .cc-note,
+:host([data-theme=dark]) .cc-note,
+html[data-theme="dark"] .cc-raw,
+:host([data-theme=dark]) .cc-raw,
+html[data-theme="dark"] .cc-row-name small,
+:host([data-theme=dark]) .cc-row-name small,
+html[data-theme="dark"] .cc-row-value small,
+:host([data-theme=dark]) .cc-row-value small{color:#cfc3b6}
+html[data-theme="dark"] .cc-explain,
+:host([data-theme=dark]) .cc-explain{color:#e8d9c7}
+html[data-theme="dark"] .cc-tiny,
+:host([data-theme=dark]) .cc-tiny{color:#bdb3a6}
+html[data-theme="dark"] .cc-hint,
+:host([data-theme=dark]) .cc-hint,
+html[data-theme="dark"] .cc-reason,
+:host([data-theme=dark]) .cc-reason{color:#e0b866}
+html[data-theme="dark"] .cc-row-name,
+:host([data-theme=dark]) .cc-row-name{color:#f3ece3}
+html[data-theme="dark"] .cc-failure,
+:host([data-theme=dark]) .cc-failure{background:#3a3125;border-color:#8a7248;color:#f3e5c8}
+html[data-theme="dark"] .cc-failure :is(p,strong),
+:host([data-theme=dark]) .cc-failure :is(p,strong){color:#f3e5c8}
+html[data-theme="dark"] .cc-reminder,
+:host([data-theme=dark]) .cc-reminder,
+html[data-theme="dark"] .cc-identity,
+:host([data-theme=dark]) .cc-identity{background:#3d3322;border-color:#8a7248;color:#e6c680}
+html[data-theme="dark"] .cc-identity :is(p,b),
+:host([data-theme=dark]) .cc-identity :is(p,b){color:#e6c680}
+html[data-theme="dark"] .cc-safety,
+:host([data-theme=dark]) .cc-safety{background:#3a302a;color:#e8d2bf}
+html[data-theme="dark"] .cc-safety :is(p,b),
+:host([data-theme=dark]) .cc-safety :is(p,b){color:#e8d2bf}
+html[data-theme="dark"] .cc-table th,
+:host([data-theme=dark]) .cc-table th,
+html[data-theme="dark"] .cc-table td,
+:host([data-theme=dark]) .cc-table td{border-bottom-color:#4a463f}
+html[data-theme="dark"] .cc-ref li,
+:host([data-theme=dark]) .cc-ref li{background:#38352f}
+html[data-theme="dark"] .cc-ref li em,
+:host([data-theme=dark]) .cc-ref li em{color:#b7d4a5}
+html[data-theme="dark"] .cc-ref li.cc-ref-below,
+:host([data-theme=dark]) .cc-ref li.cc-ref-below{background:#43372a}
+html[data-theme="dark"] .cc-ref li.cc-ref-below em,
+:host([data-theme=dark]) .cc-ref li.cc-ref-below em{color:#e6b95e}
+html[data-theme="dark"] .cc-ref li.cc-ref-unknown,
+:host([data-theme=dark]) .cc-ref li.cc-ref-unknown{background:#35332e}
+html[data-theme="dark"] .cc-ref li.cc-ref-unknown em,
+:host([data-theme=dark]) .cc-ref li.cc-ref-unknown em{color:#bdb6a8}
+html[data-theme="dark"] .cc-questions label,
+:host([data-theme=dark]) .cc-questions label{border-bottom-color:#4a463f;color:#f3ece3}
+html[data-theme="dark"] .cc-spinner,
+:host([data-theme=dark]) .cc-spinner{border-color:#4a463f;border-top-color:#b7c9a3}
+/* status chips keep their own colours on dark cards */
+html[data-theme="dark"] .cc-row .cc-status,
+:host([data-theme=dark]) .cc-row .cc-status{color:#6a5a45}
+html[data-theme="dark"] .cc-row.high .cc-status,
+:host([data-theme=dark]) .cc-row.high .cc-status{color:#8e3b22}
+html[data-theme="dark"] .cc-row.low .cc-status,
+:host([data-theme=dark]) .cc-row.low .cc-status{color:#2f5a7a}
+html[data-theme="dark"] .cc-row.pending .cc-status,
+:host([data-theme=dark]) .cc-row.pending .cc-status{color:#906317}
+html[data-theme="dark"] .cc-row.ok .cc-status,
+:host([data-theme=dark]) .cc-row.ok .cc-status{color:#3f6b50}
+
+.dl-confirm{border:1px solid #e0b866;border-radius:16px;background:#fdf6e6;padding:14px;margin:10px 0;color:#5a4636}
+.dl-confirm strong{display:block;font-size:15px}
+.dl-confirm p{margin:6px 0;font-size:13.5px;line-height:1.7}
+.dl-confirm .dl-tiny{font-size:12.5px;color:#7c726b}
+.dl-actions{display:grid;gap:8px;margin-top:10px}
+.dl-actions button{min-height:46px;border-radius:13px;font:inherit;cursor:pointer}
+html[data-theme="dark"] .dl-confirm{background:#35302a;border-color:#a8987e;color:#f3ece3}
+html[data-theme="dark"] .dl-confirm .dl-tiny{color:#cfc3b6}
+.safety-copy{border:1px solid #d8e0d3;border-radius:16px;background:#fbfdf7;padding:12px 14px;margin:10px 0;color:#35483a}
+.safety-copy strong{display:block;font-size:15px}
+.safety-copy p{margin:6px 0;font-size:13.5px;line-height:1.7}
+.safety-copy button{min-height:44px;margin:4px 8px 4px 0}
+html[data-theme="dark"] .safety-copy{background:#2d2926;border-color:#8b7969;color:#f3ece3}
+/* The floating bottom bar must never hide the last item of a page. */
+.mobile-scroll{padding-bottom:calc(112px + env(safe-area-inset-bottom,0px))}
+.shell-with-tabs .mobile-scroll{padding-bottom:0}
+.inpaw-snack{position:fixed;left:12px;right:12px;bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:10px 14px;border-radius:16px;background:#3a2f27;color:#fff;box-shadow:0 8px 24px #0004;font-size:14px;line-height:1.6}
+.inpaw-snack span{flex:1 1 100%}
+.inpaw-snack button{min-height:44px;padding:0 16px;border-radius:12px;border:1px solid #ffffff66;background:transparent;color:#fff;font:inherit;cursor:pointer}
+.inpaw-snack button.is-primary{background:#fff;color:#3a2f27;border-color:#fff;font-weight:700}
+.inpaw-snack small{flex:1 1 100%;color:#ffd7cf}
+.meal-cat-chips{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:4px}
+.meal-cat-chips .meal-chip{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid #c9bfae;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.meal-cat-chips .meal-chip.is-on{background:#8a4c29;border-color:#8a4c29;color:#fff;font-weight:700}
+.meal-cat-field>span{font-size:13px;font-weight:700}
+html[data-theme="dark"] .meal-cat-chips .meal-chip.is-on{background:#e7c4a8;border-color:#e7c4a8;color:#2d2926}
